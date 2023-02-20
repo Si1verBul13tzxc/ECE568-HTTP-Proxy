@@ -1,32 +1,56 @@
-#include <arpa/inet.h>
 #include <netdb.h>
-#include <poll.h>
-#include <pthread.h>
-#include <stdio.h>
-#include <stdlib.h>
 #include <string.h>
 #include <sys/socket.h>
-#include <time.h>
 #include <unistd.h>
 
+#include <memory>
+#include <thread>
+
 #include "my_exception.hpp"
+class thread_info {
+ public:
+  const int listener;
+  const int unique_id;
+  const int client_fd;
+  thread_info(int listener, int id, int fd) :
+      listener(listener), unique_id(id), client_fd(fd) {}
+};
+
 class proxy {
  private:
-  int listener;
+  const int listener;
 
  public:
-  proxy() : listener(0) { this->listener = create_tcp_listener_fd("12345"); }
-  void accept_request() {
+  proxy() : listener(create_tcp_listener_fd("12345")) {}
+
+ private:
+  void start() {
+    int id = 0;
+    while (1) {
+      int new_fd = proxy_accpect_connection();
+      if (new_fd != -1) {
+        std::unique_ptr<thread_info> t_info_ptr(
+            new thread_info(this->listener, id, new_fd));
+        std::thread processing(process_request, t_info_ptr);
+      }
+    }
+  }
+
+  int proxy_accpect_connection() {
     struct sockaddr_storage client_socket_addr;
     socklen_t len = sizeof(client_socket_addr);
     int new_fd = accept(this->listener, (struct sockaddr *)&client_socket_addr, &len);
     if (new_fd == -1) {
-      throw my_exception("cannot accept");
+      //log this error
     }
-    //spawn a need thread to process it.
+    return new_fd;
   }
 
- private:
+  /**
+     thread function that process each incoming request
+   */
+  static void process_request(std::unique_ptr<thread_info> th_info) {}
+
   int create_tcp_listener_fd(const char * port) {  //reference from Beej's Guide
     int listener_fd = -1;
     int status = -1;
