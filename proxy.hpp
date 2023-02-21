@@ -1,4 +1,5 @@
 #include <netdb.h>
+#include <poll.h>
 #include <string.h>
 #include <sys/socket.h>
 #include <unistd.h>
@@ -67,6 +68,8 @@ class proxy {
     std::string request_method = request_res_ptr->method;
     if (request_method == "CONNECT") {
       //do some crazy stuff about connect
+      http_connect(std::move(th_info), std::move(request_res_ptr));
+      //log tunnel closed
     }
     else if (request_method == "POST") {
     }
@@ -74,9 +77,83 @@ class proxy {
     }
     else {
       //log
-      //bad request 400
-      return;  //process end
+      //proxy do not support this method
+      return;  //thread end
     }
+  }
+
+  static void http_connect(std::unique_ptr<thread_info> th_info,
+                           std::unique_ptr<httpparser::Request> http_request) {
+    //abstract it out later
+    std::string hostname_port = http_request->uri;
+    std::size_t pos = hostname_port.find(":");
+    std::string hostname;
+    std::string port;
+    if (pos != std::string::npos) {
+      hostname = hostname_port.substr(0, pos);
+      port = hostname_port.substr(pos + 1);
+    }
+    else {
+      hostname = hostname_port;
+      port = "80";
+    }  //
+    int uri_fd = connect_to_host(hostname.c_str(), port.c_str());
+    if (uri_fd == -1) {
+      //log
+      //connect uri fail
+      std::string message("Connect:" + hostname_port + "fails");
+      throw my_exception(message.c_str());
+    }
+    //send 200 ok
+    //forwarding message from one end to another
+    struct pollfd pollfds[2];
+    pollfds[0].fd = th_info->client_fd;
+    pollfds[0].events = POLLIN;
+    pollfds[1].fd = uri_fd;
+    pollfds[1].events = POLLIN;
+    while (1) {
+      int pollcount = poll(pollfds, 2, -1);
+      if (pollcount == -1) {
+        //log
+        throw my_exception("poll fails on forwarding message between client and server");
+      }
+      for (int i = 0; i < 2; i++) {
+        if (pollfds[i].revents & POLLIN) {
+          std::vector<char> buffer(HTTP_LENGTH, 0);
+          int len_received = recv(pollfds[i].fd, &buffer.data()[0], HTTP_LENGTH, 0);
+          if (len_received <= 0) {
+            if (i == 0) {  //client close
+            }
+            else {  //server problem
+            }
+            return;
+          }
+          buffer.resize(len_received);
+          int res = sendall(pollfds[i ^ 1].fd, (char *)&buffer.data()[0], &len_received);
+          if (res == -1) {
+            //send fail
+            throw my_exception("fail to send all bytes");
+          }
+        }
+      }
+    }
+  }
+
+  static int sendall(int sock_fd, char * buf, int * len) {
+    //reference from Beej's Guide
+    int total = 0;         // how many bytes we've sent
+    int bytesleft = *len;  // how many we have left to send
+    int n;
+    while (total < *len) {
+      n = send(sock_fd, buf + total, bytesleft, 0);
+      if (n == -1) {
+        break;
+      }
+      total += n;
+      bytesleft -= n;
+    }
+    *len = total;             // return number actually sent here
+    return n == -1 ? -1 : 0;  // return -1 on failure, 0 on success
   }
 
   static std::unique_ptr<httpparser::Request> http_request_parse(
@@ -138,5 +215,42 @@ class proxy {
     }
 
     return listener_fd;
+  }
+
+  static int connect_to_host(const char * theHostname,
+                             const char * thePort) {  //reference from Beej's Guide
+    int status;
+    int socket_fd;
+    struct addrinfo host_info;
+    struct addrinfo * host_info_list;
+    struct addrinfo * host_ptr;
+    const char * hostname = theHostname;
+    const char * port = thePort;
+    memset(&host_info, 0, sizeof(host_info));
+    host_info.ai_family = AF_UNSPEC;
+    host_info.ai_socktype = SOCK_STREAM;
+    status = getaddrinfo(hostname, port, &host_info, &host_info_list);
+    if (status != 0) {
+      return -1;
+    }
+
+    for (host_ptr = host_info_list; host_ptr != NULL; host_ptr = host_ptr->ai_next) {
+      socket_fd =
+          socket(host_ptr->ai_family, host_ptr->ai_socktype, host_ptr->ai_protocol);
+      if (socket_fd == -1) {
+        continue;
+      }
+      break;  //successful create socket and bind
+    }
+    freeaddrinfo(host_info_list);
+    if (host_ptr == NULL) {
+      return -1;
+    }
+
+    status = connect(socket_fd, host_info_list->ai_addr, host_info_list->ai_addrlen);
+    if (status == -1) {
+      return -1;
+    }
+    return socket_fd;
   }
 };

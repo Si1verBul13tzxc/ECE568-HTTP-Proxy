@@ -2,9 +2,8 @@
 #include "httpparser/request.h"
 #include "iostream"
 int main() {
-  char text[] = "GET /uri.cgi HTTP/1.1\r\nUser-Agent: Mozilla/5.0\r\nAccept: "
-                "text/html,application/xhtml+xml,application/xml;q=0.9,*/"
-                "*;q=0.8\r\nHost: 127.0.0.1\r\n\r\n\0\0\0\asdfasfasf";
+  char text[] = "CONNECT server.example.com:422 HTTP/1.1\r\n"
+                "Proxy-Authorization: basic aGVsbG86d29ybGQ=\r\n\r\n";
   httpparser::Request request;
   httpparser::HttpRequestParser parser;
   httpparser::HttpRequestParser::ParseResult res =
@@ -13,6 +12,8 @@ int main() {
   if (res == httpparser::HttpRequestParser::ParsingCompleted) {
     std::cout << request.inspect() << std::endl;
     std::cout << request.method << std::endl;
+    std::cout << request.uri.substr(request.uri.find(":") + 1) << std::endl;
+    std::cout << request.uri.substr(0, request.uri.find(":")) << std::endl;
     return EXIT_SUCCESS;
   }
   else {
