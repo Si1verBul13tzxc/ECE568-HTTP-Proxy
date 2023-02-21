@@ -24,14 +24,14 @@ class proxy {
   proxy() : listener(create_tcp_listener_fd("12345")) {}
 
  private:
+
   void start() {
     int id = 0;
     while (1) {
       int new_fd = proxy_accpect_connection();
       if (new_fd != -1) {
-        std::unique_ptr<thread_info> t_info_ptr(
-            new thread_info(this->listener, id, new_fd));
-        std::thread processing(process_request, t_info_ptr);
+        std::unique_ptr<thread_info> t_info_ptr(new thread_info(this->listener, id, new_fd));
+        std::thread processing(process_request, std::move(t_info_ptr));
       }
     }
   }
