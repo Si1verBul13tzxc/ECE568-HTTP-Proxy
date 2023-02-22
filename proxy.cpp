@@ -55,8 +55,7 @@ void proxy::process_request(std::unique_ptr<thread_info> th_info) noexcept {
     }
     else if (request_method == "GET") {
     }
-    else {
-      //proxy do not support this method
+    else {  //proxy do not support this method
       log_id(th_info->unique_id, "ERROR method not supported");
       return;  //thread end
     }
