@@ -1,5 +1,4 @@
 #include "proxy.hpp"
-
 std::ofstream log_f("/var/log/erss/proxy.log");
 std::mutex mtx;
 int proxy::proxy_init_listener() {
@@ -32,6 +31,7 @@ void proxy::start(int listener) noexcept {
    */
 void proxy::process_request(std::unique_ptr<thread_info> th_info) noexcept {
   int unique_id = th_info->unique_id;
+  sock client_fd(th_info->client_fd);  //fd can be closed by destructor
   try {
     int fd = th_info->client_fd;
     std::vector<char> buffer(HTTP_LENGTH, 0);
@@ -46,6 +46,7 @@ void proxy::process_request(std::unique_ptr<thread_info> th_info) noexcept {
         parser_method::http_request_parse(buffer);
     std::string request_method = request_res_ptr->method;
     if (request_method == "CONNECT") {
+      std::cout << "connect request" << std::endl;
       http_connect(std::move(th_info), std::move(request_res_ptr));
     }
     else if (request_method == "POST") {
@@ -61,10 +62,11 @@ void proxy::process_request(std::unique_ptr<thread_info> th_info) noexcept {
     }
   }
   catch (my_exception & e) {
-    std::cerr << e.what() << std::endl;
+    debug_print(e.what());
     log_id(unique_id, "ERROR " + std::string(e.what()));
   }
   catch (std::exception & e) {
+    debug_print(e.what());
     log_id(-1, "ERROR (unexpected) " + std::string(e.what()));
   }
 }
@@ -90,6 +92,7 @@ void proxy::http_connect(std::unique_ptr<thread_info> th_info,
     std::string message("connect " + hostname + ":" + port + " fails");
     throw my_exception(message.c_str());
   }
+  sock uri_fd_guard(uri_fd);
   http_send_200ok(th_info->client_fd);
   http_connect_forward_messages(uri_fd, *th_info);
 }
@@ -133,38 +136,42 @@ void proxy::http_post(std::vector<char> request_buffer,
                       int * len_received,
                       std::unique_ptr<thread_info> th_info,
                       std::unique_ptr<httpparser::Request> http_request) {
-  //get hostname and port from header
+  debug_print("post method");
   std::string post_port;
   std::string post_hostname;
   parser_method::get_host_and_port(*http_request, post_hostname, post_port);
-  //std::cout << post_hostname <<"\n" << post_port;
-
   //Connect to the post server
   int server_fd =
       socket_method::connect_to_host(post_hostname.c_str(), post_port.c_str());
   if (server_fd == -1) {
-    //log for connecting with server failure
-    std::cerr << "Cannot connect to post server " << post_hostname << "\n";
+    throw my_exception("post:cannot connect to server");
   }
+  sock server_fd_guard(server_fd);
   //send request message to server
-  socket_method::sendall(server_fd, (char *)&request_buffer.data()[0], len_received);
-
+  int res =
+      socket_method::sendall(server_fd, (char *)&request_buffer.data()[0], len_received);
+  if (res == -1) {
+    throw my_exception("post fail to send all bytes");
+  }
   //receive the message from server
   std::vector<char> response_buffer(HTTP_LENGTH, 0);
   int response_length = recv(server_fd, &response_buffer.data()[0], HTTP_LENGTH, 0);
-  if (response_length < 0) {
-    //log receive error
-  }
-  else if (response_length == 0) {
-    //log any problem it should be here
+  if (response_length <= 0) {
+    throw my_exception("post fail to recv from server");
   }
   else {
-    std::cout << "The response mes length is: " << response_length << "\n";
+    std::string msg = "The response mes length is: " + std::to_string(response_length);
+    debug_print(msg.c_str());
     int res = socket_method::sendall(
         th_info->client_fd, (char *)&response_buffer.data()[0], &response_length);
-    //log file for the response message?
     if (res == -1) {  //send fail
       throw my_exception("fail to send all bytes");
     }
+  }
+}
+
+void proxy::debug_print(const char * msg) {
+  if (DEBUG) {
+    std::cout << msg << std::endl;
   }
 }
