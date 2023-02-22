@@ -1,12 +1,14 @@
+#include <assert.h>
 #include <netdb.h>
+#include <poll.h>
 #include <string.h>
 #include <sys/socket.h>
 #include <unistd.h>
-#include <assert.h>
+
+#include <iostream>
 #include <memory>
 #include <thread>
 #include <vector>
-#include <iostream>
 
 #include "httpparser/httprequestparser.h"
 #include "httpparser/httpresponseparser.h"
@@ -30,7 +32,6 @@ class proxy {
   proxy() : listener(create_tcp_listener_fd("12345")) {}
 
  private:
-
   void start() {
     int id = 0;
     while (1) {
@@ -59,7 +60,7 @@ class proxy {
   /**
      thread function that process each incoming request
    */
-  static void process_request(std::unique_ptr<thread_info> th_info) {//why static?
+  static void process_request(std::unique_ptr<thread_info> th_info) {  //why static?
     int fd = th_info->client_fd;
     std::vector<char> buffer(HTTP_LENGTH, 0);
     int len_received = recv(fd, &buffer.data()[0], HTTP_LENGTH, 0);
@@ -67,84 +68,148 @@ class proxy {
       //log error
       return;  //thread end
     }
-    buffer.resize(len_received);//why resize?
+    buffer.resize(len_received);  //why resize?
     std::unique_ptr<httpparser::Request> request_res_ptr = http_request_parse(buffer);
     std::string request_method = request_res_ptr->method;
     if (request_method == "CONNECT") {
       //do some crazy stuff about connect
+      http_connect(std::move(th_info), std::move(request_res_ptr));
+      //log tunnel closed
     }
     else if (request_method == "POST") {
       //log for post message
       http_post(buffer, &len_received, std::move(th_info), std::move(request_res_ptr));
-
     }
     else if (request_method == "GET") {
     }
     else {
       //log
-      //bad request 400
-      return;  //process end
+      //proxy do not support this method
+      return;  //thread end
     }
   }
 
-  static void http_post(std::vector<char> request_buffer, int * len_received, std::unique_ptr<thread_info> th_info, 
-                        std::unique_ptr<httpparser::Request> http_request) {
-      //get hostname and port from header
-      std::string request_host = http_request->uri;
-      std::string post_port;
-      std::string post_hostname;
-      std::size_t port_index = request_host.find_first_of(":\r");
-      if(port_index == std::string::npos){
-        post_port = "80";
-        post_hostname = request_host;
-      }else{
-        post_hostname = request_host.substr(0, port_index);
-        post_port = request_host.substr(port_index + 1);
+  static void http_connect(std::unique_ptr<thread_info> th_info,
+                           std::unique_ptr<httpparser::Request> http_request) {
+    //abstract it out later
+    std::string hostname_port = http_request->uri;
+    std::size_t pos = hostname_port.find(":");
+    std::string hostname;
+    std::string port;
+    if (pos != std::string::npos) {
+      hostname = hostname_port.substr(0, pos);
+      port = hostname_port.substr(pos + 1);
+    }
+    else {
+      hostname = hostname_port;
+      port = "80";
+    }  //
+    int uri_fd = connect_to_host(hostname.c_str(), port.c_str());
+    if (uri_fd == -1) {
+      //log
+      //connect uri fail
+      std::string message("Connect:" + hostname_port + "fails");
+      throw my_exception(message.c_str());
+    }
+    //send 200 ok
+    //forwarding message from one end to another
+    struct pollfd pollfds[2];
+    pollfds[0].fd = th_info->client_fd;
+    pollfds[0].events = POLLIN;
+    pollfds[1].fd = uri_fd;
+    pollfds[1].events = POLLIN;
+    while (1) {
+      int pollcount = poll(pollfds, 2, -1);
+      if (pollcount == -1) {
+        //log
+        throw my_exception("poll fails on forwarding message between client and server");
       }
-      //std::cout << post_hostname <<"\n" << post_port;
-
-      //Connect to the post server
-      int server_fd = connect_server(post_hostname.c_str(), post_port.c_str());
-      if(server_fd == -1){
-        //log for connecting with server failure
-        std::cerr << "Cannot connect to post server " << post_hostname <<"\n";
-      }
-      //send request message to server
-      sendall(server_fd, (char *)&request_buffer.data()[0], len_received);
-
-      //receive the message from server
-      std::vector<char> response_buffer(HTTP_LENGTH, 0);
-      int response_length = recv(server_fd, &response_buffer.data()[0], HTTP_LENGTH, 0);
-      if(response_length < 0){
-        //log receive error
-      }else if(response_length == 0){
-        //log any problem it should be here
-      }else{
-        std::cout << "The response mes length is: " << response_length <<"\n";
-        int res = sendall(th_info->client_fd, (char *)&response_buffer.data()[0], &response_length);
-        //log file for the response message?
-        if (res == -1) {
+      for (int i = 0; i < 2; i++) {
+        if (pollfds[i].revents & POLLIN) {
+          std::vector<char> buffer(HTTP_LENGTH, 0);
+          int len_received = recv(pollfds[i].fd, &buffer.data()[0], HTTP_LENGTH, 0);
+          if (len_received <= 0) {
+            if (i == 0) {  //client close
+            }
+            else {  //server problem
+            }
+            return;
+          }
+          buffer.resize(len_received);
+          int res = sendall(pollfds[i ^ 1].fd, (char *)&buffer.data()[0], &len_received);
+          if (res == -1) {
             //send fail
             throw my_exception("fail to send all bytes");
           }
-      } 
+        }
+      }
+    }
   }
 
   static int sendall(int sock_fd, char * buf, int * len) {
-     //reference from Beej's Guide
-     int total = 0;         // how many bytes we've sent
-     int bytesleft = *len;  // how many we have left to send
-     int n;
-     while (total < *len) {
-       n = send(sock_fd, buf + total, bytesleft, 0);
-       if (n == -1) {
-         break;
-       }
-       total += n;
-       bytesleft -= n;
-     }
-     *len = total;             // return number actually sent here
-     return n == -1 ? -1 : 0;  // return -1 on failure, 0 on success
+    //reference from Beej's Guide
+    int total = 0;         // how many bytes we've sent
+    int bytesleft = *len;  // how many we have left to send
+    int n;
+    while (total < *len) {
+      n = send(sock_fd, buf + total, bytesleft, 0);
+      if (n == -1) {
+        break;
+      }
+      total += n;
+      bytesleft -= n;
+    }
+    *len = total;             // return number actually sent here
+    return n == -1 ? -1 : 0;  // return -1 on failure, 0 on success
+  }
+
+  static void http_post(std::vector<char> request_buffer,
+                        int * len_received,
+                        std::unique_ptr<thread_info> th_info,
+                        std::unique_ptr<httpparser::Request> http_request) {
+    //get hostname and port from header
+    std::string request_host = http_request->uri;
+    std::string post_port;
+    std::string post_hostname;
+    std::size_t port_index = request_host.find_first_of(":\r");
+    if (port_index == std::string::npos) {
+      post_port = "80";
+      post_hostname = request_host;
+    }
+    else {
+      post_hostname = request_host.substr(0, port_index);
+      post_port = request_host.substr(port_index + 1);
+    }
+    //std::cout << post_hostname <<"\n" << post_port;
+
+    //Connect to the post server
+    int server_fd = connect_server(post_hostname.c_str(), post_port.c_str());
+    if (server_fd == -1) {
+      //log for connecting with server failure
+      std::cerr << "Cannot connect to post server " << post_hostname << "\n";
+    }
+    //send request message to server
+    sendall(server_fd, (char *)&request_buffer.data()[0], len_received);
+
+    //receive the message from server
+    std::vector<char> response_buffer(HTTP_LENGTH, 0);
+    int response_length = recv(server_fd, &response_buffer.data()[0], HTTP_LENGTH, 0);
+    if (response_length < 0) {
+      //log receive error
+    }
+    else if (response_length == 0) {
+      //log any problem it should be here
+    }
+    else {
+      std::cout << "The response mes length is: " << response_length << "\n";
+      int res = sendall(
+          th_info->client_fd, (char *)&response_buffer.data()[0], &response_length);
+      //log file for the response message?
+      if (res == -1) {
+        //send fail
+        throw my_exception("fail to send all bytes");
+      }
+    }
   }
 
   static std::unique_ptr<httpparser::Request> http_request_parse(
@@ -163,34 +228,34 @@ class proxy {
     }
   }
 
-  static int connect_server(const char * hostname, const char * port){
+  static int connect_server(const char * hostname, const char * port) {
     int status;
     int socket_fd;
     struct addrinfo host_info;
-    struct addrinfo *host_info_list;
+    struct addrinfo * host_info_list;
 
     memset(&host_info, 0, sizeof(host_info));
-    host_info.ai_family   = AF_UNSPEC;
+    host_info.ai_family = AF_UNSPEC;
     host_info.ai_socktype = SOCK_STREAM;
 
     status = getaddrinfo(hostname, port, &host_info, &host_info_list);
     if (status != 0) {
-        fprintf(stderr, "Error: cannot get address info for host\n");
-        return -1;
+      fprintf(stderr, "Error: cannot get address info for host\n");
+      return -1;
     }
 
-    socket_fd = socket(host_info_list->ai_family, 
-                host_info_list->ai_socktype, 
-                host_info_list->ai_protocol);
+    socket_fd = socket(host_info_list->ai_family,
+                       host_info_list->ai_socktype,
+                       host_info_list->ai_protocol);
     if (socket_fd == -1) {
-        fprintf(stderr, "Error: cannot create socket\n");
-        return -1;
+      fprintf(stderr, "Error: cannot create socket\n");
+      return -1;
     }
-    
+
     status = connect(socket_fd, host_info_list->ai_addr, host_info_list->ai_addrlen);
     if (status == -1) {
-        fprintf(stderr, "Error: cannot connect to socket\n");
-        return -1;
+      fprintf(stderr, "Error: cannot connect to socket\n");
+      return -1;
     }
     printf("Connected to %s, on portNumber %s ...\n", hostname, port);
 
@@ -241,5 +306,42 @@ class proxy {
     }
 
     return listener_fd;
+  }
+
+  static int connect_to_host(const char * theHostname,
+                             const char * thePort) {  //reference from Beej's Guide
+    int status;
+    int socket_fd;
+    struct addrinfo host_info;
+    struct addrinfo * host_info_list;
+    struct addrinfo * host_ptr;
+    const char * hostname = theHostname;
+    const char * port = thePort;
+    memset(&host_info, 0, sizeof(host_info));
+    host_info.ai_family = AF_UNSPEC;
+    host_info.ai_socktype = SOCK_STREAM;
+    status = getaddrinfo(hostname, port, &host_info, &host_info_list);
+    if (status != 0) {
+      return -1;
+    }
+
+    for (host_ptr = host_info_list; host_ptr != NULL; host_ptr = host_ptr->ai_next) {
+      socket_fd =
+          socket(host_ptr->ai_family, host_ptr->ai_socktype, host_ptr->ai_protocol);
+      if (socket_fd == -1) {
+        continue;
+      }
+      break;  //successful create socket and bind
+    }
+    freeaddrinfo(host_info_list);
+    if (host_ptr == NULL) {
+      return -1;
+    }
+
+    status = connect(socket_fd, host_info_list->ai_addr, host_info_list->ai_addrlen);
+    if (status == -1) {
+      return -1;
+    }
+    return socket_fd;
   }
 };
