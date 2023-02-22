@@ -1,16 +1,13 @@
-#include "proxy.hpp"
-
 #include <cstdlib>
+
+#include "proxy.hpp"
 int main() {
   //become a daemon
   //be_daemon()
-  while (1) {
-    try {
-      proxy p;
-    }
-    catch (my_exception & e) {
-      //dowhatever
-    }
+  int listener = proxy::proxy_init_listener();
+  if (listener == -1) {
+    return EXIT_FAILURE;  //server start fails
   }
+  proxy::start(listener);
   return EXIT_SUCCESS;  //never reach this
 }
