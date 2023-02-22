@@ -1,6 +1,7 @@
 #include "proxy.hpp"
 std::ofstream log_f("/var/log/erss/proxy.log");
 std::mutex mtx;
+
 int proxy::proxy_init_listener() {
   int listener = socket_method::create_tcp_listener_fd("12345");
   return listener;
@@ -169,6 +170,44 @@ void proxy::http_post(std::vector<char> request_buffer,
   }
 }
 
+void get_from_server(std::vector<char> request_buffer, int * len_received, std::unique_ptr<thread_info> th_info, 
+                    std::unique_ptr<httpparser::Request> http_request){
+    //get hostname and port from header
+    std::string request_host = http_request->uri;
+    std::string get_port;
+    std::string get_hostname;
+    parser_method::get_host_and_port(*http_request, get_hostname, get_port) ;
+
+    //Connect to the post server
+    int server_fd = socket_method::connect_to_host(get_hostname.c_str(), get_port.c_str());
+    if(server_fd == -1){
+        //log for connecting with server failure
+        throw my_exception("Cannot connect to get server ");
+      }
+      //send request message to server
+      socket_method::sendall(server_fd, (char *)&request_buffer.data()[0], len_received);
+      //receive the message from server
+      std::vector<char> response_buffer(HTTP_LENGTH, 0);
+      int response_length = recv(server_fd, &response_buffer.data()[0], HTTP_LENGTH, 0);
+      if(response_length < 0){
+        //log receive error
+      }else if(response_length == 0){
+        //log any problem it should be here
+      }else{
+        std::cout << "The response mes length is: " << response_length <<"\n";
+
+        //store the response in cache
+        std::unique_ptr<httpparser::Response> response_res_ptr = parser_method::http_response_parse(response_buffer);
+        
+        proxy::cache->add_response(http_request->uri, response_buffer);
+        int res = socket_method::sendall(th_info->client_fd, (char *)&response_buffer.data()[0], &response_length);
+        //log file for the response message?
+        if (res == -1) {
+          //send fail
+          throw my_exception("fail to send all bytes");
+        }
+      }
+}
 void proxy::debug_print(const char * msg) {
   if (DEBUG) {
     std::cout << msg << std::endl;

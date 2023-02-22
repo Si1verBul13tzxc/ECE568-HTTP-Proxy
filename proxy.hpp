@@ -10,12 +10,14 @@
 
 #include "Socket_connection.hpp"
 #include "parser_method.hpp"
+#include "cache.hpp"
 #define HTTP_LENGTH 65535
 #define DEBUG 1
 
 class thread_info;
 class proxy {
  public:
+  static Cache *cache;
   static int proxy_init_listener();
   static void start(int listener) noexcept;
   static void debug_print(const char * msg);

@@ -35,3 +35,18 @@ std::unique_ptr<httpparser::Request> parser_method::http_request_parse(
     throw my_exception("cannot parse request");
   }
 }
+
+std::unique_ptr<httpparser::Response> parser_method::http_response_parse(
+    std::vector<char> & buffer) {
+  httpparser::HttpResponseParser parser;
+  std::unique_ptr<httpparser::Response> response_res_ptr(new httpparser::Response());
+  httpparser::HttpResponseParser::ParseResult res = parser.parse(
+      *response_res_ptr, &buffer.data()[0], &buffer.data()[0] + buffer.size());
+  if (res == httpparser::HttpResponseParser::ParsingCompleted) {  //SUCCESS
+    return response_res_ptr;  //return local value, no need to move()
+  }
+  else {
+    //return a 400 error code.
+    throw my_exception("cannot parse request");
+  }
+}

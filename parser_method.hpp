@@ -10,4 +10,5 @@ namespace parser_method {
                          std::string & hostname,
                          std::string & port);
   std::unique_ptr<httpparser::Request> http_request_parse(std::vector<char> & buffer);
+  std::unique_ptr<httpparser::Response> http_response_parse(std::vector<char> & buffer);
 }  // namespace parser_method
