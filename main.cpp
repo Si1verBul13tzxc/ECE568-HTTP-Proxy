@@ -1,6 +1,7 @@
 #include <cstdlib>
 
 #include "proxy.hpp"
+
 int main() {
   //become a daemon
   //be_daemon()

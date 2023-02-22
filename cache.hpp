@@ -18,7 +18,7 @@ class Doubly_node{
         std::vector<char> value;
         Doubly_node *prev;
         Doubly_node *next;
-        Doubly_node();
+        Doubly_node() : key(NULL){};
         Doubly_node(std::string uri, std::vector<char> buffer) : key(uri), value(buffer){};
 };
 

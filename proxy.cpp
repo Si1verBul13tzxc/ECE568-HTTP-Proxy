@@ -2,6 +2,7 @@
 std::ofstream log_f("/var/log/erss/proxy.log");
 std::mutex mtx;
 
+Cache * proxy::cache = NULL;
 int proxy::proxy_init_listener() {
   int listener = socket_method::create_tcp_listener_fd("12345");
   return listener;
