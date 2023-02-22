@@ -2,6 +2,7 @@
 std::ofstream log_f("/var/log/erss/proxy.log");
 std::mutex mtx;
 
+Cache * proxy::cache = NULL;
 int proxy::proxy_init_listener() {
   int listener = socket_method::create_tcp_listener_fd("12345");
   return listener;
@@ -66,9 +67,11 @@ void proxy::process_request(std::unique_ptr<thread_info> th_info) noexcept {
     else if (request_method == "GET") {
       std::string request_uri = request_res_ptr->uri;
       std::vector<char> * response_buffer = cache->get_response(request_uri);
-      if(response_buffer == NULL){
-        get_from_server(buffer, &len_received, std::move(th_info), std::move(request_res_ptr));
-      }else{
+      if (response_buffer == NULL) {
+        get_from_server(
+            buffer, &len_received, std::move(th_info), std::move(request_res_ptr));
+      }
+      else {
         get_from_cache(*response_buffer, std::move(th_info));
       }
     }
@@ -189,17 +192,19 @@ void proxy::http_post(std::vector<char> request_buffer,
   }
 }
 
-void proxy::get_from_server(std::vector<char> request_buffer, int * len_received, std::unique_ptr<thread_info> th_info, 
-                    std::unique_ptr<httpparser::Request> http_request){
+void proxy::get_from_server(std::vector<char> request_buffer,
+                            int * len_received,
+                            std::unique_ptr<thread_info> th_info,
+                            std::unique_ptr<httpparser::Request> http_request) {
   //get hostname and port from header
   std::string request_host = http_request->uri;
   std::string get_port;
   std::string get_hostname;
-  parser_method::get_host_and_port(*http_request, get_hostname, get_port) ;
+  parser_method::get_host_and_port(*http_request, get_hostname, get_port);
 
   //Connect to the post server
   int server_fd = socket_method::connect_to_host(get_hostname.c_str(), get_port.c_str());
-  if(server_fd == -1){
+  if (server_fd == -1) {
     //log for connecting with server failure
     throw my_exception("Cannot connect to get server ");
   }
@@ -208,17 +213,21 @@ void proxy::get_from_server(std::vector<char> request_buffer, int * len_received
   //receive the message from server
   std::vector<char> response_buffer(HTTP_LENGTH, 0);
   int response_length = recv(server_fd, &response_buffer.data()[0], HTTP_LENGTH, 0);
-  if(response_length < 0){
+  if (response_length < 0) {
     //log receive error
-  }else if(response_length == 0){
+  }
+  else if (response_length == 0) {
     //log any problem it should be here
-  }else{
-    std::cout << "The response mes length is: " << response_length <<"\n";
+  }
+  else {
+    std::cout << "The response mes length is: " << response_length << "\n";
     //store the response in cache
     proxy::cache->add_response(http_request->uri, response_buffer);
     //send the response to client
-    std::unique_ptr<httpparser::Response> response_res_ptr = parser_method::http_response_parse(response_buffer);
-    int res = socket_method::sendall(th_info->client_fd, (char *)&response_buffer.data()[0], &response_length);
+    std::unique_ptr<httpparser::Response> response_res_ptr =
+        parser_method::http_response_parse(response_buffer);
+    int res = socket_method::sendall(
+        th_info->client_fd, (char *)&response_buffer.data()[0], &response_length);
     //log file for the response message?
     if (res == -1) {
       //send fail
@@ -226,9 +235,11 @@ void proxy::get_from_server(std::vector<char> request_buffer, int * len_received
     }
   }
 }
-void proxy::get_from_cache(std::vector<char> response_buffer, std::unique_ptr<thread_info> th_info){
+void proxy::get_from_cache(std::vector<char> response_buffer,
+                           std::unique_ptr<thread_info> th_info) {
   int response_length = sizeof(response_buffer.data());
-  int res = socket_method::sendall(th_info->client_fd, (char *)&response_buffer.data()[0], &response_length);
+  int res = socket_method::sendall(
+      th_info->client_fd, (char *)&response_buffer.data()[0], &response_length);
   //log file for the response message?
   if (res == -1) {
     //send fail

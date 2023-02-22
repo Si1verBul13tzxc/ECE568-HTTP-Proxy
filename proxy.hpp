@@ -10,15 +10,15 @@
 #include <vector>
 
 #include "Socket_connection.hpp"
-#include "parser_method.hpp"
 #include "cache.hpp"
+#include "parser_method.hpp"
 #define HTTP_LENGTH 65535
 #define DEBUG 1
 
 class thread_info;
 class proxy {
  public:
-  static Cache *cache;
+  static Cache * cache;
   static int proxy_init_listener();
   static void start(int listener) noexcept;
   static void debug_print(const char * msg);
@@ -32,9 +32,12 @@ class proxy {
                         int * len_received,
                         std::unique_ptr<thread_info> th_info,
                         std::unique_ptr<httpparser::Request> http_request);
-  static void get_from_server(std::vector<char> request_buffer, int * len_received, std::unique_ptr<thread_info> th_info, 
-                    std::unique_ptr<httpparser::Request> http_request);
-  static void get_from_cache(std::vector<char> response_buffer, std::unique_ptr<thread_info> th_info);
+  static void get_from_server(std::vector<char> request_buffer,
+                              int * len_received,
+                              std::unique_ptr<thread_info> th_info,
+                              std::unique_ptr<httpparser::Request> http_request);
+  static void get_from_cache(std::vector<char> response_buffer,
+                             std::unique_ptr<thread_info> th_info);
   static void log_id(int id, std::string msg);
   static void http_send_200ok(int client_fd, int unique_id);
   static const char * get_current_time();
