@@ -12,6 +12,16 @@
 
 #include "Socket_connection.hpp"
 #include "parser_method.hpp"
+<<<<<<< HEAD
+class Doubly_node{
+    public:
+        std::string key;
+        std::vector<char> value;
+        Doubly_node *prev;
+        Doubly_node *next;
+        Doubly_node() : key(NULL){};
+        Doubly_node(std::string uri, std::vector<char> buffer) : key(uri), value(buffer){};
+=======
 class Doubly_node {
  public:
   std::string key;
@@ -20,6 +30,7 @@ class Doubly_node {
   Doubly_node * next;
   Doubly_node(){};
   Doubly_node(std::string uri, std::vector<char> buffer) : key(uri), value(buffer){};
+>>>>>>> bb14a4bf248330702943933a16ee5ca3eb8d4f3c
 };
 
 class Cache {
