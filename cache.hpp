@@ -3,15 +3,16 @@
 
 #include <fstream>
 #include <iostream>
+#include <list>
 #include <memory>
 #include <mutex>
 #include <thread>
-#include <vector>
 #include <unordered_map>
-#include <list>
+#include <vector>
 
 #include "Socket_connection.hpp"
 #include "parser_method.hpp"
+<<<<<<< HEAD
 class Doubly_node{
     public:
         std::string key;
@@ -20,28 +21,34 @@ class Doubly_node{
         Doubly_node *next;
         Doubly_node() : key(NULL){};
         Doubly_node(std::string uri, std::vector<char> buffer) : key(uri), value(buffer){};
+=======
+class Doubly_node {
+ public:
+  std::string key;
+  std::vector<char> value;
+  Doubly_node * prev;
+  Doubly_node * next;
+  Doubly_node(){};
+  Doubly_node(std::string uri, std::vector<char> buffer) : key(uri), value(buffer){};
+>>>>>>> bb14a4bf248330702943933a16ee5ca3eb8d4f3c
 };
 
-class Cache{
-private:
-    std::unordered_map<std::string, Doubly_node *> response_map;
-    size_t size;
-    Doubly_node *head;
-    Doubly_node *tail;
+class Cache {
+ private:
+  std::unordered_map<std::string, Doubly_node *> response_map;
+  size_t size;
+  Doubly_node * head;
+  Doubly_node * tail;
 
-    void addToHead(Doubly_node * response);
-    void moveToHead(Doubly_node * response);
-    void remove(Doubly_node * response);
+  void addToHead(Doubly_node * response);
+  void moveToHead(Doubly_node * response);
+  void remove(Doubly_node * response);
 
-public:
-    Cache() : size(0), 
-              head(new Doubly_node()),
-              tail(new Doubly_node()){
-                head->next = tail;
-                tail->prev = head;
-              }
-    void add_response(std::string uri, std::vector<char> buffer);
-    std::vector<char> * get_response(std::string uri);
-
-
+ public:
+  Cache() : size(0), head(new Doubly_node()), tail(new Doubly_node()) {
+    head->next = tail;
+    tail->prev = head;
+  }
+  void add_response(std::string uri, std::vector<char> buffer);
+  std::vector<char> * get_response(std::string uri);
 };
