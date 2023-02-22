@@ -16,6 +16,7 @@
 #define DEBUG 1
 
 class thread_info;
+
 class proxy {
  public:
   static Cache * cache;
