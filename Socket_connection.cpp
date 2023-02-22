@@ -99,9 +99,24 @@ int socket_method::connect_to_host(const char * theHostname,
   return socket_fd;
 }
 
-int socket_method::accpect_connection(int listener) {
+int socket_method::accpect_connection(int listener, std::string & request_ip) {
   struct sockaddr_storage client_socket_addr;
   socklen_t len = sizeof(client_socket_addr);
   int new_fd = accept(listener, (struct sockaddr *)&client_socket_addr, &len);
+  char ip_buffer[INET6_ADDRSTRLEN];
+  inet_ntop(client_socket_addr.ss_family,
+            get_in_addr((struct sockaddr *)&client_socket_addr),
+            ip_buffer,
+            INET6_ADDRSTRLEN);
+  request_ip = std::string(ip_buffer);
   return new_fd;
+}
+
+//Reference: Beej's Guide
+// Get sockaddr, IPv4 or IPv6:
+void * socket_method::get_in_addr(struct sockaddr * sa) {
+  if (sa->sa_family == AF_INET) {
+    return &(((struct sockaddr_in *)sa)->sin_addr);
+  }
+  return &(((struct sockaddr_in6 *)sa)->sin6_addr);
 }

@@ -21,6 +21,20 @@ void parser_method::get_host_and_port(const httpparser::Request & req,
   }
 }
 
+std::string parser_method::get_request_line(const httpparser::Request & req) {
+  std::stringstream stream;
+  stream << req.method << " " << req.uri << " HTTP/" << req.versionMajor << "."
+         << req.versionMinor;
+  return stream.str();
+}
+
+std::string parser_method::get_response_line(const httpparser::Response & resp) {
+  std::stringstream stream;
+  stream << "HTTP/" << resp.versionMajor << "." << resp.versionMinor << " "
+         << resp.statusCode << " " << resp.status;
+  return stream.str();
+}
+
 std::unique_ptr<httpparser::Request> parser_method::http_request_parse(
     std::vector<char> & buffer) {
   httpparser::HttpRequestParser parser;

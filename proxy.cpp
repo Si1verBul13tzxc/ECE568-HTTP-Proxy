@@ -10,9 +10,10 @@ void proxy::start(int listener) noexcept {
   int id = 0;
   std::cout << "start" << std::endl;
   while (1) {
-    int new_fd = socket_method::accpect_connection(listener);
+    std::string request_ip;
+    int new_fd = socket_method::accpect_connection(listener, request_ip);
     if (new_fd != -1) {
-      std::unique_ptr<thread_info> t_info_ptr(new thread_info(id, new_fd));
+      std::unique_ptr<thread_info> t_info_ptr(new thread_info(id, new_fd, request_ip));
       id++;
       std::thread processing(process_request, std::move(t_info_ptr));
       if (processing.joinable()) {  //detach may throw if not joinable
@@ -44,10 +45,18 @@ void proxy::process_request(std::unique_ptr<thread_info> th_info) noexcept {
     //why resize? 1. 65535 is large 2. have buffer.size() so len_received no longer required
     std::unique_ptr<httpparser::Request> request_res_ptr =
         parser_method::http_request_parse(buffer);
+    //log new request
+    std::string msg = std::to_string(unique_id) + ": \"" +
+                      parser_method::get_request_line(*request_res_ptr) + "\" from " +
+                      th_info->request_ip + " @ " + get_current_time();
+    log_id(unique_id, msg);
+    debug_print(msg.c_str());
     std::string request_method = request_res_ptr->method;
     if (request_method == "CONNECT") {
       std::cout << "connect request" << std::endl;
       http_connect(std::move(th_info), std::move(request_res_ptr));
+      log_id(unique_id, "Tunnel closed");
+      debug_print("Tunnel closed");
     }
     else if (request_method == "POST") {
       //log for post message
@@ -92,12 +101,15 @@ void proxy::http_connect(std::unique_ptr<thread_info> th_info,
     throw my_exception(message.c_str());
   }
   sock uri_fd_guard(uri_fd);
-  http_send_200ok(th_info->client_fd);
+  http_send_200ok(th_info->client_fd, th_info->unique_id);
   http_connect_forward_messages(uri_fd, *th_info);
 }
 
-void proxy::http_send_200ok(int client_fd) {
+void proxy::http_send_200ok(int client_fd, int unique_id) {
   const char * ok = "HTTP/1.1 200 OK\r\n\r\n";
+  std::string msg = "Responding \"" + std::string(ok) + "\"";
+  log_id(unique_id, msg);
+  debug_print((std::to_string(unique_id) + msg).c_str());
   send(client_fd, ok, strlen(ok), 0);
 }
 
@@ -173,4 +185,12 @@ void proxy::debug_print(const char * msg) {
   if (DEBUG) {
     std::cout << msg << std::endl;
   }
+}
+
+const char * proxy::get_current_time() {
+  time_t time_raw;
+  struct tm * time_info;
+  time(&time_raw);
+  time_info = gmtime(&time_raw);
+  return asctime(time_info);
 }
