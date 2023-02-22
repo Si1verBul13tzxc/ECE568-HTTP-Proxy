@@ -1,6 +1,7 @@
 #include <assert.h>
 #include <poll.h>
 
+#include <ctime>
 #include <fstream>
 #include <iostream>
 #include <memory>
@@ -35,14 +36,17 @@ class proxy {
                     std::unique_ptr<httpparser::Request> http_request);
   static void get_from_cache(std::vector<char> response_buffer, std::unique_ptr<thread_info> th_info);
   static void log_id(int id, std::string msg);
-  static void http_send_200ok(int client_fd);
+  static void http_send_200ok(int client_fd, int unique_id);
+  static const char * get_current_time();
 };
 
 class thread_info {
  public:
   const int unique_id;
   const int client_fd;
-  thread_info(int id, int fd) : unique_id(id), client_fd(fd) {}
+  const std::string request_ip;
+  thread_info(int id, int fd, const std::string & ip) :
+      unique_id(id), client_fd(fd), request_ip(ip) {}
   ~thread_info() { proxy::debug_print("destruct thread_info"); }
 };
 
