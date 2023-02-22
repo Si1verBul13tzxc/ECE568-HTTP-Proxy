@@ -41,7 +41,7 @@ public:
                 tail->prev = head;
               }
     void add_response(std::string uri, std::vector<char> buffer);
-    Doubly_node * get_response(std::string uri);
+    std::vector<char> * get_response(std::string uri);
 
 
 };

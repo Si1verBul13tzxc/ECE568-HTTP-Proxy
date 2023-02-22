@@ -27,13 +27,13 @@ void Cache::add_response(std::string uri, std::vector<char> buffer){
     addToHead(response);
 }
 
-Doubly_node * Cache::get_response(std::string uri){
-    std::unordered_map<std::string, Doubly_node*>::const_iterator it = Cache::response_map->find(uri);
-    if(it == Cache::response_map->end()){
+std::vector<char> * Cache::get_response(std::string uri){
+    std::unordered_map<std::string, Doubly_node*>::const_iterator it = Cache::response_map.find(uri);
+    if(it == Cache::response_map.end()){
         //not find in the cache
         return NULL;
     }else{
         moveToHead(it->second);
-        return it->second;
+        return &(it->second->value);
     }
 }
