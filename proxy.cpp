@@ -45,6 +45,7 @@ void proxy::process_request(std::unique_ptr<thread_info> th_info) noexcept {
     }
     buffer.resize(len_received);
     //why resize? 1. 65535 is large 2. have buffer.size() so len_received no longer required
+    //Thanks for detailed explanation :p
     std::unique_ptr<httpparser::Request> request_res_ptr =
         parser_method::http_request_parse(buffer);
     //log new request
@@ -65,14 +66,17 @@ void proxy::process_request(std::unique_ptr<thread_info> th_info) noexcept {
       http_post(buffer, &len_received, std::move(th_info), std::move(request_res_ptr));
     }
     else if (request_method == "GET") {
+      std::cout << "get request" << std::endl;
       std::string request_uri = request_res_ptr->uri;
       std::vector<char> * response_buffer = cache->get_response(request_uri);
       if (response_buffer == NULL) {
+        std::cout << "get from server" << std::endl;
         get_from_server(
             buffer, &len_received, std::move(th_info), std::move(request_res_ptr));
       }
       else {
-        get_from_cache(*response_buffer, std::move(th_info));
+        std::cout << "get from cache" << std::endl;
+        get_from_cache(response_buffer, std::move(th_info));
       }
     }
     else {  //proxy do not support this method
@@ -222,10 +226,11 @@ void proxy::get_from_server(std::vector<char> request_buffer,
   else {
     std::cout << "The response mes length is: " << response_length << "\n";
     //store the response in cache
-    proxy::cache->add_response(http_request->uri, response_buffer);
-    //send the response to client
+    std::cout << "Store the buffer from uri: "<< http_request->uri << std::endl;
     std::unique_ptr<httpparser::Response> response_res_ptr =
         parser_method::http_response_parse(response_buffer);
+    proxy::cache->add_response(http_request->uri, std::move(response_res_ptr));
+    //send the response to client
     int res = socket_method::sendall(
         th_info->client_fd, (char *)&response_buffer.data()[0], &response_length);
     //log file for the response message?
@@ -235,16 +240,19 @@ void proxy::get_from_server(std::vector<char> request_buffer,
     }
   }
 }
-void proxy::get_from_cache(std::vector<char> response_buffer,
+
+void proxy::get_from_cache(std::vector<char> * response_buffer,
                            std::unique_ptr<thread_info> th_info) {
-  int response_length = sizeof(response_buffer.data());
+  int response_length = sizeof((*response_buffer).data());
   int res = socket_method::sendall(
-      th_info->client_fd, (char *)&response_buffer.data()[0], &response_length);
+      th_info->client_fd, (char *)&response_buffer->data()[0], &response_length);
+      //NOTE: not sure if the format of response_buffer here is correct
   //log file for the response message?
   if (res == -1) {
     //send fail
     throw my_exception("fail to send all bytes");
   }
+  delete response_buffer;
 }
 
 void proxy::debug_print(const char * msg) {

@@ -37,8 +37,8 @@ class proxy {
                               int * len_received,
                               std::unique_ptr<thread_info> th_info,
                               std::unique_ptr<httpparser::Request> http_request);
-  static void get_from_cache(std::vector<char> response_buffer,
-                             std::unique_ptr<thread_info> th_info);
+  static void get_from_cache(std::vector<char> * response_res_ptr,
+                           std::unique_ptr<thread_info> th_info);
   static void log_id(int id, std::string msg);
   static void http_send_200ok(int client_fd, int unique_id);
   static const char * get_current_time();
