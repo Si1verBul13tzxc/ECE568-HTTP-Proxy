@@ -6,6 +6,7 @@ void Cache::addToHead(Doubly_node * response){
     Cache::head = response;
     Cache::head->prev = NULL;
     Cache::size++;
+    response_map.insert(std::make_pair(response->key, response));
 }
 
 void Cache::moveToHead(Doubly_node * response){
@@ -29,11 +30,23 @@ void Cache::add_response(std::string uri, std::vector<char> buffer){
 
 std::vector<char> * Cache::get_response(std::string uri){
     std::unordered_map<std::string, Doubly_node*>::const_iterator it = Cache::response_map.find(uri);
+    std::cout << "The uri: "<< uri << std::endl;
     if(it == Cache::response_map.end()){
+        std::cout << "Cannot find in cache\n";
+        std::cout << "get request" << std::endl;
         //not find in the cache
         return NULL;
     }else{
+
         moveToHead(it->second);
         return &(it->second->value);
     }
 }
+
+// void Cache::print_cache(){
+//     auto it = Cache::response_map.begin();
+//     while(it != Cache::response_map.end()){
+//         std::string = httpparser::HttpResponseParser(it->second)
+//     }
+    
+// }

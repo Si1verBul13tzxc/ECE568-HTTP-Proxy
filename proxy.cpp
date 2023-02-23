@@ -65,13 +65,16 @@ void proxy::process_request(std::unique_ptr<thread_info> th_info) noexcept {
       http_post(buffer, &len_received, std::move(th_info), std::move(request_res_ptr));
     }
     else if (request_method == "GET") {
+      std::cout << "get request" << std::endl;
       std::string request_uri = request_res_ptr->uri;
       std::vector<char> * response_buffer = cache->get_response(request_uri);
       if (response_buffer == NULL) {
+        std::cout << "get from server" << std::endl;
         get_from_server(
             buffer, &len_received, std::move(th_info), std::move(request_res_ptr));
       }
       else {
+        std::cout << "get from cache" << std::endl;
         get_from_cache(*response_buffer, std::move(th_info));
       }
     }
@@ -222,6 +225,7 @@ void proxy::get_from_server(std::vector<char> request_buffer,
   else {
     std::cout << "The response mes length is: " << response_length << "\n";
     //store the response in cache
+    std::cout << "Store the buffer from uri: "<< http_request->uri << std::endl;
     proxy::cache->add_response(http_request->uri, response_buffer);
     //send the response to client
     std::unique_ptr<httpparser::Response> response_res_ptr =
