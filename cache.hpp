@@ -19,7 +19,8 @@ class Doubly_node {
   Doubly_node * prev;
   Doubly_node * next;
   Doubly_node(){};
-  Doubly_node(std::string uri, std::unique_ptr<httpparser::Response> buffer) : key(uri), value(std::move(buffer)){};
+  Doubly_node(std::string uri, std::unique_ptr<httpparser::Response> buffer) :
+      key(uri), value(std::move(buffer)){};
 };
 
 class Cache {
@@ -32,15 +33,16 @@ class Cache {
 
   void add_to_head(Doubly_node * response);
   void move_to_head(Doubly_node * response);
-  void remove(Doubly_node * response);
-  void remove_tail();
-  void print_cache();
+  void removeNode(Doubly_node * response);
+  Doubly_node * remove_tail();
 
  public:
-  Cache(size_t capacity) : size(0), capacity(capacity), head(new Doubly_node()), tail(new Doubly_node()) {
+  Cache(size_t capacity) :
+      size(0), capacity(capacity), head(new Doubly_node()), tail(new Doubly_node()) {
     head->next = tail;
     tail->prev = head;
   }
+
   void add_response(std::string uri, std::unique_ptr<httpparser::Response> buffer);
-  std::vector<char> * get_response(std::string uri);
+  httpparser::Response * get_response(std::string uri);
 };

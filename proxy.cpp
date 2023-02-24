@@ -12,18 +12,23 @@ void proxy::start(int listener) noexcept {
   int id = 0;
   std::cout << "start" << std::endl;
   while (1) {
-    std::string request_ip;
-    int new_fd = socket_method::accpect_connection(listener, request_ip);
-    if (new_fd != -1) {
-      std::unique_ptr<thread_info> t_info_ptr(new thread_info(id, new_fd, request_ip));
-      id++;
-      std::thread processing(process_request, std::move(t_info_ptr));
-      if (processing.joinable()) {  //detach may throw if not joinable
-        processing.detach();
+    try {
+      std::string request_ip;
+      int new_fd = socket_method::accpect_connection(listener, request_ip);
+      if (new_fd != -1) {
+        std::unique_ptr<thread_info> t_info_ptr(new thread_info(id, new_fd, request_ip));
+        id++;
+        std::thread processing(process_request, std::move(t_info_ptr));
+        if (processing.joinable()) {  //detach may throw if not joinable
+          processing.detach();
+        }
+      }
+      else {
+        log_id(-1, "ERROR accept new connection failed");
       }
     }
-    else {
-      log_id(-1, "ERROR accept new connection failed");
+    catch (std::exception & e) {  //new may fail
+      continue;
     }
   }
 }
@@ -34,8 +39,8 @@ void proxy::start(int listener) noexcept {
    */
 void proxy::process_request(std::unique_ptr<thread_info> th_info) noexcept {
   int unique_id = th_info->unique_id;
-  sock client_fd(th_info->client_fd);  //fd can be closed by destructor
   try {
+    sock client_fd(th_info->client_fd);  //fd can be closed by destructor
     int fd = th_info->client_fd;
     std::vector<char> buffer(HTTP_LENGTH, 0);
     int len_received = recv(fd, &buffer.data()[0], HTTP_LENGTH, 0);
@@ -44,19 +49,11 @@ void proxy::process_request(std::unique_ptr<thread_info> th_info) noexcept {
       return;  //thread end
     }
     buffer.resize(len_received);
-    //why resize? 1. 65535 is large 2. have buffer.size() so len_received no longer required
-    //Thanks for detailed explanation :p
     std::unique_ptr<httpparser::Request> request_res_ptr =
         parser_method::http_request_parse(buffer);
-    //log new request
-    std::string msg = std::to_string(unique_id) + ": \"" +
-                      parser_method::get_request_line(*request_res_ptr) + "\" from " +
-                      th_info->request_ip + " @ " + get_current_time();
-    log_id(unique_id, msg);
-    debug_print(msg.c_str());
+    log_new_request(unique_id, th_info->request_ip, *request_res_ptr);
     std::string request_method = request_res_ptr->method;
     if (request_method == "CONNECT") {
-      std::cout << "connect request" << std::endl;
       http_connect(std::move(th_info), std::move(request_res_ptr));
       log_id(unique_id, "Tunnel closed");
       debug_print("Tunnel closed");
@@ -66,18 +63,7 @@ void proxy::process_request(std::unique_ptr<thread_info> th_info) noexcept {
       http_post(buffer, &len_received, std::move(th_info), std::move(request_res_ptr));
     }
     else if (request_method == "GET") {
-      std::cout << "get request" << std::endl;
-      std::string request_uri = request_res_ptr->uri;
-      std::vector<char> * response_buffer = cache->get_response(request_uri);
-      if (response_buffer == NULL) {
-        std::cout << "get from server" << std::endl;
-        get_from_server(
-            buffer, &len_received, std::move(th_info), std::move(request_res_ptr));
-      }
-      else {
-        std::cout << "get from cache" << std::endl;
-        get_from_cache(response_buffer, std::move(th_info));
-      }
+      http_get(th_info.get(), request_res_ptr.get(), buffer);
     }
     else {  //proxy do not support this method
       log_id(th_info->unique_id, "ERROR method not supported");
@@ -94,15 +80,70 @@ void proxy::process_request(std::unique_ptr<thread_info> th_info) noexcept {
   }
 }
 
-void proxy::log_id(int id, std::string msg) {
-  mtx.lock();
-  if (id != -1) {
-    log_f << id << ": " << msg << std::endl;
+void proxy::http_get(thread_info * th_info,
+                     httpparser::Request * request_res_ptr,
+                     std::vector<char> & request_buffer) {
+  debug_print("get request");
+  std::string request_uri =
+      request_res_ptr->uri;  //TODO: may need to replace this with uri+hostname as key
+  httpparser::Response * response = cache->get_response(request_uri);
+  if (response == NULL) {
+    debug_print("did not find in cache");
+    get_from_server(request_buffer, th_info, request_res_ptr);
   }
   else {
-    log_f << "no-id: " << msg << std::endl;
+    debug_print("find in cache");
+    std::string response_data = response->inspect();
+    int response_size = response_data.size();
+    char res_buf[HTTP_LENGTH];
+    int len = response_data.copy(res_buf, response_size, 0);
+    assert(len == response_size);
+    res_buf[len] = 0;
+    int res = socket_method::sendall(th_info->client_fd, res_buf, &len);
+    //NOTE: not sure if the format of response_buffer here is correct
+    //log file for the response message?
+    if (res == -1) {  //send fail
+      throw my_exception("fail to send all bytes");
+    }
   }
-  mtx.unlock();
+}
+
+void proxy::get_from_server(std::vector<char> & request_buffer,
+                            thread_info * th_info,
+                            httpparser::Request * http_request) {
+  std::string get_port;
+  std::string get_hostname;
+  parser_method::get_host_and_port(*http_request, get_hostname, get_port);
+  //Connect to server
+  int server_fd = socket_method::connect_to_host(get_hostname.c_str(), get_port.c_str());
+  sock fd_guard(server_fd);
+  if (server_fd == -1) {
+    throw my_exception("Cannot connect to server");
+  }
+  //send request message to server
+  int size = request_buffer.size();
+  socket_method::sendall(server_fd, (char *)&request_buffer.data()[0], &size);
+  //receive the message from server
+  std::vector<char> response_buffer(HTTP_LENGTH, 0);
+  int response_length = recv(server_fd, &response_buffer.data()[0], HTTP_LENGTH, 0);
+  if (response_length <= 0) {
+    //502
+    throw my_exception("server problem");
+  }
+  else {
+    //store the response in cache
+    debug_print((std::string("store the reponse to cache") + http_request->uri).c_str());
+    std::unique_ptr<httpparser::Response> response_res_ptr =
+        parser_method::http_response_parse(response_buffer);
+    proxy::cache->add_response(http_request->uri, std::move(response_res_ptr));
+    //send the response to client
+    int res = socket_method::sendall(
+        th_info->client_fd, (char *)&response_buffer.data()[0], &response_length);
+    //log file for the response message
+    if (res == -1) {
+      throw my_exception("fail to send all bytes");
+    }
+  }
 }
 
 void proxy::http_connect(std::unique_ptr<thread_info> th_info,
@@ -158,7 +199,7 @@ void proxy::http_connect_forward_messages(int uri_fd, const thread_info & info) 
   }
 }
 
-void proxy::http_post(std::vector<char> request_buffer,
+void proxy::http_post(std::vector<char> & request_buffer,
                       int * len_received,
                       std::unique_ptr<thread_info> th_info,
                       std::unique_ptr<httpparser::Request> http_request) {
@@ -196,64 +237,9 @@ void proxy::http_post(std::vector<char> request_buffer,
   }
 }
 
-void proxy::get_from_server(std::vector<char> request_buffer,
-                            int * len_received,
-                            std::unique_ptr<thread_info> th_info,
-                            std::unique_ptr<httpparser::Request> http_request) {
-  //get hostname and port from header
-  std::string request_host = http_request->uri;
-  std::string get_port;
-  std::string get_hostname;
-  parser_method::get_host_and_port(*http_request, get_hostname, get_port);
-
-  //Connect to the post server
-  int server_fd = socket_method::connect_to_host(get_hostname.c_str(), get_port.c_str());
-  if (server_fd == -1) {
-    //log for connecting with server failure
-    throw my_exception("Cannot connect to get server ");
-  }
-  //send request message to server
-  socket_method::sendall(server_fd, (char *)&request_buffer.data()[0], len_received);
-  //receive the message from server
-  std::vector<char> response_buffer(HTTP_LENGTH, 0);
-  int response_length = recv(server_fd, &response_buffer.data()[0], HTTP_LENGTH, 0);
-  if (response_length < 0) {
-    //log receive error
-  }
-  else if (response_length == 0) {
-    //log any problem it should be here
-  }
-  else {
-    std::cout << "The response mes length is: " << response_length << "\n";
-    //store the response in cache
-    std::cout << "Store the buffer from uri: "<< http_request->uri << std::endl;
-    std::unique_ptr<httpparser::Response> response_res_ptr =
-        parser_method::http_response_parse(response_buffer);
-    proxy::cache->add_response(http_request->uri, std::move(response_res_ptr));
-    //send the response to client
-    int res = socket_method::sendall(
-        th_info->client_fd, (char *)&response_buffer.data()[0], &response_length);
-    //log file for the response message?
-    if (res == -1) {
-      //send fail
-      throw my_exception("fail to send all bytes");
-    }
-  }
-}
-
-void proxy::get_from_cache(std::vector<char> * response_buffer,
-                           std::unique_ptr<thread_info> th_info) {
-  int response_length = sizeof((*response_buffer).data());
-  int res = socket_method::sendall(
-      th_info->client_fd, (char *)&response_buffer->data()[0], &response_length);
-      //NOTE: not sure if the format of response_buffer here is correct
-  //log file for the response message?
-  if (res == -1) {
-    //send fail
-    throw my_exception("fail to send all bytes");
-  }
-  delete response_buffer;
-}
+/*************************
+Below are some helper functions
+***************************/
 
 void proxy::debug_print(const char * msg) {
   if (DEBUG) {
@@ -267,4 +253,28 @@ const char * proxy::get_current_time() {
   time(&time_raw);
   time_info = gmtime(&time_raw);
   return asctime(time_info);
+}
+
+/** 
+    write message to the log file
+    @param id: -1 means no-id
+*/
+void proxy::log_id(int id, std::string msg) {
+  mtx.lock();
+  if (id != -1) {
+    log_f << id << ": " << msg << std::endl;
+  }
+  else {
+    log_f << "no-id: " << msg << std::endl;
+  }
+  mtx.unlock();
+}
+
+void proxy::log_new_request(int unique_id, std::string ip, httpparser::Request & req) {
+  //log new request
+  std::string msg = std::to_string(unique_id) + ": \"" +
+                    parser_method::get_request_line(req) + "\" from " + ip + " @ " +
+                    get_current_time();
+  log_id(unique_id, msg);
+  debug_print(msg.c_str());
 }

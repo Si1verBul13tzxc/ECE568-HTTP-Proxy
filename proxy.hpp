@@ -1,3 +1,4 @@
+
 #include <assert.h>
 #include <poll.h>
 
@@ -29,19 +30,20 @@ class proxy {
   static void http_connect(std::unique_ptr<thread_info> th_info,
                            std::unique_ptr<httpparser::Request> http_request);
   static void http_connect_forward_messages(int uri_fd, const thread_info & info);
-  static void http_post(std::vector<char> request_buffer,
+  static void http_post(std::vector<char> & request_buffer,
                         int * len_received,
                         std::unique_ptr<thread_info> th_info,
                         std::unique_ptr<httpparser::Request> http_request);
-  static void get_from_server(std::vector<char> request_buffer,
-                              int * len_received,
-                              std::unique_ptr<thread_info> th_info,
-                              std::unique_ptr<httpparser::Request> http_request);
-  static void get_from_cache(std::vector<char> * response_res_ptr,
-                           std::unique_ptr<thread_info> th_info);
   static void log_id(int id, std::string msg);
   static void http_send_200ok(int client_fd, int unique_id);
   static const char * get_current_time();
+  static void http_get(thread_info * th_info,
+                       httpparser::Request * request_res_ptr,
+                       std::vector<char> & request_buffer);
+  static void get_from_server(std::vector<char> & request_buffer,
+                              thread_info * th_info,
+                              httpparser::Request * http_request);
+  static void log_new_request(int unique_id, std::string ip, httpparser::Request & req);
 };
 
 class thread_info {
