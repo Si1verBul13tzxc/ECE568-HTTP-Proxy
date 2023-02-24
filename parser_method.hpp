@@ -13,4 +13,8 @@ namespace parser_method {
   std::unique_ptr<httpparser::Response> http_response_parse(std::vector<char> & buffer);
   std::string get_request_line(const httpparser::Request & req);
   std::string get_response_line(const httpparser::Response & resp);
+  std::string request_get_header_value(const httpparser::Request & req,
+                                       const std::string header_name);
+  std::string response_get_header_value(const httpparser::Response & resp,
+                                        const std::string header_name);
 }  // namespace parser_method

@@ -21,6 +21,31 @@ void parser_method::get_host_and_port(const httpparser::Request & req,
   }
 }
 
+/** 
+    return "" if not find such header, the header value if it exists
+*/
+std::string parser_method::request_get_header_value(const httpparser::Request & req,
+                                                    const std::string header_name) {
+  size_t i = 0;
+  for (; i < req.headers.size() && req.headers[i].name != header_name; i++)
+    ;
+  if (i == req.headers.size()) {
+    return "";
+  }
+  return req.headers[i].value;
+}
+
+std::string parser_method::response_get_header_value(const httpparser::Response & resp,
+                                                     const std::string header_name) {
+  size_t i = 0;
+  for (; i < resp.headers.size() && resp.headers[i].name != header_name; i++)
+    ;
+  if (i == resp.headers.size()) {
+    return "";
+  }
+  return resp.headers[i].value;
+}
+
 std::string parser_method::get_request_line(const httpparser::Request & req) {
   std::stringstream stream;
   stream << req.method << " " << req.uri << " HTTP/" << req.versionMajor << "."

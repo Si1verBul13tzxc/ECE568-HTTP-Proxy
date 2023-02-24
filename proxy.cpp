@@ -162,6 +162,7 @@ bool proxy::is_fresh(httpparser::Response * response) {
 int proxy::caculate_fressness_lifetime(httpparser::Response * response) {
   return 0;
 }
+
 /** 
     rfc 4.2.3.
     may need to add some new attribute in httpparser::response to store values like response_time, request_time
