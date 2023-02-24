@@ -92,19 +92,20 @@ void proxy::http_get(thread_info * th_info,
     get_from_server(request_buffer, th_info, request_res_ptr);
   }
   else {
-    debug_print("find in cache");
-    std::string response_data = response->inspect();
-    int response_size = response_data.size();
-    char res_buf[HTTP_LENGTH];
-    int len = response_data.copy(res_buf, response_size, 0);
-    assert(len == response_size);
-    res_buf[len] = 0;
-    int res = socket_method::sendall(th_info->client_fd, res_buf, &len);
-    //NOTE: not sure if the format of response_buffer here is correct
-    //log file for the response message?
-    if (res == -1) {  //send fail
-      throw my_exception("fail to send all bytes");
-    }
+    send_from_cache(response, th_info->client_fd);
+  }
+}
+
+void proxy::send_from_cache(httpparser::Response * response, int client_fd) {
+  debug_print("find in cache");
+  std::string response_data = response->inspect();
+  debug_print(response_data.c_str());
+  std::vector<char> buffer(response_data.begin(), response_data.end());
+  int size = buffer.size();
+  int res = socket_method::sendall(client_fd, &buffer.data()[0], &size);
+  //log file for the response message?
+  if (res == -1) {  //send fail
+    throw my_exception("fail to send all bytes");
   }
 }
 

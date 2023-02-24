@@ -6,22 +6,18 @@
 #ifndef HTTPPARSER_REQUEST_H
 #define HTTPPARSER_REQUEST_H
 
+#include <sstream>
 #include <string>
 #include <vector>
-#include <sstream>
 
-namespace httpparser
-{
+namespace httpparser {
 
-struct Request {
-    Request()
-        : versionMajor(0), versionMinor(0), keepAlive(false)
-    {}
-    
-    struct HeaderItem
-    {
-        std::string name;
-        std::string value;
+  struct Request {
+    Request() : versionMajor(0), versionMinor(0), keepAlive(false) {}
+
+    struct HeaderItem {
+      std::string name;
+      std::string value;
     };
 
     std::string method;
@@ -32,26 +28,25 @@ struct Request {
     std::vector<char> content;
     bool keepAlive;
 
-    std::string inspect() const
-    {
-        std::stringstream stream;
-        stream << method << " " << uri << " HTTP/"
-               << versionMajor << "." << versionMinor << "\n";
+    std::string inspect() const {
+      std::stringstream stream;
+      stream << method << " " << uri << " HTTP/" << versionMajor << "." << versionMinor
+             << "\r\n";
 
-        for(std::vector<Request::HeaderItem>::const_iterator it = headers.begin();
-            it != headers.end(); ++it)
-        {
-            stream << it->name << ": " << it->value << "\n";
-        }
+      for (std::vector<Request::HeaderItem>::const_iterator it = headers.begin();
+           it != headers.end();
+           ++it) {
+        stream << it->name << ": " << it->value << "\r\n";
+      }
 
-        std::string data(content.begin(), content.end());
-        stream << data << "\n";
-        stream << "+ keep-alive: " << keepAlive << "\n";;
-        return stream.str();
+      stream << "\r\n";
+      std::string data(content.begin(), content.end());
+      //stream << data << "\n";
+      //stream << "+ keep-alive: " << keepAlive << "\n";;
+      return stream.str();
     }
-};
+  };
 
-} // namespace httpparser
+}  // namespace httpparser
 
-
-#endif // HTTPPARSER_REQUEST_H
+#endif  // HTTPPARSER_REQUEST_H

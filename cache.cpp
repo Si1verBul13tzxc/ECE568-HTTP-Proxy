@@ -23,10 +23,12 @@ Doubly_node * Cache::remove_tail() {
   return to_remove;
 }
 
-void Cache::add_response(std::string uri, std::unique_ptr<httpparser::Response> buffer) {
+void Cache::add_response(std::string uri,
+                         std::unique_ptr<httpparser::Response> response) {
   if (response_map.count(uri) == 0) {
     Doubly_node * response_node = new Doubly_node(
-        uri, std::move(buffer));  //could fail here, but object state unchanged
+        uri,
+        std::move(response));  //could fail here, but object state unchanged
     response_map[uri] = response_node;
     add_to_head(response_node);
     size++;
@@ -39,8 +41,8 @@ void Cache::add_response(std::string uri, std::unique_ptr<httpparser::Response> 
   }
   else {  //key already exists, update
     Doubly_node * node = response_map[uri];
-    node->value = std::move(buffer);  //move ownership
-    move_to_head(node);               //update to be most recent used
+    node->value = std::move(response);  //move ownership
+    move_to_head(node);                 //update to be most recent used
   }
 }
 

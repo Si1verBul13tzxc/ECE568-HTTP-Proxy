@@ -43,6 +43,6 @@ class Cache {
     tail->prev = head;
   }
 
-  void add_response(std::string uri, std::unique_ptr<httpparser::Response> buffer);
+  void add_response(std::string uri, std::unique_ptr<httpparser::Response> response);
   httpparser::Response * get_response(std::string uri);
 };

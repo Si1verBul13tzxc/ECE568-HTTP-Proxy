@@ -44,6 +44,7 @@ class proxy {
                               thread_info * th_info,
                               httpparser::Request * http_request);
   static void log_new_request(int unique_id, std::string ip, httpparser::Request & req);
+  static void send_from_cache(httpparser::Response * response, int client_fd);
 };
 
 class thread_info {
