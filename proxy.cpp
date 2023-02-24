@@ -147,6 +147,36 @@ void proxy::get_from_server(std::vector<char> & request_buffer,
   }
 }
 
+/** 
+    Follow rfc7234 4.2. Freshness
+    response_is_fresh = (freshness_lifetime > current_age);
+    use calculate_age defined below to calculate current_age.
+*/
+bool proxy::is_fresh(httpparser::Response * response) {
+  return caculate_fressness_lifetime(response) > caculate_age(response);
+}
+
+/** 
+    rfc 4.2.1, and heuristic freshness: if need, use 0 as its value for simplicity
+*/
+int proxy::caculate_fressness_lifetime(httpparser::Response * response) {
+  return 0;
+}
+/** 
+    rfc 4.2.3.
+    may need to add some new attribute in httpparser::response to store values like response_time, request_time
+*/
+int proxy::caculate_age(httpparser::Response * response) {
+  return 0;
+}
+/***
+other helper method you need
+ **/
+
+/** 
+helper method ends
+*/
+
 void proxy::http_connect(std::unique_ptr<thread_info> th_info,
                          std::unique_ptr<httpparser::Request> http_request) {
   std::string hostname;

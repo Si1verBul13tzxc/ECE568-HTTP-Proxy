@@ -45,6 +45,9 @@ class proxy {
                               httpparser::Request * http_request);
   static void log_new_request(int unique_id, std::string ip, httpparser::Request & req);
   static void send_from_cache(httpparser::Response * response, int client_fd);
+  static bool is_fresh(httpparser::Response * response);
+  static int caculate_fressness_lifetime(httpparser::Response * response);
+  static int caculate_age(httpparser::Response * response);
 };
 
 class thread_info {
