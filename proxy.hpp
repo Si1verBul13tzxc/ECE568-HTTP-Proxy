@@ -31,7 +31,6 @@ class proxy {
                            std::unique_ptr<httpparser::Request> http_request);
   static void http_connect_forward_messages(int uri_fd, const thread_info & info);
   static void http_post(std::vector<char> & request_buffer,
-                        int * len_received,
                         std::unique_ptr<thread_info> th_info,
                         std::unique_ptr<httpparser::Request> http_request);
   static void log_id(int id, std::string msg);
@@ -44,21 +43,25 @@ class proxy {
                               thread_info * th_info,
                               httpparser::Request * http_request);
   static void log_new_request(int unique_id, std::string ip, httpparser::Request & req);
-  static void get_from_cache(httpparser::Response * response, int client_fd);
+  static void send_response_in_cache(httpparser::Response * response, int client_fd);
   static bool is_fresh(httpparser::Response * response);
   static int caculate_fressness_lifetime(httpparser::Response * response);
   static int caculate_age(httpparser::Response * response);
   static bool response_may_store(httpparser::Response * response);
   static bool response_need_validate(httpparser::Response * response);
-  static void validate_send(httpparser::Request * request,
-                            httpparser::Response * response,
-                            int server_fd);
-  static void validate_recv(int server_fd, httpparser::Response * response);
   static void construct_conditional_request(httpparser::Request * request,
                                             httpparser::Response * response,
                                             httpparser::Request & conditional_request);
   static void freshen_headers(httpparser::Response * response,
                               httpparser::Response * new_response);
+  static int connect_to_server(httpparser::Request * http_request);
+  static int one_round_trip(std::vector<char> & request_buffer,
+                            int server_fd,
+                            std::vector<char> & response_buffer);
+  static void send_to(int fd, std::vector<char> & buffer);
+  static void validation(thread_info * th_info,
+                         httpparser::Request * request,
+                         httpparser::Response * response);
 };
 
 class thread_info {
