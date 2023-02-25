@@ -86,6 +86,19 @@ std::unique_ptr<httpparser::Response> parser_method::http_response_parse(
   }
   else {
     //return a 400 error code.
-    throw my_exception("cannot parse request");
+    throw my_exception("cannot parse response");
   }
+}
+
+void parser_method::update_response(httpparser::Response & resp,
+                                    std::string name,
+                                    std::string value) {
+  size_t i = 0;
+  for (; i < resp.headers.size() && resp.headers[i].name != name; i++)
+    ;
+  if (i == resp.headers.size()) {
+    struct httpparser::Response::HeaderItem item = {name, value};
+    resp.headers.push_back(item);
+  }
+  resp.headers[i].value = value;
 }

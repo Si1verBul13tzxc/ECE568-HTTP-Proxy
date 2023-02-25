@@ -17,4 +17,5 @@ namespace parser_method {
                                        const std::string header_name);
   std::string response_get_header_value(const httpparser::Response & resp,
                                         const std::string header_name);
+  void update_response(httpparser::Response & resp, std::string name, std::string value);
 }  // namespace parser_method

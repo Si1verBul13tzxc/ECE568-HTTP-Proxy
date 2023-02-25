@@ -41,7 +41,7 @@ namespace httpparser {
       }
       stream << "\r\n";
       std::string data(content.begin(), content.end());
-      stream << data << "\n";
+      stream << data;
       return stream.str();
     }
   };

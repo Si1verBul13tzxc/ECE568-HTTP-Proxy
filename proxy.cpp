@@ -92,11 +92,11 @@ void proxy::http_get(thread_info * th_info,
     get_from_server(request_buffer, th_info, request_res_ptr);
   }
   else {
-    send_from_cache(response, th_info->client_fd);
+    get_from_cache(response, th_info->client_fd);
   }
 }
 
-void proxy::send_from_cache(httpparser::Response * response, int client_fd) {
+void proxy::get_from_cache(httpparser::Response * response, int client_fd) {
   debug_print("find in cache");
   std::string response_data = response->inspect();
   debug_print(response_data.c_str());
@@ -144,6 +144,111 @@ void proxy::get_from_server(std::vector<char> & request_buffer,
     if (res == -1) {
       throw my_exception("fail to send all bytes");
     }
+  }
+}
+
+/** 
+    Reference: RFC7234 3.
+    Return true indicates this response can be stored into cache.
+*/
+bool proxy::response_may_store(httpparser::Response * response) {
+  if (response->statusCode != 200) {
+    return false;
+  }
+  std::string cache_control =
+      parser_method::response_get_header_value(*response, "Cache-Control");
+  if (cache_control.find("no-store") != std::string::npos ||
+      cache_control.find("private") != std::string::npos) {
+    return false;
+  }
+  if (parser_method::response_get_header_value(*response, "Expires") != "" ||
+      cache_control.find("max-age") != std::string::npos ||
+      cache_control.find("s-maxage") != std::string::npos ||
+      cache_control.find("public") != std::string::npos) {
+    return true;
+  }
+  return false;
+}
+
+/** 
+    Return false if no need to validate
+*/
+bool proxy::response_need_validate(httpparser::Response * response) {
+  if (!is_fresh(response)) {  //response is stale
+    return true;
+  }
+  std::string cache_control =
+      parser_method::response_get_header_value(*response, "Cache-Control");
+  if (cache_control.find("no-cache") != std::string::npos) {  //it is fresh, but no-cache
+    return true;
+  }
+  return false;
+}
+
+void proxy::validate_send(httpparser::Request * request,
+                          httpparser::Response * response,
+                          int server_fd) {
+  httpparser::Request conditional_request;
+  construct_conditional_request(request, response, conditional_request);
+  std::string request_msg = conditional_request.inspect();
+  std::vector<char> request_buffer(request_msg.begin(), request_msg.end());
+  int size = request_buffer.size();
+  int res = socket_method::sendall(server_fd, &request_buffer.data()[0], &size);
+  if (res == -1) {
+    throw my_exception("fail to send all bytes");
+  }
+}
+
+void proxy::validate_recv(int server_fd, httpparser::Response * response) {
+  std::vector<char> new_response(HTTP_LENGTH, 0);
+  int bytes_recv = recv(server_fd, &new_response.data()[0], HTTP_LENGTH, 0);
+  new_response.resize(bytes_recv);
+  std::unique_ptr<httpparser::Response> new_response_parsed =
+      parser_method::http_response_parse(new_response);
+  unsigned int code = new_response_parsed->statusCode;
+  if (code == 304) {  //not modified
+    freshen_headers(response, new_response_parsed.get());
+  }
+  else if (code == 200) {  //modified, replace old one in cache
+  }
+  else {  //5xx
+    //forward this new_response to client
+  }
+}
+
+/** 
+    Freshening stored responses upon validtion
+    @param response, the response in cache
+    @param new_responsem, the response returned by validtion
+*/
+void proxy::freshen_headers(httpparser::Response * response,
+                            httpparser::Response * new_response) {
+  for (size_t i = 0; i < new_response->headers.size(); i++) {
+    parser_method::update_response(
+        *response, new_response->headers[i].name, new_response->headers[i].value);
+  }
+}
+
+/** 
+    Generate a conditional request
+*/
+void proxy::construct_conditional_request(httpparser::Request * request,
+                                          httpparser::Response * response,
+                                          httpparser::Request & conditional_request) {
+  conditional_request.method = request->method;
+  conditional_request.uri = request->uri;
+  conditional_request.versionMajor = request->versionMajor;
+  conditional_request.versionMinor = request->versionMinor;
+  std::string last_modified =
+      parser_method::response_get_header_value(*response, "Last-Modified");
+  if (last_modified != "") {
+    struct httpparser::Request::HeaderItem item = {"If-Modified-Since", last_modified};
+    conditional_request.headers.push_back(item);
+  }
+  std::string etag = parser_method::response_get_header_value(*response, "ETag");
+  if (etag != "") {
+    struct httpparser::Request::HeaderItem item = {"If-None-Match", etag};
+    conditional_request.headers.push_back(item);
   }
 }
 
