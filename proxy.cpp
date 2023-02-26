@@ -46,6 +46,7 @@ void proxy::process_request(std::unique_ptr<thread_info> th_info) noexcept {
     std::vector<char> buffer(HTTP_LENGTH, 0);
     int len_received = recv(fd, &buffer.data()[0], HTTP_LENGTH, 0);
     if (len_received <= 0) {
+      debug_print("no request reveived");
       log_id(th_info->unique_id, "ERROR no request received");
       return;  //thread end
     }
