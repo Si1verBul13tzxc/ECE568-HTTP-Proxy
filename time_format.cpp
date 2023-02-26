@@ -32,7 +32,7 @@ time_t time_format::to_tm_format(std::string str){
     //the time format now should be 03 Aug 2020 20:20:20 GMT
     time_structure.tm_mday = atoi(get_time.substr(0, 2).c_str());
     time_structure.tm_mon = get_correspondence(get_time.substr(3, 3).c_str());
-    time_structure.tm_year = atoi(get_time.substr(7, 4).c_str()) - 1900;
+    time_structure.tm_year = atoi(get_time.substr(7, 4).c_str()) - 1970;
     time_structure.tm_hour = atoi(get_time.substr(12, 2).c_str());
     time_structure.tm_min = atoi(get_time.substr(15, 2).c_str());
     time_structure.tm_sec = atoi(get_time.substr(18, 2).c_str());

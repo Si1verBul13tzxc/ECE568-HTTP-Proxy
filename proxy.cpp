@@ -91,6 +91,9 @@ void proxy::http_get(thread_info * th_info,
   if (response == NULL) {
     debug_print("did not find in cache");
     get_from_server(request_buffer, th_info, request_res_ptr, &request_time);
+  }else if (!is_fresh(response)){
+    debug_print("the response in cache is expired");
+    get_from_server(request_buffer, th_info, request_res_ptr, &request_time);
   }
   else {
     send_from_cache(response, th_info->client_fd);
@@ -203,9 +206,9 @@ long proxy::calculate_freshness_lifetime(httpparser::Response * response) {
     freshness = std::stol(max_age_str, &sz);
   }else if((expires = parser_method::response_get_header_value(*response, "expires")) != "") {
     time_t expire_time = time_format::to_tm_format(expires);
-    std::string date_str = parser_method::response_get_header_value(*response, "date");
+    std::string date_str = parser_method::response_get_header_value(*response, "Date");
     time_t date = time_format::to_tm_format(date_str);
-    freshness = date - expire_time;
+    freshness = expire_time - date;
   }else{
     //go to heuristics freshness
     debug_print("calculate freshness lifetime encounter unexpected senario");
@@ -256,7 +259,7 @@ long proxy::corrected_age_value(httpparser::Response * response){
 }
 
 long proxy::apparent_age(httpparser::Response * response){
-  std::string date_value_str = parser_method::response_get_header_value(*response, "dates");
+  std::string date_value_str = parser_method::response_get_header_value(*response, "Date");
   std::string response_time_str = parser_method::response_get_header_value(*response, "response_time");
   std::string::size_type sz;
   time_t response_time = std::stol(response_time_str, &sz);
