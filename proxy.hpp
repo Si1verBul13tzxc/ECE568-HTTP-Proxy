@@ -1,4 +1,3 @@
-
 #include <assert.h>
 #include <poll.h>
 
@@ -9,10 +8,15 @@
 #include <mutex>
 #include <thread>
 #include <vector>
+#include <time.h>
+#include <chrono>
+#include <map>
 
 #include "Socket_connection.hpp"
 #include "cache.hpp"
 #include "parser_method.hpp"
+#include "time_format.hpp"
+
 #define HTTP_LENGTH 65535
 #define DEBUG 1
 
@@ -42,12 +46,15 @@ class proxy {
                        std::vector<char> & request_buffer);
   static void get_from_server(std::vector<char> & request_buffer,
                               thread_info * th_info,
-                              httpparser::Request * http_request);
+                              httpparser::Request * http_request,
+                              time_t * request_time);
   static void log_new_request(int unique_id, std::string ip, httpparser::Request & req);
   static void send_from_cache(httpparser::Response * response, int client_fd);
   static bool is_fresh(httpparser::Response * response);
-  static int caculate_fressness_lifetime(httpparser::Response * response);
-  static int caculate_age(httpparser::Response * response);
+  static long calculate_freshness_lifetime(httpparser::Response * response);
+  static long calculate_age(httpparser::Response * response);
+  static long apparent_age(httpparser::Response * response);
+  static long corrected_age_value(httpparser::Response * response);
 };
 
 class thread_info {
