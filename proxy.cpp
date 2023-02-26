@@ -28,6 +28,7 @@ void proxy::start(int listener) noexcept {
       }
     }
     catch (std::exception & e) {  //new may fail
+      debug_print(e.what());
       continue;
     }
   }
@@ -93,10 +94,13 @@ void proxy::http_get(thread_info * th_info,
     get_from_server(request_buffer, th_info, request);
   }
   else {
-    if (response_need_validate(response)) {
+    debug_print("in cache");
+    if (response_need_validate(response) || request_require_validate(request)) {
+      debug_print("need revalidation");
       validation(th_info, request, response);
     }
     else {
+      debug_print("no need to revalidation");
       send_response_in_cache(response, th_info->client_fd);
     }
   }
@@ -149,14 +153,45 @@ void proxy::get_from_server(std::vector<char> & request_buffer,
   std::vector<char> response_buffer(HTTP_LENGTH, 0);
   int resp_len = one_round_trip(request_buffer, server_fd, response_buffer);
   assert(resp_len == (int)response_buffer.size());
-  debug_print((std::string("store the reponse to cache") + http_request->uri).c_str());
+  if (is_chunked(response_buffer)) {
+    chunked_transfer(th_info, server_fd, response_buffer);
+    return;
+  }
   std::unique_ptr<httpparser::Response> response_res_ptr =
       parser_method::http_response_parse(response_buffer);
-  if (response_may_store(
-          response_res_ptr.get())) {  //store the response in cache if can store
+  if (response_may_store(response_res_ptr.get()) &&
+      !request_no_store(http_request)) {  //store the response in cache if can store
+    debug_print((std::string("store the reponse to cache") + http_request->uri).c_str());
     cache->add_response(http_request->uri, std::move(response_res_ptr));
   }
+  else {
+    debug_print("cannot store this response in cache");
+  }
   send_to(th_info->client_fd, response_buffer);
+}
+
+bool proxy::is_chunked(std::vector<char> & response_buffer) {
+  std::string msg(response_buffer.begin(), response_buffer.end());
+  size_t pos = msg.find("chunked");
+  return pos != std::string::npos;
+}
+
+void proxy::chunked_transfer(thread_info * th_info,
+                             int server_fd,
+                             std::vector<char> & first_buffer) {
+  send_to(th_info->client_fd, first_buffer);  //send first response
+  debug_print("chunked_transfer");
+  std::vector<char> response_buffer(HTTP_LENGTH, 0);
+  while (1) {
+    response_buffer.resize(HTTP_LENGTH);
+    int resp_len = recv(server_fd, &response_buffer.data()[0], HTTP_LENGTH, 0);
+    if (resp_len <= 0) {
+      debug_print("chunked thransfer finished");
+      break;
+    }
+    response_buffer.resize(resp_len);
+    send_to(th_info->client_fd, response_buffer);
+  }
 }
 
 /** 
@@ -188,7 +223,10 @@ bool proxy::response_may_store(httpparser::Response * response) {
       cache_control.find("private") != std::string::npos) {
     return false;
   }
-  if (parser_method::response_get_header_value(*response, "Expires") != "" ||
+  if (cache_control != "" ||
+      parser_method::response_get_header_value(*response, "Expires") != "" ||
+      parser_method::response_get_header_value(*response, "ETag") != "" ||
+      parser_method::response_get_header_value(*response, "Last-Modified") != "" ||
       cache_control.find("max-age") != std::string::npos ||
       cache_control.find("s-maxage") != std::string::npos ||
       cache_control.find("public") != std::string::npos) {  //add last modified and etag
@@ -212,6 +250,30 @@ bool proxy::response_need_validate(httpparser::Response * response) {
   return false;
 }
 
+/** 
+    Return ture if the request require validate
+*/
+bool proxy::request_require_validate(httpparser::Request * req) {
+  std::string cache_control =
+      parser_method::request_get_header_value(*req, "Cache-Control");
+  if (cache_control.find("no-cache") != std::string::npos) {
+    return true;
+  }
+  return false;
+}
+
+/** 
+    True if this request require its response to be no-store
+*/
+bool proxy::request_no_store(httpparser::Request * req) {
+  std::string cache_control =
+      parser_method::request_get_header_value(*req, "Cache-Control");
+  if (cache_control.find("no-store") != std::string::npos) {
+    return true;
+  }
+  return false;
+}
+
 void proxy::validation(thread_info * th_info,
                        httpparser::Request * request,
                        httpparser::Response * response) {
@@ -219,6 +281,7 @@ void proxy::validation(thread_info * th_info,
   sock server_fd_guard(server_fd);
   httpparser::Request conditional_request;
   construct_conditional_request(request, response, conditional_request);
+  debug_print(conditional_request.inspect().c_str());
   std::string request_msg = conditional_request.inspect();
   std::vector<char> conditional_request_buffer(request_msg.begin(), request_msg.end());
   std::vector<char> new_response(HTTP_LENGTH, 0);
@@ -239,6 +302,7 @@ void proxy::validation(thread_info * th_info,
   }
   else {  //5xx,forward this new_response to client
     log_id(th_info->unique_id, "NOTE server error for validtion");
+    debug_print("server problem on revalidation");
   }
   send_to(th_info->client_fd, new_response);
 }
@@ -266,6 +330,9 @@ void proxy::construct_conditional_request(httpparser::Request * request,
   conditional_request.uri = request->uri;
   conditional_request.versionMajor = request->versionMajor;
   conditional_request.versionMinor = request->versionMinor;
+  std::string host = parser_method::request_get_header_value(*request, "Host");
+  struct httpparser::Request::HeaderItem item = {"Host", host};
+  conditional_request.headers.push_back(item);
   std::string last_modified =
       parser_method::response_get_header_value(*response, "Last-Modified");
   if (last_modified != "") {

@@ -62,6 +62,12 @@ class proxy {
   static void validation(thread_info * th_info,
                          httpparser::Request * request,
                          httpparser::Response * response);
+  static void chunked_transfer(thread_info * th_info,
+                               int server_fd,
+                               std::vector<char> & first_buffer);
+  static bool is_chunked(std::vector<char> & response_buffer);
+  static bool request_require_validate(httpparser::Request * req);
+  static bool request_no_store(httpparser::Request * req);
 };
 
 class thread_info {
