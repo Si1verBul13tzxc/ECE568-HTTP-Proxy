@@ -12,18 +12,8 @@
 
 class time_format {
  public:
-  static std::map<std::string, int> cor_map;
-
- public:
-
-  /**
-   * return the digital representation of months and weeks
-  */
-  static int get_correspondence(std::string str);
-
   /**
    * change the time format to the tm structure
   */
   static time_t to_tm_format(std::string str);
-
 };

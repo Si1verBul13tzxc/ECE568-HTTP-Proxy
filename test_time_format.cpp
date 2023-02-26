@@ -5,7 +5,7 @@
 // #include "parser_method.hpp"
 
 // long test_format() {
-//   std::string time = "Thu, 03 Aug 2017 19:22:33 GMT";
+//   std::string time = "Sun, 26 Feb 2023 17:00:00 GMT";
 //   time_t transfer = time_format::to_tm_format(time);
 //   return transfer;
 // }
@@ -38,7 +38,7 @@
 //     std::cout << request_t << "   " << response_t << "\n";
 // }
 
-// // int main(){
-// //     test_calculate_freshness();
-// //     return EXIT_SUCCESS;
-// // }
+// int main(){
+//     std::cout << test_format();
+//     return EXIT_SUCCESS;
+// }
