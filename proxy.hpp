@@ -48,7 +48,8 @@ class proxy {
   static void log_new_request(int unique_id, std::string ip, httpparser::Request & req);
   static void send_response_in_cache(httpparser::Response * response, int client_fd);
   static bool response_may_store(httpparser::Response * response);
-  static bool response_need_validate(httpparser::Response * response);
+  static bool response_need_validate(httpparser::Response * response,
+                                     httpparser::Request * req);
   static void construct_conditional_request(httpparser::Request * request,
                                             httpparser::Response * response,
                                             httpparser::Request & conditional_request);
@@ -69,8 +70,9 @@ class proxy {
   static bool request_require_validate(httpparser::Request * req);
   static bool request_no_store(httpparser::Request * req);
   static time_t to_tm_format(std::string str);
-  static bool is_fresh(httpparser::Response * response);
-  static long calculate_freshness_lifetime(httpparser::Response * response);
+  static bool is_fresh(httpparser::Response * response, httpparser::Request * req);
+  static long calculate_freshness_lifetime(httpparser::Response * response,
+                                           httpparser::Request * req);
   static long calculate_age(httpparser::Response * response);
   static long apparent_age(httpparser::Response * response);
   static long corrected_age_value(httpparser::Response * response);

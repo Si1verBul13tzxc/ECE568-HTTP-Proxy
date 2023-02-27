@@ -62,7 +62,6 @@ void proxy::process_request(std::unique_ptr<thread_info> th_info) noexcept {
       debug_print("Tunnel closed");
     }
     else if (request_method == "POST") {
-      //log for post message
       http_post(buffer, std::move(th_info), std::move(request_res_ptr));
     }
     else if (request_method == "GET") {
@@ -98,7 +97,7 @@ void proxy::http_get(thread_info * th_info,
   }
   else {
     debug_print("in cache");
-    if (response_need_validate(response) || request_require_validate(request)) {
+    if (response_need_validate(response, request) || request_require_validate(request)) {
       debug_print("need revalidation");
       log_id(th_info->unique_id, "in cache, requires validation");
       validation(th_info, request, response);
@@ -179,7 +178,7 @@ void proxy::get_from_server(std::vector<char> & request_buffer,
       log_id(th_info->unique_id, "cached, but requires re-validation");
     }
     else {
-      time_t fress_time = calculate_freshness_lifetime(resp.get());
+      time_t fress_time = calculate_freshness_lifetime(resp.get(), http_request);
       time_t expire = time(0) + fress_time;
       struct tm * time_info = gmtime(&expire);
       log_id(th_info->unique_id, "cached, expires at " + std::string(asctime(time_info)));
@@ -267,8 +266,10 @@ bool proxy::response_may_store(httpparser::Response * response) {
 /** 
     Return false if no need to validate
 */
-bool proxy::response_need_validate(httpparser::Response * response) {
-  if (!is_fresh(response)) {  //response is stale
+bool proxy::response_need_validate(httpparser::Response * response,
+                                   httpparser::Request * req) {
+  if (!is_fresh(response,
+                req)) {  //response is stale or required by min-fresh or max-stale
     debug_print("stale response");
     return true;
   }
@@ -319,25 +320,28 @@ void proxy::validation(thread_info * th_info,
   assert(resp_length == (int)new_response.size());
   std::unique_ptr<httpparser::Response> new_response_parsed =
       parser_method::http_response_parse(new_response);
+  log_response(th_info, request, new_response);
   unsigned int code = new_response_parsed->statusCode;
   if (code == 304) {  //not modified
     debug_print("receive 304 not modified on validation");
     freshen_headers(response, new_response_parsed.get());
     response->response_time = time(0);
     send_response_in_cache(response, th_info->client_fd);
+    log_respond_to_clinet(th_info, response);
     return;
   }
   else if (code == 200) {  //modified, replace old one in cache
     new_response_parsed->response_time = time(0);
+    log_respond_to_clinet(th_info, new_response_parsed.get());
     cache->add_response(request->uri, std::move(new_response_parsed));
     debug_print("receive 200 ok on validation");
   }
   else {  //5xx,forward this new_response to client
     log_id(th_info->unique_id, "NOTE server error for validtion");
     debug_print("server problem on revalidation");
+    log_respond_to_clinet(th_info, new_response_parsed.get());
   }
   send_to(th_info->client_fd, new_response);
-  log_respond_to_clinet(th_info, response);
 }
 
 /** 
@@ -393,9 +397,9 @@ time_t proxy::to_tm_format(std::string str) {
     response_is_fresh = (freshness_lifetime > current_age);
     use calculate_age defined below to calculate current_age.
 */
-bool proxy::is_fresh(httpparser::Response * response) {
+bool proxy::is_fresh(httpparser::Response * response, httpparser::Request * req) {
   debug_print("is_fresh?");
-  return calculate_freshness_lifetime(response) > calculate_age(response);
+  return calculate_freshness_lifetime(response, req) > calculate_age(response);
 }
 
 /**
@@ -409,9 +413,11 @@ bool proxy::is_fresh(httpparser::Response * response) {
     if max-age present, use max-age
     if expires response header filed is present, use its value - the value of the date response header field
     if no explicit expiration time , go to heiristic freshness 4.2.2
+    NOTE: the ddl is approaching and we do not have time to abstract it out, so it is a little long :)
 */
 
-long proxy::calculate_freshness_lifetime(httpparser::Response * response) {
+long proxy::calculate_freshness_lifetime(httpparser::Response * response,
+                                         httpparser::Request * req) {
   debug_print("freshness lifetime");
   std::string cache_control =
       parser_method::response_get_header_value(*response, "Cache-Control");
@@ -452,13 +458,39 @@ long proxy::calculate_freshness_lifetime(httpparser::Response * response) {
   else {
     //go to heuristics freshness
     freshness = 0;
+    return freshness;
   }
+  //request min-fresh or max-stale
+  std::string req_cache_control =
+      parser_method::request_get_header_value(*req, "Cache-Control");
+  size_t min_fresh;
+  std::string min_fresh_str;
+  size_t max_stale;
+  std::string max_stale_str;
+  if ((min_fresh = req_cache_control.find("min-fresh")) != std::string::npos) {
+    if ((ends = req_cache_control.substr(min_fresh).find(",")) != std::string::npos) {
+      min_fresh_str = req_cache_control.substr(min_fresh + 10, ends - 10);
+    }
+    else {
+      min_fresh_str = req_cache_control.substr(min_fresh + 10);
+    }
+    freshness -= std::stol(min_fresh_str);
+  }
+  if ((max_stale = req_cache_control.find("max-stale")) != std::string::npos) {
+    if ((ends = req_cache_control.substr(max_stale).find(",")) != std::string::npos) {
+      max_stale_str = req_cache_control.substr(max_stale + 10, ends - 10);
+    }
+    else {
+      max_stale_str = req_cache_control.substr(max_stale + 10);
+    }
+    freshness += std::stol(max_stale_str);
+  }
+
   return freshness;
 }
 
 /** 
     rfc 4.2.3.
-    may need to add some new attribute in httpparser::response to store values like response_time, request_time
     age_value(Age header field), date_value(Date header field), now(the current value of the clock at the host 
     performing the calculation), request_time(the current time when making request), response_time (the current 
     time of receiving response)
@@ -599,6 +631,7 @@ void proxy::log_id(int id, std::string msg) {
   log_f.close();
   mtx.unlock();
 }
+
 void proxy::log_response(thread_info * th_info,
                          httpparser::Request * req,
                          std::vector<char> & response_buffer) {
@@ -616,8 +649,8 @@ void proxy::log_respond_to_clinet(thread_info * th_info, httpparser::Response * 
 }
 void proxy::log_new_request(int unique_id, std::string ip, httpparser::Request & req) {
   //log new request
-  std::string msg =
-      parser_method::get_request_line(req) + "\" from " + ip + " @ " + get_current_time();
+  std::string msg = "\"" + parser_method::get_request_line(req) + "\" from " + ip +
+                    " @ " + get_current_time();
   log_id(unique_id, msg);
   debug_print(msg.c_str());
 }

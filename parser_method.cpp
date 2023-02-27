@@ -70,7 +70,7 @@ std::unique_ptr<httpparser::Request> parser_method::http_request_parse(
     return request_res_ptr;  //return local value, no need to move()
   }
   else {
-    //return a 400 error code.
+    //return a 400 error code
     throw my_exception("cannot parse request");
   }
 }

@@ -1,84 +1,1116 @@
-0: GET http://info.cern.ch/hypertext/WWW/Terms.html HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 05:38:28 2023
+0: "CONNECT neat-iodine-05e.notion.site:443 HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:56:29 2023
 
-0: not in cache
-0: Requesting "GET http://info.cern.ch/hypertext/WWW/Terms.html HTTP/1.1" from info.cern.ch
-0: ERROR cannot parse response
-1: GET http://info.cern.ch/hypertext/WWW/Terms.html HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 05:38:28 2023
+0: Requesting "CONNECT neat-iodine-05e.notion.site:443 HTTP/1.1" from neat-iodine-05e.notion.site
+0: Responding "HTTP/1.1 200 OK"
+2: "CONNECT incoming.telemetry.mozilla.org:443 HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:56:29 2023
+
+1: "CONNECT incoming.telemetry.mozilla.org:443 HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:56:29 2023
+
+2: Requesting "CONNECT incoming.telemetry.mozilla.org:443 HTTP/1.1" from incoming.telemetry.mozilla.org
+2: Responding "HTTP/1.1 200 OK"
+1: Requesting "CONNECT incoming.telemetry.mozilla.org:443 HTTP/1.1" from incoming.telemetry.mozilla.org
+1: Responding "HTTP/1.1 200 OK"
+3: "CONNECT o324374.ingest.sentry.io:443 HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:56:30 2023
+
+5: "CONNECT exp.notion.so:443 HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:56:30 2023
+
+3: Requesting "CONNECT o324374.ingest.sentry.io:443 HTTP/1.1" from o324374.ingest.sentry.io
+3: Responding "HTTP/1.1 200 OK"
+6: "CONNECT http-inputs-notion.splunkcloud.com:443 HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:56:30 2023
+
+7: "CONNECT http-inputs-notion.splunkcloud.com:443 HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:56:30 2023
+
+9: "CONNECT aif.notion.so:443 HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:56:30 2023
+
+5: Requesting "CONNECT exp.notion.so:443 HTTP/1.1" from exp.notion.so
+5: Responding "HTTP/1.1 200 OK"
+6: Requesting "CONNECT http-inputs-notion.splunkcloud.com:443 HTTP/1.1" from http-inputs-notion.splunkcloud.com
+6: Responding "HTTP/1.1 200 OK"
+7: Requesting "CONNECT http-inputs-notion.splunkcloud.com:443 HTTP/1.1" from http-inputs-notion.splunkcloud.com
+7: Responding "HTTP/1.1 200 OK"
+9: Requesting "CONNECT aif.notion.so:443 HTTP/1.1" from aif.notion.so
+9: Responding "HTTP/1.1 200 OK"
+11: "POST http://r3.o.lencr.org/ HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:56:30 2023
+
+11: Requesting "POST http://r3.o.lencr.org/ HTTP/1.1" from r3.o.lencr.org
+11: Receive "HTTP/1.1 200 OK" fromr3.o.lencr.org
+11: Responding "HTTP/1.1 200 OK"
+12: "POST http://ocsp.digicert.com/ HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:56:30 2023
+
+13: "POST http://ocsp.digicert.com/ HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:56:30 2023
+
+13: Requesting "POST http://ocsp.digicert.com/ HTTP/1.1" from ocsp.digicert.com
+12: Requesting "POST http://ocsp.digicert.com/ HTTP/1.1" from ocsp.digicert.com
+13: Receive "HTTP/1.1 200 OK" fromocsp.digicert.com
+13: Responding "HTTP/1.1 200 OK"
+12: Receive "HTTP/1.1 200 OK" fromocsp.digicert.com
+12: Responding "HTTP/1.1 200 OK"
+15: "CONNECT www.googletagmanager.com:443 HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:56:30 2023
+
+14: "CONNECT www.googletagmanager.com:443 HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:56:30 2023
+
+15: Requesting "CONNECT www.googletagmanager.com:443 HTTP/1.1" from www.googletagmanager.com
+15: Responding "HTTP/1.1 200 OK"
+14: Requesting "CONNECT www.googletagmanager.com:443 HTTP/1.1" from www.googletagmanager.com
+14: Responding "HTTP/1.1 200 OK"
+8: "CONNECT http-inputs-notion.splunkcloud.com:443 HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:56:30 2023
+
+10: "CONNECT http-inputs-notion.splunkcloud.com:443 HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:56:30 2023
+
+8: Requesting "CONNECT http-inputs-notion.splunkcloud.com:443 HTTP/1.1" from http-inputs-notion.splunkcloud.com
+8: Responding "HTTP/1.1 200 OK"
+10: Requesting "CONNECT http-inputs-notion.splunkcloud.com:443 HTTP/1.1" from http-inputs-notion.splunkcloud.com
+10: Responding "HTTP/1.1 200 OK"
+17: "CONNECT widget.intercom.io:443 HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:56:30 2023
+
+16: "CONNECT connect.facebook.net:443 HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:56:30 2023
+
+16: Requesting "CONNECT connect.facebook.net:443 HTTP/1.1" from connect.facebook.net
+16: Responding "HTTP/1.1 200 OK"
+15: Tunnel closed
+18: "CONNECT www.notion.so:443 HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:56:30 2023
+
+17: Requesting "CONNECT widget.intercom.io:443 HTTP/1.1" from widget.intercom.io
+17: Responding "HTTP/1.1 200 OK"
+21: "CONNECT d2hrivdxn8ekm8.cloudfront.net:443 HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:56:30 2023
+
+20: "CONNECT x.clearbitjs.com:443 HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:56:30 2023
+
+22: "CONNECT snap.licdn.com:443 HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:56:30 2023
+
+19: "CONNECT cdn.metadata.io:443 HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:56:30 2023
+
+22: Requesting "CONNECT snap.licdn.com:443 HTTP/1.1" from snap.licdn.com
+22: Responding "HTTP/1.1 200 OK"
+21: Requesting "CONNECT d2hrivdxn8ekm8.cloudfront.net:443 HTTP/1.1" from d2hrivdxn8ekm8.cloudfront.net
+21: Responding "HTTP/1.1 200 OK"
+18: Requesting "CONNECT www.notion.so:443 HTTP/1.1" from www.notion.so
+18: Responding "HTTP/1.1 200 OK"
+19: Requesting "CONNECT cdn.metadata.io:443 HTTP/1.1" from cdn.metadata.io
+19: Responding "HTTP/1.1 200 OK"
+20: Requesting "CONNECT x.clearbitjs.com:443 HTTP/1.1" from x.clearbitjs.com
+20: Responding "HTTP/1.1 200 OK"
+23: "POST http://ocsp.digicert.com/ HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:56:31 2023
+
+23: Requesting "POST http://ocsp.digicert.com/ HTTP/1.1" from ocsp.digicert.com
+23: Receive "HTTP/1.1 200 OK" fromocsp.digicert.com
+23: Responding "HTTP/1.1 200 OK"
+24: "POST http://ocsp.r2m01.amazontrust.com/ HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:56:31 2023
+
+24: Requesting "POST http://ocsp.r2m01.amazontrust.com/ HTTP/1.1" from ocsp.r2m01.amazontrust.com
+26: "CONNECT js.intercomcdn.com:443 HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:56:31 2023
+
+25: "CONNECT js.intercomcdn.com:443 HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:56:31 2023
+
+24: Receive "HTTP/1.1 200 OK" fromocsp.r2m01.amazontrust.com
+24: Responding "HTTP/1.1 200 OK"
+26: Requesting "CONNECT js.intercomcdn.com:443 HTTP/1.1" from js.intercomcdn.com
+26: Responding "HTTP/1.1 200 OK"
+25: Requesting "CONNECT js.intercomcdn.com:443 HTTP/1.1" from js.intercomcdn.com
+25: Responding "HTTP/1.1 200 OK"
+27: "CONNECT d1lu3pmaz2ilpx.cloudfront.net:443 HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:56:31 2023
+
+28: "CONNECT dvqigh9b7wa32.cloudfront.net:443 HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:56:31 2023
+
+29: "CONNECT d330aiyvva2oww.cloudfront.net:443 HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:56:31 2023
+
+28: Requesting "CONNECT dvqigh9b7wa32.cloudfront.net:443 HTTP/1.1" from dvqigh9b7wa32.cloudfront.net
+28: Responding "HTTP/1.1 200 OK"
+27: Requesting "CONNECT d1lu3pmaz2ilpx.cloudfront.net:443 HTTP/1.1" from d1lu3pmaz2ilpx.cloudfront.net
+27: Responding "HTTP/1.1 200 OK"
+29: Requesting "CONNECT d330aiyvva2oww.cloudfront.net:443 HTTP/1.1" from d330aiyvva2oww.cloudfront.net
+29: Responding "HTTP/1.1 200 OK"
+25: Tunnel closed
+30: "CONNECT api-iam.intercom.io:443 HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:56:31 2023
+
+30: Requesting "CONNECT api-iam.intercom.io:443 HTTP/1.1" from api-iam.intercom.io
+30: Responding "HTTP/1.1 200 OK"
+31: "CONNECT munchkin.marketo.net:443 HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:56:31 2023
+
+34: "CONNECT segment.prod.bidr.io:443 HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:56:31 2023
+
+33: "CONNECT px.ads.linkedin.com:443 HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:56:31 2023
+
+32: "CONNECT app.clearbit.com:443 HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:56:31 2023
+
+35: "CONNECT acdn.adnxs.com:443 HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:56:31 2023
+
+36: "CONNECT analytics.tiktok.com:443 HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:56:31 2023
+
+31: Requesting "CONNECT munchkin.marketo.net:443 HTTP/1.1" from munchkin.marketo.net
+31: Responding "HTTP/1.1 200 OK"
+33: Requesting "CONNECT px.ads.linkedin.com:443 HTTP/1.1" from px.ads.linkedin.com
+33: Responding "HTTP/1.1 200 OK"
+32: Requesting "CONNECT app.clearbit.com:443 HTTP/1.1" from app.clearbit.com
+32: Responding "HTTP/1.1 200 OK"
+35: Requesting "CONNECT acdn.adnxs.com:443 HTTP/1.1" from acdn.adnxs.com
+35: Responding "HTTP/1.1 200 OK"
+34: Requesting "CONNECT segment.prod.bidr.io:443 HTTP/1.1" from segment.prod.bidr.io
+34: Responding "HTTP/1.1 200 OK"
+36: Requesting "CONNECT analytics.tiktok.com:443 HTTP/1.1" from analytics.tiktok.com
+36: Responding "HTTP/1.1 200 OK"
+37: "POST http://ocsp.r2m02.amazontrust.com/ HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:56:31 2023
+
+38: "POST http://ocsp.sca1b.amazontrust.com/ HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:56:31 2023
+
+37: Requesting "POST http://ocsp.r2m02.amazontrust.com/ HTTP/1.1" from ocsp.r2m02.amazontrust.com
+38: Requesting "POST http://ocsp.sca1b.amazontrust.com/ HTTP/1.1" from ocsp.sca1b.amazontrust.com
+37: Receive "HTTP/1.1 200 OK" fromocsp.r2m02.amazontrust.com
+37: Responding "HTTP/1.1 200 OK"
+38: Receive "HTTP/1.1 200 OK" fromocsp.sca1b.amazontrust.com
+38: Responding "HTTP/1.1 200 OK"
+39: "CONNECT 414-xmy-838.mktoresp.com:443 HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:56:32 2023
+
+40: "CONNECT ib.adnxs.com:443 HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:56:32 2023
+
+39: Requesting "CONNECT 414-xmy-838.mktoresp.com:443 HTTP/1.1" from 414-xmy-838.mktoresp.com
+39: Responding "HTTP/1.1 200 OK"
+40: Requesting "CONNECT ib.adnxs.com:443 HTTP/1.1" from ib.adnxs.com
+40: Responding "HTTP/1.1 200 OK"
+41: "POST http://ocsp.digicert.com/ HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:56:32 2023
+
+41: Requesting "POST http://ocsp.digicert.com/ HTTP/1.1" from ocsp.digicert.com
+41: Receive "HTTP/1.1 200 OK" fromocsp.digicert.com
+41: Responding "HTTP/1.1 200 OK"
+4: ERROR no request received
+34: Tunnel closed
+20: Tunnel closed
+32: Tunnel closed
+40: Tunnel closed
+42: "CONNECT contile.services.mozilla.com:443 HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:56:50 2023
+
+42: Requesting "CONNECT contile.services.mozilla.com:443 HTTP/1.1" from contile.services.mozilla.com
+42: Responding "HTTP/1.1 200 OK"
+43: "CONNECT contile-images.services.mozilla.com:443 HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:56:51 2023
+
+43: Requesting "CONNECT contile-images.services.mozilla.com:443 HTTP/1.1" from contile-images.services.mozilla.com
+43: Responding "HTTP/1.1 200 OK"
+44: "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:56:52 2023
+
+44: not in cache
+44: Requesting "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from www.httpwatch.com
+45: "CONNECT o324374.ingest.sentry.io:443 HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:56:52 2023
+
+45: Requesting "CONNECT o324374.ingest.sentry.io:443 HTTP/1.1" from o324374.ingest.sentry.io
+45: Responding "HTTP/1.1 200 OK"
+44: ERROR cannot parse response
+46: "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:56:53 2023
+
+46: not in cache
+46: Requesting "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from www.httpwatch.com
+46: ERROR cannot parse response
+47: "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:56:53 2023
+
+47: not in cache
+47: Requesting "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from www.httpwatch.com
+47: ERROR cannot parse response
+48: "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:56:54 2023
+
+48: not in cache
+48: Requesting "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from www.httpwatch.com
+48: ERROR cannot parse response
+49: "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:56:55 2023
+
+49: not in cache
+49: Requesting "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from www.httpwatch.com
+49: ERROR cannot parse response
+50: "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:56:55 2023
+
+50: not in cache
+50: Requesting "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from www.httpwatch.com
+50: ERROR cannot parse response
+51: "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:56:55 2023
+
+51: not in cache
+51: Requesting "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from www.httpwatch.com
+51: ERROR cannot parse response
+52: "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:56:55 2023
+
+52: not in cache
+52: Requesting "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from www.httpwatch.com
+52: ERROR cannot parse response
+53: "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:56:55 2023
+
+53: not in cache
+53: Requesting "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from www.httpwatch.com
+53: ERROR cannot parse response
+54: "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:56:55 2023
+
+54: not in cache
+54: Requesting "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from www.httpwatch.com
+54: ERROR cannot parse response
+55: "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:56:57 2023
+
+55: not in cache
+55: Requesting "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from www.httpwatch.com
+55: ERROR cannot parse response
+56: "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:56:57 2023
+
+56: not in cache
+56: Requesting "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from www.httpwatch.com
+56: ERROR cannot parse response
+57: "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:56:57 2023
+
+57: not in cache
+57: Requesting "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from www.httpwatch.com
+57: ERROR cannot parse response
+58: "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:56:57 2023
+
+58: not in cache
+58: Requesting "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from www.httpwatch.com
+58: ERROR cannot parse response
+59: "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:56:57 2023
+
+59: not in cache
+59: Requesting "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from www.httpwatch.com
+59: ERROR cannot parse response
+60: "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:56:58 2023
+
+60: not in cache
+60: Requesting "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from www.httpwatch.com
+60: ERROR cannot parse response
+61: "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:56:58 2023
+
+61: not in cache
+61: Requesting "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from www.httpwatch.com
+61: ERROR cannot parse response
+62: "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:56:58 2023
+
+62: not in cache
+62: Requesting "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from www.httpwatch.com
+62: ERROR cannot parse response
+63: "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:56:58 2023
+
+63: not in cache
+63: Requesting "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from www.httpwatch.com
+63: ERROR cannot parse response
+64: "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:56:58 2023
+
+64: not in cache
+64: Requesting "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from www.httpwatch.com
+64: ERROR cannot parse response
+65: "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:57:01 2023
+
+65: not in cache
+65: Requesting "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from www.httpwatch.com
+65: ERROR cannot parse response
+66: "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:57:01 2023
+
+66: not in cache
+66: Requesting "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from www.httpwatch.com
+66: ERROR cannot parse response
+67: "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:57:01 2023
+
+67: not in cache
+67: Requesting "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from www.httpwatch.com
+67: ERROR cannot parse response
+68: "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:57:01 2023
+
+68: not in cache
+68: Requesting "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from www.httpwatch.com
+68: ERROR cannot parse response
+69: "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:57:01 2023
+
+69: not in cache
+69: Requesting "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from www.httpwatch.com
+69: ERROR cannot parse response
+70: "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:57:01 2023
+
+70: not in cache
+70: Requesting "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from www.httpwatch.com
+70: ERROR cannot parse response
+71: "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:57:01 2023
+
+71: not in cache
+71: Requesting "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from www.httpwatch.com
+71: ERROR cannot parse response
+72: "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:57:01 2023
+
+72: not in cache
+72: Requesting "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from www.httpwatch.com
+72: ERROR cannot parse response
+73: "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:57:02 2023
+
+73: not in cache
+73: Requesting "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from www.httpwatch.com
+73: ERROR cannot parse response
+74: "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:57:02 2023
+
+74: not in cache
+74: Requesting "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from www.httpwatch.com
+74: ERROR cannot parse response
+75: "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:57:03 2023
+
+75: not in cache
+75: Requesting "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from www.httpwatch.com
+75: ERROR cannot parse response
+76: "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:57:03 2023
+
+76: not in cache
+76: Requesting "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from www.httpwatch.com
+76: ERROR cannot parse response
+77: "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:57:03 2023
+
+77: not in cache
+77: Requesting "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from www.httpwatch.com
+77: ERROR cannot parse response
+78: "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:57:03 2023
+
+78: not in cache
+78: Requesting "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from www.httpwatch.com
+78: ERROR cannot parse response
+79: "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:57:03 2023
+
+79: not in cache
+79: Requesting "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from www.httpwatch.com
+79: ERROR cannot parse response
+80: "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:57:04 2023
+
+80: not in cache
+80: Requesting "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from www.httpwatch.com
+80: ERROR cannot parse response
+81: "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:57:04 2023
+
+81: not in cache
+81: Requesting "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from www.httpwatch.com
+81: ERROR cannot parse response
+82: "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:57:04 2023
+
+82: not in cache
+82: Requesting "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from www.httpwatch.com
+82: ERROR cannot parse response
+83: "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:57:04 2023
+
+83: not in cache
+83: Requesting "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from www.httpwatch.com
+83: ERROR cannot parse response
+84: "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:57:04 2023
+
+84: not in cache
+84: Requesting "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from www.httpwatch.com
+84: ERROR cannot parse response
+85: "GET http://httpbin.org/forms/post HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:57:08 2023
+
+85: not in cache
+85: Requesting "GET http://httpbin.org/forms/post HTTP/1.1" from httpbin.org
+85: ERROR cannot parse response
+86: "GET http://httpbin.org/forms/post HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:57:08 2023
+
+86: not in cache
+86: Requesting "GET http://httpbin.org/forms/post HTTP/1.1" from httpbin.org
+86: Receive "HTTP/1.1 200 OK" fromhttpbin.org
+86: not cacheable because the headers or the client dose not allow cache
+86: Responding "HTTP/1.1 200 OK"
+87: "GET http://httpbin.org/favicon.ico HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:57:09 2023
+
+87: not in cache
+87: Requesting "GET http://httpbin.org/favicon.ico HTTP/1.1" from httpbin.org
+87: ERROR cannot parse response
+88: "GET http://httpbin.org/favicon.ico HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:57:09 2023
+
+88: not in cache
+88: Requesting "GET http://httpbin.org/favicon.ico HTTP/1.1" from httpbin.org
+88: Receive "HTTP/1.1 404 NOT FOUND" fromhttpbin.org
+88: not cacheable because the headers or the client dose not allow cache
+88: Responding "HTTP/1.1 404 NOT FOUND"
+89: "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:57:12 2023
+
+89: not in cache
+89: Requesting "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from www.httpwatch.com
+89: ERROR cannot parse response
+90: "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:57:12 2023
+
+90: not in cache
+90: Requesting "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from www.httpwatch.com
+90: ERROR cannot parse response
+91: "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:57:13 2023
+
+91: not in cache
+91: Requesting "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from www.httpwatch.com
+91: ERROR cannot parse response
+92: "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:57:13 2023
+
+92: not in cache
+92: Requesting "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from www.httpwatch.com
+92: ERROR cannot parse response
+93: "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:57:13 2023
+
+93: not in cache
+93: Requesting "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from www.httpwatch.com
+93: ERROR cannot parse response
+94: "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:57:13 2023
+
+94: not in cache
+94: Requesting "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from www.httpwatch.com
+94: ERROR cannot parse response
+95: "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:57:13 2023
+
+95: not in cache
+95: Requesting "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from www.httpwatch.com
+95: ERROR cannot parse response
+96: "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:57:13 2023
+
+96: not in cache
+96: Requesting "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from www.httpwatch.com
+96: ERROR cannot parse response
+97: "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:57:13 2023
+
+97: not in cache
+97: Requesting "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from www.httpwatch.com
+97: ERROR cannot parse response
+98: "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:57:13 2023
+
+98: not in cache
+98: Requesting "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from www.httpwatch.com
+98: ERROR cannot parse response
+99: "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:57:18 2023
+
+99: not in cache
+99: Requesting "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from www.httpwatch.com
+99: ERROR cannot parse response
+100: "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:57:19 2023
+
+100: not in cache
+100: Requesting "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from www.httpwatch.com
+100: ERROR cannot parse response
+101: "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:57:19 2023
+
+101: not in cache
+101: Requesting "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from www.httpwatch.com
+101: ERROR cannot parse response
+102: "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:57:19 2023
+
+102: not in cache
+102: Requesting "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from www.httpwatch.com
+102: ERROR cannot parse response
+103: "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:57:19 2023
+
+103: not in cache
+103: Requesting "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from www.httpwatch.com
+103: ERROR cannot parse response
+104: "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:57:19 2023
+
+104: not in cache
+104: Requesting "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from www.httpwatch.com
+104: ERROR cannot parse response
+105: "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:57:19 2023
+
+105: not in cache
+105: Requesting "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from www.httpwatch.com
+105: ERROR cannot parse response
+106: "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:57:19 2023
+
+106: not in cache
+106: Requesting "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from www.httpwatch.com
+106: ERROR cannot parse response
+107: "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:57:19 2023
+
+107: not in cache
+107: Requesting "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from www.httpwatch.com
+107: ERROR cannot parse response
+108: "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:57:20 2023
+
+108: not in cache
+108: Requesting "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from www.httpwatch.com
+108: ERROR cannot parse response
+109: "CONNECT x.clearbitjs.com:443 HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:57:24 2023
+
+109: Requesting "CONNECT x.clearbitjs.com:443 HTTP/1.1" from x.clearbitjs.com
+109: Responding "HTTP/1.1 200 OK"
+110: "CONNECT segment.prod.bidr.io:443 HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:57:24 2023
+
+110: Requesting "CONNECT segment.prod.bidr.io:443 HTTP/1.1" from segment.prod.bidr.io
+110: Responding "HTTP/1.1 200 OK"
+111: "CONNECT ib.adnxs.com:443 HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:57:24 2023
+
+111: Requesting "CONNECT ib.adnxs.com:443 HTTP/1.1" from ib.adnxs.com
+111: Responding "HTTP/1.1 200 OK"
+112: "CONNECT app.clearbit.com:443 HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:57:25 2023
+
+112: Requesting "CONNECT app.clearbit.com:443 HTTP/1.1" from app.clearbit.com
+112: Responding "HTTP/1.1 200 OK"
+113: "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:57:27 2023
+
+113: not in cache
+113: Requesting "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from www.httpwatch.com
+113: ERROR cannot parse response
+114: "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:57:27 2023
+
+114: not in cache
+114: Requesting "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from www.httpwatch.com
+114: ERROR cannot parse response
+115: "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:57:27 2023
+
+115: not in cache
+115: Requesting "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from www.httpwatch.com
+115: ERROR cannot parse response
+116: "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:57:27 2023
+
+116: not in cache
+116: Requesting "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from www.httpwatch.com
+116: ERROR cannot parse response
+117: "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:57:27 2023
+
+117: not in cache
+117: Requesting "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from www.httpwatch.com
+117: ERROR cannot parse response
+118: "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:57:27 2023
+
+118: not in cache
+118: Requesting "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from www.httpwatch.com
+118: ERROR cannot parse response
+119: "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:57:28 2023
+
+119: not in cache
+119: Requesting "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from www.httpwatch.com
+119: ERROR cannot parse response
+120: "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:57:28 2023
+
+120: not in cache
+120: Requesting "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from www.httpwatch.com
+120: ERROR cannot parse response
+121: "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:57:28 2023
+
+121: not in cache
+121: Requesting "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from www.httpwatch.com
+121: ERROR cannot parse response
+122: "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:57:28 2023
+
+122: not in cache
+122: Requesting "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from www.httpwatch.com
+122: ERROR cannot parse response
+7: Tunnel closed
+6: Tunnel closed
+110: Tunnel closed
+123: "GET http://www.artsci.utoronto.ca/futurestudents HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:57:32 2023
+
+123: not in cache
+123: Requesting "GET http://www.artsci.utoronto.ca/futurestudents HTTP/1.1" from www.artsci.utoronto.ca
+123: Receive "HTTP/1.1 301 Moved Permanently" fromwww.artsci.utoronto.ca
+123: not cacheable because the headers or the client dose not allow cache
+123: Responding "HTTP/1.1 301 Moved Permanently"
+124: "CONNECT www.artsci.utoronto.ca:443 HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:57:32 2023
+
+124: Requesting "CONNECT www.artsci.utoronto.ca:443 HTTP/1.1" from www.artsci.utoronto.ca
+124: Responding "HTTP/1.1 200 OK"
+125: "POST http://ocsp.sectigo.com/ HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:57:32 2023
+
+125: Requesting "POST http://ocsp.sectigo.com/ HTTP/1.1" from ocsp.sectigo.com
+125: Receive "HTTP/1.1 200 OK" fromocsp.sectigo.com
+125: Responding "HTTP/1.1 200 OK"
+128: "CONNECT cdn.datatables.net:443 HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:57:33 2023
+
+126: "CONNECT www.google.com:443 HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:57:33 2023
+
+127: "CONNECT www.artsci.utoronto.ca:443 HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:57:33 2023
+
+129: "CONNECT www.artsci.utoronto.ca:443 HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:57:33 2023
+
+131: "CONNECT cdn.datatables.net:443 HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:57:33 2023
+
+130: "CONNECT www.artsci.utoronto.ca:443 HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:57:33 2023
+
+133: "CONNECT www.artsci.utoronto.ca:443 HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:57:33 2023
+
+132: "CONNECT www.artsci.utoronto.ca:443 HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:57:33 2023
+
+135: "CONNECT fonts.googleapis.com:443 HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:57:33 2023
+
+136: "CONNECT maxcdn.bootstrapcdn.com:443 HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:57:33 2023
+
+134: "CONNECT code.jquery.com:443 HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:57:33 2023
+
+128: Requesting "CONNECT cdn.datatables.net:443 HTTP/1.1" from cdn.datatables.net
+128: Responding "HTTP/1.1 200 OK"
+131: Requesting "CONNECT cdn.datatables.net:443 HTTP/1.1" from cdn.datatables.net
+131: Responding "HTTP/1.1 200 OK"
+136: Requesting "CONNECT maxcdn.bootstrapcdn.com:443 HTTP/1.1" from maxcdn.bootstrapcdn.com
+136: Responding "HTTP/1.1 200 OK"
+135: Requesting "CONNECT fonts.googleapis.com:443 HTTP/1.1" from fonts.googleapis.com
+135: Responding "HTTP/1.1 200 OK"
+134: Requesting "CONNECT code.jquery.com:443 HTTP/1.1" from code.jquery.com
+134: Responding "HTTP/1.1 200 OK"
+126: Requesting "CONNECT www.google.com:443 HTTP/1.1" from www.google.com
+126: Responding "HTTP/1.1 200 OK"
+130: Requesting "CONNECT www.artsci.utoronto.ca:443 HTTP/1.1" from www.artsci.utoronto.ca
+130: Responding "HTTP/1.1 200 OK"
+129: Requesting "CONNECT www.artsci.utoronto.ca:443 HTTP/1.1" from www.artsci.utoronto.ca
+129: Responding "HTTP/1.1 200 OK"
+133: Requesting "CONNECT www.artsci.utoronto.ca:443 HTTP/1.1" from www.artsci.utoronto.ca
+133: Responding "HTTP/1.1 200 OK"
+127: Requesting "CONNECT www.artsci.utoronto.ca:443 HTTP/1.1" from www.artsci.utoronto.ca
+127: Responding "HTTP/1.1 200 OK"
+132: Requesting "CONNECT www.artsci.utoronto.ca:443 HTTP/1.1" from www.artsci.utoronto.ca
+132: Responding "HTTP/1.1 200 OK"
+131: Tunnel closed
+137: "CONNECT www.gstatic.com:443 HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:57:34 2023
+
+137: Requesting "CONNECT www.gstatic.com:443 HTTP/1.1" from www.gstatic.com
+137: Responding "HTTP/1.1 200 OK"
+138: "CONNECT fonts.gstatic.com:443 HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:57:34 2023
+
+139: "CONNECT maxcdn.bootstrapcdn.com:443 HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:57:34 2023
+
+139: Requesting "CONNECT maxcdn.bootstrapcdn.com:443 HTTP/1.1" from maxcdn.bootstrapcdn.com
+139: Responding "HTTP/1.1 200 OK"
+138: Requesting "CONNECT fonts.gstatic.com:443 HTTP/1.1" from fonts.gstatic.com
+138: Responding "HTTP/1.1 200 OK"
+140: "CONNECT www.gstatic.com:443 HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:57:34 2023
+
+140: Requesting "CONNECT www.gstatic.com:443 HTTP/1.1" from www.gstatic.com
+140: Responding "HTTP/1.1 200 OK"
+141: "CONNECT www.google-analytics.com:443 HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:57:34 2023
+
+141: Requesting "CONNECT www.google-analytics.com:443 HTTP/1.1" from www.google-analytics.com
+141: Responding "HTTP/1.1 200 OK"
+142: "CONNECT stats.g.doubleclick.net:443 HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:57:35 2023
+
+142: Requesting "CONNECT stats.g.doubleclick.net:443 HTTP/1.1" from stats.g.doubleclick.net
+142: Responding "HTTP/1.1 200 OK"
+109: Tunnel closed
+111: Tunnel closed
+112: Tunnel closed
+124: Tunnel closed
+127: Tunnel closed
+133: Tunnel closed
+129: Tunnel closed
+130: Tunnel closed
+143: "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:57:39 2023
+
+143: not in cache
+143: Requesting "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from www.httpwatch.com
+143: ERROR cannot parse response
+132: Tunnel closed
+144: "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:57:39 2023
+
+144: not in cache
+144: Requesting "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from www.httpwatch.com
+144: ERROR cannot parse response
+145: "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:57:39 2023
+
+145: not in cache
+145: Requesting "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from www.httpwatch.com
+145: ERROR cannot parse response
+146: "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:57:39 2023
+
+146: not in cache
+146: Requesting "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from www.httpwatch.com
+146: ERROR cannot parse response
+147: "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:57:40 2023
+
+147: not in cache
+147: Requesting "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from www.httpwatch.com
+147: ERROR cannot parse response
+148: "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:57:40 2023
+
+148: not in cache
+148: Requesting "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from www.httpwatch.com
+148: ERROR cannot parse response
+149: "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:57:40 2023
+
+149: not in cache
+149: Requesting "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from www.httpwatch.com
+149: ERROR cannot parse response
+150: "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:57:40 2023
+
+150: not in cache
+150: Requesting "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from www.httpwatch.com
+150: ERROR cannot parse response
+151: "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:57:40 2023
+
+151: not in cache
+151: Requesting "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from www.httpwatch.com
+151: ERROR cannot parse response
+152: "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:57:40 2023
+
+152: not in cache
+152: Requesting "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from www.httpwatch.com
+152: ERROR cannot parse response
+153: "CONNECT aus5.mozilla.org:443 HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:58:07 2023
+
+153: Requesting "CONNECT aus5.mozilla.org:443 HTTP/1.1" from aus5.mozilla.org
+153: Responding "HTTP/1.1 200 OK"
+8: Tunnel closed
+10: Tunnel closed
+154: "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:58:27 2023
+
+154: not in cache
+154: Requesting "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from www.httpwatch.com
+154: ERROR cannot parse response
+155: "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:58:27 2023
+
+155: not in cache
+155: Requesting "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from www.httpwatch.com
+155: ERROR cannot parse response
+156: "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:58:27 2023
+
+156: not in cache
+156: Requesting "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from www.httpwatch.com
+156: ERROR cannot parse response
+157: "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:58:27 2023
+
+157: not in cache
+157: Requesting "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from www.httpwatch.com
+157: ERROR cannot parse response
+158: "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:58:27 2023
+
+158: not in cache
+158: Requesting "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from www.httpwatch.com
+158: ERROR cannot parse response
+159: "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:58:28 2023
+
+159: not in cache
+159: Requesting "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from www.httpwatch.com
+159: ERROR cannot parse response
+160: "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:58:28 2023
+
+160: not in cache
+160: Requesting "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from www.httpwatch.com
+160: ERROR cannot parse response
+161: "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:58:28 2023
+
+161: not in cache
+161: Requesting "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from www.httpwatch.com
+161: ERROR cannot parse response
+162: "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:58:28 2023
+
+162: not in cache
+162: Requesting "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from www.httpwatch.com
+162: ERROR cannot parse response
+163: "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:58:28 2023
+
+163: not in cache
+163: Requesting "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from www.httpwatch.com
+163: ERROR cannot parse response
+1: "CONNECT incoming.telemetry.mozilla.org:443 HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:58:50 2023
+
+0: "CONNECT contile-images.services.mozilla.com:443 HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:58:50 2023
+
+0: Requesting "CONNECT contile-images.services.mozilla.com:443 HTTP/1.1" from contile-images.services.mozilla.com
+0: Responding "HTTP/1.1 200 OK"
+1: Requesting "CONNECT incoming.telemetry.mozilla.org:443 HTTP/1.1" from incoming.telemetry.mozilla.org
+1: Responding "HTTP/1.1 200 OK"
+2: "CONNECT neat-iodine-05e.notion.site:443 HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:58:56 2023
+
+2: Requesting "CONNECT neat-iodine-05e.notion.site:443 HTTP/1.1" from neat-iodine-05e.notion.site
+2: Responding "HTTP/1.1 200 OK"
+3: "CONNECT incoming.telemetry.mozilla.org:443 HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:58:56 2023
+
+3: Requesting "CONNECT incoming.telemetry.mozilla.org:443 HTTP/1.1" from incoming.telemetry.mozilla.org
+3: Responding "HTTP/1.1 200 OK"
+4: "CONNECT o324374.ingest.sentry.io:443 HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:58:57 2023
+
+5: "CONNECT exp.notion.so:443 HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:58:57 2023
+
+4: Requesting "CONNECT o324374.ingest.sentry.io:443 HTTP/1.1" from o324374.ingest.sentry.io
+4: Responding "HTTP/1.1 200 OK"
+5: Requesting "CONNECT exp.notion.so:443 HTTP/1.1" from exp.notion.so
+5: Responding "HTTP/1.1 200 OK"
+8: "CONNECT http-inputs-notion.splunkcloud.com:443 HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:58:57 2023
+
+6: "CONNECT http-inputs-notion.splunkcloud.com:443 HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:58:57 2023
+
+9: "CONNECT aif.notion.so:443 HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:58:57 2023
+
+8: Requesting "CONNECT http-inputs-notion.splunkcloud.com:443 HTTP/1.1" from http-inputs-notion.splunkcloud.com
+8: Responding "HTTP/1.1 200 OK"
+6: Requesting "CONNECT http-inputs-notion.splunkcloud.com:443 HTTP/1.1" from http-inputs-notion.splunkcloud.com
+6: Responding "HTTP/1.1 200 OK"
+9: Requesting "CONNECT aif.notion.so:443 HTTP/1.1" from aif.notion.so
+9: Responding "HTTP/1.1 200 OK"
+10: "CONNECT http-inputs-notion.splunkcloud.com:443 HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:58:57 2023
+
+7: "CONNECT http-inputs-notion.splunkcloud.com:443 HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:58:57 2023
+
+7: Requesting "CONNECT http-inputs-notion.splunkcloud.com:443 HTTP/1.1" from http-inputs-notion.splunkcloud.com
+7: Responding "HTTP/1.1 200 OK"
+11: "CONNECT www.googletagmanager.com:443 HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:58:57 2023
+
+10: Requesting "CONNECT http-inputs-notion.splunkcloud.com:443 HTTP/1.1" from http-inputs-notion.splunkcloud.com
+10: Responding "HTTP/1.1 200 OK"
+11: Requesting "CONNECT www.googletagmanager.com:443 HTTP/1.1" from www.googletagmanager.com
+11: Responding "HTTP/1.1 200 OK"
+12: "CONNECT widget.intercom.io:443 HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:58:57 2023
+
+12: Requesting "CONNECT widget.intercom.io:443 HTTP/1.1" from widget.intercom.io
+12: Responding "HTTP/1.1 200 OK"
+13: "CONNECT www.notion.so:443 HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:58:57 2023
+
+13: Requesting "CONNECT www.notion.so:443 HTTP/1.1" from www.notion.so
+13: Responding "HTTP/1.1 200 OK"
+14: "CONNECT connect.facebook.net:443 HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:58:57 2023
+
+14: Requesting "CONNECT connect.facebook.net:443 HTTP/1.1" from connect.facebook.net
+14: Responding "HTTP/1.1 200 OK"
+16: "CONNECT snap.licdn.com:443 HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:58:57 2023
+
+18: "CONNECT cdn.metadata.io:443 HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:58:57 2023
+
+15: "CONNECT d2hrivdxn8ekm8.cloudfront.net:443 HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:58:57 2023
+
+17: "CONNECT x.clearbitjs.com:443 HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:58:57 2023
+
+16: Requesting "CONNECT snap.licdn.com:443 HTTP/1.1" from snap.licdn.com
+16: Responding "HTTP/1.1 200 OK"
+19: "CONNECT js.intercomcdn.com:443 HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:58:57 2023
+
+17: Requesting "CONNECT x.clearbitjs.com:443 HTTP/1.1" from x.clearbitjs.com
+17: Responding "HTTP/1.1 200 OK"
+15: Requesting "CONNECT d2hrivdxn8ekm8.cloudfront.net:443 HTTP/1.1" from d2hrivdxn8ekm8.cloudfront.net
+15: Responding "HTTP/1.1 200 OK"
+18: Requesting "CONNECT cdn.metadata.io:443 HTTP/1.1" from cdn.metadata.io
+18: Responding "HTTP/1.1 200 OK"
+19: Requesting "CONNECT js.intercomcdn.com:443 HTTP/1.1" from js.intercomcdn.com
+19: Responding "HTTP/1.1 200 OK"
+20: "CONNECT d1lu3pmaz2ilpx.cloudfront.net:443 HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:58:58 2023
+
+21: "CONNECT api-iam.intercom.io:443 HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:58:58 2023
+
+20: Requesting "CONNECT d1lu3pmaz2ilpx.cloudfront.net:443 HTTP/1.1" from d1lu3pmaz2ilpx.cloudfront.net
+20: Responding "HTTP/1.1 200 OK"
+21: Requesting "CONNECT api-iam.intercom.io:443 HTTP/1.1" from api-iam.intercom.io
+21: Responding "HTTP/1.1 200 OK"
+22: "CONNECT app.clearbit.com:443 HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:58:58 2023
+
+22: Requesting "CONNECT app.clearbit.com:443 HTTP/1.1" from app.clearbit.com
+22: Responding "HTTP/1.1 200 OK"
+23: "CONNECT munchkin.marketo.net:443 HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:58:58 2023
+
+24: "CONNECT acdn.adnxs.com:443 HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:58:58 2023
+
+25: "CONNECT px.ads.linkedin.com:443 HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:58:58 2023
+
+26: "CONNECT analytics.tiktok.com:443 HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:58:58 2023
+
+27: "CONNECT segment.prod.bidr.io:443 HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:58:58 2023
+
+25: Requesting "CONNECT px.ads.linkedin.com:443 HTTP/1.1" from px.ads.linkedin.com
+25: Responding "HTTP/1.1 200 OK"
+24: Requesting "CONNECT acdn.adnxs.com:443 HTTP/1.1" from acdn.adnxs.com
+24: Responding "HTTP/1.1 200 OK"
+27: Requesting "CONNECT segment.prod.bidr.io:443 HTTP/1.1" from segment.prod.bidr.io
+27: Responding "HTTP/1.1 200 OK"
+23: Requesting "CONNECT munchkin.marketo.net:443 HTTP/1.1" from munchkin.marketo.net
+23: Responding "HTTP/1.1 200 OK"
+26: Requesting "CONNECT analytics.tiktok.com:443 HTTP/1.1" from analytics.tiktok.com
+26: Responding "HTTP/1.1 200 OK"
+28: "CONNECT ib.adnxs.com:443 HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:58:59 2023
+
+28: Requesting "CONNECT ib.adnxs.com:443 HTTP/1.1" from ib.adnxs.com
+28: Responding "HTTP/1.1 200 OK"
+29: "CONNECT 414-xmy-838.mktoresp.com:443 HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:58:59 2023
+
+29: Requesting "CONNECT 414-xmy-838.mktoresp.com:443 HTTP/1.1" from 414-xmy-838.mktoresp.com
+29: Responding "HTTP/1.1 200 OK"
+27: Tunnel closed
+30: "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:59:07 2023
+
+30: not in cache
+30: Requesting "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from www.httpwatch.com
+30: ERROR cannot parse response
+31: "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:59:07 2023
+
+31: not in cache
+31: Requesting "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from www.httpwatch.com
+31: ERROR cannot parse response
+32: "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:59:07 2023
+
+32: not in cache
+32: Requesting "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from www.httpwatch.com
+32: ERROR cannot parse response
+33: "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:59:07 2023
+
+33: not in cache
+33: Requesting "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from www.httpwatch.com
+33: ERROR cannot parse response
+34: "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:59:07 2023
+
+34: not in cache
+34: Requesting "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from www.httpwatch.com
+34: ERROR cannot parse response
+35: "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:59:07 2023
+
+35: not in cache
+35: Requesting "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from www.httpwatch.com
+35: ERROR cannot parse response
+36: "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:59:07 2023
+
+36: not in cache
+36: Requesting "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from www.httpwatch.com
+36: ERROR cannot parse response
+37: "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:59:08 2023
+
+37: not in cache
+37: Requesting "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from www.httpwatch.com
+37: ERROR cannot parse response
+38: "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:59:08 2023
+
+38: not in cache
+38: Requesting "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from www.httpwatch.com
+38: ERROR cannot parse response
+39: "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 19:59:08 2023
+
+39: not in cache
+39: Requesting "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from www.httpwatch.com
+39: ERROR cannot parse response
+17: Tunnel closed
+22: Tunnel closed
+28: Tunnel closed
+0: "CONNECT neat-iodine-05e.notion.site:443 HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 20:00:42 2023
+
+0: Requesting "CONNECT neat-iodine-05e.notion.site:443 HTTP/1.1" from neat-iodine-05e.notion.site
+0: Responding "HTTP/1.1 200 OK"
+1: "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 20:00:43 2023
 
 1: not in cache
-1: Requesting "GET http://info.cern.ch/hypertext/WWW/Terms.html HTTP/1.1" from info.cern.ch
+1: Requesting "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from www.httpwatch.com
 1: ERROR cannot parse response
-2: GET http://info.cern.ch/hypertext/WWW/Terms.html HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 05:38:28 2023
+2: "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 20:00:44 2023
 
 2: not in cache
-2: Requesting "GET http://info.cern.ch/hypertext/WWW/Terms.html HTTP/1.1" from info.cern.ch
+2: Requesting "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from www.httpwatch.com
 2: ERROR cannot parse response
-3: GET http://info.cern.ch/hypertext/WWW/Terms.html HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 05:38:29 2023
+3: "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 20:00:44 2023
 
 3: not in cache
-3: Requesting "GET http://info.cern.ch/hypertext/WWW/Terms.html HTTP/1.1" from info.cern.ch
+3: Requesting "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from www.httpwatch.com
 3: ERROR cannot parse response
-4: GET http://info.cern.ch/hypertext/WWW/Terms.html HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 05:38:29 2023
+4: "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 20:00:44 2023
 
 4: not in cache
-4: Requesting "GET http://info.cern.ch/hypertext/WWW/Terms.html HTTP/1.1" from info.cern.ch
-4: Receive "HTTP/1.1 200 OK" frominfo.cern.ch
-4: cached, expires at Mon Feb 27 05:38:29 2023
-
-4: Responding "HTTP/1.1 200 OK"
-5: GET http://info.cern.ch/favicon.ico HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 05:38:29 2023
+4: Requesting "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from www.httpwatch.com
+4: ERROR cannot parse response
+5: "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 20:00:44 2023
 
 5: not in cache
-5: Requesting "GET http://info.cern.ch/favicon.ico HTTP/1.1" from info.cern.ch
-5: Receive "HTTP/1.1 200 OK" frominfo.cern.ch
-5: cached, expires at Mon Feb 27 05:38:30 2023
+5: Requesting "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from www.httpwatch.com
+5: ERROR cannot parse response
+6: "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 20:00:44 2023
 
-5: Responding "HTTP/1.1 200 OK"
-6: GET http://info.cern.ch/hypertext/WWW/Terms.html HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 05:38:33 2023
+6: not in cache
+6: Requesting "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from www.httpwatch.com
+6: ERROR cannot parse response
+7: "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 20:00:44 2023
 
-6: in cache, requires validation
-6: Requesting "GET http://info.cern.ch/hypertext/WWW/Terms.html HTTP/1.1" from info.cern.ch
-7: GET http://info.cern.ch/favicon.ico HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 05:38:33 2023
-
-7: in cache, requires validation
-7: Requesting "GET http://info.cern.ch/favicon.ico HTTP/1.1" from info.cern.ch
-8: GET http://info.cern.ch/hypertext/WWW/TheProject.html HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 05:38:35 2023
+7: not in cache
+7: Requesting "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from www.httpwatch.com
+7: ERROR cannot parse response
+8: "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 20:00:44 2023
 
 8: not in cache
-8: Requesting "GET http://info.cern.ch/hypertext/WWW/TheProject.html HTTP/1.1" from info.cern.ch
-8: Receive "HTTP/1.1 200 OK" frominfo.cern.ch
-8: cached, expires at Mon Feb 27 05:38:35 2023
+8: Requesting "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from www.httpwatch.com
+8: ERROR cannot parse response
+9: "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 20:00:45 2023
 
-8: Responding "HTTP/1.1 200 OK"
-9: GET http://info.cern.ch/favicon.ico HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 05:38:35 2023
+9: not in cache
+9: Requesting "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from www.httpwatch.com
+9: ERROR cannot parse response
+10: "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 20:00:45 2023
 
-9: in cache, requires validation
-9: Requesting "GET http://info.cern.ch/favicon.ico HTTP/1.1" from info.cern.ch
-10: GET http://info.cern.ch/favicon.ico HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 05:38:37 2023
+10: not in cache
+10: Requesting "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from www.httpwatch.com
+10: ERROR cannot parse response
+11: "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 20:00:54 2023
 
-10: in cache, requires validation
-10: Requesting "GET http://info.cern.ch/favicon.ico HTTP/1.1" from info.cern.ch
-11: GET http://info.cern.ch/favicon.ico HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 05:38:38 2023
-
-11: in cache, requires validation
-11: Requesting "GET http://info.cern.ch/favicon.ico HTTP/1.1" from info.cern.ch
-12: GET http://info.cern.ch/hypertext/WWW/Xanadu.html HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 05:38:40 2023
+11: not in cache
+11: Requesting "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from www.httpwatch.com
+11: ERROR cannot parse response
+12: "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 20:00:54 2023
 
 12: not in cache
-12: Requesting "GET http://info.cern.ch/hypertext/WWW/Xanadu.html HTTP/1.1" from info.cern.ch
-12: Receive "HTTP/1.1 200 OK" frominfo.cern.ch
-12: cached, expires at Mon Feb 27 05:38:40 2023
+12: Requesting "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from www.httpwatch.com
+12: ERROR cannot parse response
+13: "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 20:00:54 2023
 
-12: Responding "HTTP/1.1 200 OK"
-13: GET http://info.cern.ch/favicon.ico HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 05:38:40 2023
+13: not in cache
+13: Requesting "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from www.httpwatch.com
+13: ERROR cannot parse response
+14: "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 20:00:54 2023
 
-13: in cache, requires validation
-13: Requesting "GET http://info.cern.ch/favicon.ico HTTP/1.1" from info.cern.ch
-14: GET http://info.cern.ch/hypertext/WWW/Terms.html HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 05:38:42 2023
+14: not in cache
+14: Requesting "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from www.httpwatch.com
+14: ERROR cannot parse response
+15: "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 20:00:54 2023
 
-14: in cache, requires validation
-14: Requesting "GET http://info.cern.ch/hypertext/WWW/Terms.html HTTP/1.1" from info.cern.ch
-15: GET http://info.cern.ch/favicon.ico HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 05:38:42 2023
+15: not in cache
+15: Requesting "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from www.httpwatch.com
+15: ERROR cannot parse response
+16: "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 20:00:54 2023
 
-15: in cache, requires validation
-15: Requesting "GET http://info.cern.ch/favicon.ico HTTP/1.1" from info.cern.ch
+16: not in cache
+16: Requesting "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from www.httpwatch.com
+16: ERROR cannot parse response
+17: "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 20:00:55 2023
+
+17: not in cache
+17: Requesting "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from www.httpwatch.com
+17: ERROR cannot parse response
+18: "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 20:00:55 2023
+
+18: not in cache
+18: Requesting "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from www.httpwatch.com
+18: ERROR cannot parse response
+19: "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 20:00:55 2023
+
+19: not in cache
+19: Requesting "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from www.httpwatch.com
+19: ERROR cannot parse response
+20: "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 20:00:55 2023
+
+20: not in cache
+20: Requesting "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from www.httpwatch.com
+20: ERROR cannot parse response
+21: "CONNECT aus5.mozilla.org:443 HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 20:01:03 2023
+
+21: Requesting "CONNECT aus5.mozilla.org:443 HTTP/1.1" from aus5.mozilla.org
+21: Responding "HTTP/1.1 200 OK"
+22: "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 20:01:48 2023
+
+22: not in cache
+22: Requesting "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from www.httpwatch.com
+22: ERROR cannot parse response
+23: "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 20:01:48 2023
+
+23: not in cache
+23: Requesting "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from www.httpwatch.com
+23: ERROR cannot parse response
+24: "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 20:01:48 2023
+
+24: not in cache
+24: Requesting "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from www.httpwatch.com
+24: ERROR cannot parse response
+25: "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 20:01:48 2023
+
+25: not in cache
+25: Requesting "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from www.httpwatch.com
+25: ERROR cannot parse response
+26: "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 20:01:48 2023
+
+26: not in cache
+26: Requesting "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from www.httpwatch.com
+26: ERROR cannot parse response
+27: "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 20:01:48 2023
+
+27: not in cache
+27: Requesting "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from www.httpwatch.com
+27: ERROR cannot parse response
+28: "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 20:01:48 2023
+
+28: not in cache
+28: Requesting "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from www.httpwatch.com
+28: ERROR cannot parse response
+29: "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 20:01:48 2023
+
+29: not in cache
+29: Requesting "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from www.httpwatch.com
+29: ERROR cannot parse response
+30: "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 20:01:49 2023
+
+30: not in cache
+30: Requesting "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from www.httpwatch.com
+30: ERROR cannot parse response
+31: "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 20:01:49 2023
+
+31: not in cache
+31: Requesting "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from www.httpwatch.com
+31: ERROR cannot parse response
