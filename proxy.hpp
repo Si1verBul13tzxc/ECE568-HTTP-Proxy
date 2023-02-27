@@ -35,7 +35,6 @@ class proxy {
                            std::unique_ptr<httpparser::Request> http_request);
   static void http_connect_forward_messages(int uri_fd, const thread_info & info);
   static void http_post(std::vector<char> & request_buffer,
-                        int * len_received,
                         std::unique_ptr<thread_info> th_info,
                         std::unique_ptr<httpparser::Request> http_request);
   static void log_id(int id, std::string msg);
@@ -46,25 +45,31 @@ class proxy {
                        std::vector<char> & request_buffer);
   static void get_from_server(std::vector<char> & request_buffer,
                               thread_info * th_info,
-                              httpparser::Request * http_request,
-                              time_t * request_time);
+                              httpparser::Request * http_request);
   static void log_new_request(int unique_id, std::string ip, httpparser::Request & req);
-  static void get_from_cache(httpparser::Response * response, int client_fd);
-  static bool is_fresh(httpparser::Response * response);
+  static void send_response_in_cache(httpparser::Response * response, int client_fd);
   static bool response_may_store(httpparser::Response * response);
   static bool response_need_validate(httpparser::Response * response);
-  static void validate_send(httpparser::Request * request,
-                            httpparser::Response * response,
-                            int server_fd);
-  static void validate_recv(int server_fd, httpparser::Response * response);
   static void construct_conditional_request(httpparser::Request * request,
                                             httpparser::Response * response,
                                             httpparser::Request & conditional_request);
   static void freshen_headers(httpparser::Response * response,
                               httpparser::Response * new_response);
-  static void send_from_cache(httpparser::Response * response, int client_fd);
-
- public:
+  static int connect_to_server(httpparser::Request * http_request);
+  static int one_round_trip(std::vector<char> & request_buffer,
+                            int server_fd,
+                            std::vector<char> & response_buffer);
+  static void send_to(int fd, std::vector<char> & buffer);
+  static void validation(thread_info * th_info,
+                         httpparser::Request * request,
+                         httpparser::Response * response);
+  static void chunked_transfer(thread_info * th_info,
+                               int server_fd,
+                               std::vector<char> & first_buffer);
+  static bool is_chunked(std::vector<char> & response_buffer);
+  static bool request_require_validate(httpparser::Request * req);
+  static bool request_no_store(httpparser::Request * req);
+  static time_t to_tm_format(std::string str);
   static bool is_fresh(httpparser::Response * response);
   static long calculate_freshness_lifetime(httpparser::Response * response);
   static long calculate_age(httpparser::Response * response);
