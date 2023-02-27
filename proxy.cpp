@@ -1,6 +1,6 @@
 #include "proxy.hpp"
 
-#define LOG_F "./proxy.log"
+#define LOG_F "var/log/erss/proxy.log"
 std::mutex mtx;
 
 Cache * proxy::cache = NULL;
@@ -124,7 +124,7 @@ void proxy::http_post(std::vector<char> & request_buffer,
   int response_length = one_round_trip(request_buffer, server_fd, response_buffer);
   std::string msg = "The response mes length is: " + std::to_string(response_length);
   debug_print(msg.c_str());
-  log_response(th_info.get(), http_request.get(), response_buffer);
+  //log_response(th_info.get(), http_request.get(), response_buffer);
   send_to(th_info->client_fd, response_buffer);
   auto resp = parser_method::http_response_parse(response_buffer);
   log_respond_to_clinet(th_info.get(), resp.get());
@@ -161,13 +161,14 @@ void proxy::get_from_server(std::vector<char> & request_buffer,
   std::vector<char> response_buffer(HTTP_LENGTH, 0);
   int resp_len = one_round_trip(request_buffer, server_fd, response_buffer);
   assert(resp_len == (int)response_buffer.size());
-  std::unique_ptr<httpparser::Response> resp =
-      parser_method::http_response_parse(response_buffer);
-  log_response(th_info, http_request, response_buffer);
   if (is_chunked(response_buffer)) {
+    log_id(th_info->unique_id, "NOTE chunked transfer coding");
     chunked_transfer(th_info, server_fd, response_buffer);
     return;
   }
+  std::unique_ptr<httpparser::Response> resp =
+      parser_method::http_response_parse(response_buffer);
+  log_response(th_info, http_request, response_buffer);
   std::string cache_control =
       parser_method::response_get_header_value(*resp, "Cache-Control");
   std::string resp_line = parser_method::get_response_line(*resp);

@@ -17,7 +17,7 @@
 #include "parser_method.hpp"
 
 #define HTTP_LENGTH 65535
-#define DEBUG 1
+#define DEBUG 0  //set to 1 to turn on debug print
 
 class thread_info;
 
