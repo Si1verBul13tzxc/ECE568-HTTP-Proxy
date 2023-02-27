@@ -1,5 +1,6 @@
 #include "proxy.hpp"
-std::ofstream log_f("/var/log/erss/proxy.log");
+
+#define LOG_F "./proxy.log"
 std::mutex mtx;
 
 Cache * proxy::cache = NULL;
@@ -92,17 +93,21 @@ void proxy::http_get(thread_info * th_info,
   httpparser::Response * response = cache->get_response(request->uri);
   if (response == NULL) {
     debug_print("did not find in cache");
+    log_id(th_info->unique_id, "not in cache");
     get_from_server(request_buffer, th_info, request);
   }
   else {
     debug_print("in cache");
     if (response_need_validate(response) || request_require_validate(request)) {
       debug_print("need revalidation");
+      log_id(th_info->unique_id, "in cache, requires validation");
       validation(th_info, request, response);
     }
     else {
       debug_print("no need to revalidation");
+      log_id(th_info->unique_id, "in cache, valid");
       send_response_in_cache(response, th_info->client_fd);
+      log_respond_to_clinet(th_info, response);
     }
   }
 }
@@ -114,13 +119,16 @@ void proxy::http_post(std::vector<char> & request_buffer,
                       std::unique_ptr<thread_info> th_info,
                       std::unique_ptr<httpparser::Request> http_request) {
   debug_print("POST method");
-  int server_fd = connect_to_server(http_request.get());
+  int server_fd = connect_to_server(th_info.get(), http_request.get());
   sock server_fd_guard(server_fd);
   std::vector<char> response_buffer(HTTP_LENGTH, 0);
   int response_length = one_round_trip(request_buffer, server_fd, response_buffer);
   std::string msg = "The response mes length is: " + std::to_string(response_length);
   debug_print(msg.c_str());
+  log_response(th_info.get(), http_request.get(), response_buffer);
   send_to(th_info->client_fd, response_buffer);
+  auto resp = parser_method::http_response_parse(response_buffer);
+  log_respond_to_clinet(th_info.get(), resp.get());
 }
 
 /** 
@@ -128,7 +136,7 @@ void proxy::http_post(std::vector<char> & request_buffer,
 */
 void proxy::http_connect(std::unique_ptr<thread_info> th_info,
                          std::unique_ptr<httpparser::Request> http_request) {
-  int uri_fd = connect_to_server(http_request.get());
+  int uri_fd = connect_to_server(th_info.get(), http_request.get());
   sock uri_fd_guard(uri_fd);
   http_send_200ok(th_info->client_fd, th_info->unique_id);
   http_connect_forward_messages(uri_fd, *th_info);
@@ -149,27 +157,43 @@ void proxy::send_response_in_cache(httpparser::Response * response, int client_f
 void proxy::get_from_server(std::vector<char> & request_buffer,
                             thread_info * th_info,
                             httpparser::Request * http_request) {
-  int server_fd = connect_to_server(http_request);
+  int server_fd = connect_to_server(th_info, http_request);
   sock fd_guard(server_fd);
   std::vector<char> response_buffer(HTTP_LENGTH, 0);
   int resp_len = one_round_trip(request_buffer, server_fd, response_buffer);
   assert(resp_len == (int)response_buffer.size());
+  std::unique_ptr<httpparser::Response> resp =
+      parser_method::http_response_parse(response_buffer);
+  log_response(th_info, http_request, response_buffer);
   if (is_chunked(response_buffer)) {
     chunked_transfer(th_info, server_fd, response_buffer);
     return;
   }
-  std::unique_ptr<httpparser::Response> response_res_ptr =
-      parser_method::http_response_parse(response_buffer);
-  if (response_may_store(response_res_ptr.get()) &&
+  std::string cache_control =
+      parser_method::response_get_header_value(*resp, "Cache-Control");
+  std::string resp_line = parser_method::get_response_line(*resp);
+  if (response_may_store(resp.get()) &&
       !request_no_store(http_request)) {  //store the response in cache if can store
     debug_print((std::string("store the reponse to cache") + http_request->uri).c_str());
-    response_res_ptr->response_time = time(0);
-    cache->add_response(http_request->uri, std::move(response_res_ptr));
+    if (cache_control.find("no-cache") != std::string::npos) {  //no-cache
+      log_id(th_info->unique_id, "cached, but requires re-validation");
+    }
+    else {
+      time_t fress_time = calculate_freshness_lifetime(resp.get());
+      time_t expire = time(0) + fress_time;
+      struct tm * time_info = gmtime(&expire);
+      log_id(th_info->unique_id, "cached, expires at " + std::string(asctime(time_info)));
+    }
+    resp->response_time = time(0);
+    cache->add_response(http_request->uri, std::move(resp));
   }
   else {
     debug_print("cannot store this response in cache");
+    log_id(th_info->unique_id,
+           "not cacheable because the headers or the client dose not allow cache");
   }
   send_to(th_info->client_fd, response_buffer);
+  log_id(th_info->unique_id, "Responding \"" + resp_line + "\"");
 }
 
 bool proxy::is_chunked(std::vector<char> & response_buffer) {
@@ -199,7 +223,7 @@ void proxy::chunked_transfer(thread_info * th_info,
 /** 
     Connect to server, the returned should be passed to an sock object
  */
-int proxy::connect_to_server(httpparser::Request * http_request) {
+int proxy::connect_to_server(thread_info * th_info, httpparser::Request * http_request) {
   //Connect to server
   std::string get_port;
   std::string get_hostname;
@@ -208,6 +232,9 @@ int proxy::connect_to_server(httpparser::Request * http_request) {
   if (server_fd == -1) {
     throw my_exception("Cannot connect to server");
   }
+  log_id(th_info->unique_id,
+         "Requesting \"" + parser_method::get_request_line(*http_request) + "\" from " +
+             get_hostname);
   return server_fd;
 }
 
@@ -280,7 +307,7 @@ bool proxy::request_no_store(httpparser::Request * req) {
 void proxy::validation(thread_info * th_info,
                        httpparser::Request * request,
                        httpparser::Response * response) {
-  int server_fd = connect_to_server(request);
+  int server_fd = connect_to_server(th_info, request);
   sock server_fd_guard(server_fd);
   httpparser::Request conditional_request;
   construct_conditional_request(request, response, conditional_request);
@@ -310,6 +337,7 @@ void proxy::validation(thread_info * th_info,
     debug_print("server problem on revalidation");
   }
   send_to(th_info->client_fd, new_response);
+  log_respond_to_clinet(th_info, response);
 }
 
 /** 
@@ -470,7 +498,7 @@ long proxy::apparent_age(httpparser::Response * response) {
 
 void proxy::http_send_200ok(int client_fd, int unique_id) {
   const char * ok = "HTTP/1.1 200 OK\r\n\r\n";
-  std::string msg = "Responding \"" + std::string(ok) + "\"";
+  std::string msg = "Responding \"HTTP/1.1 200 OK\"";
   log_id(unique_id, msg);
   debug_print((std::to_string(unique_id) + msg).c_str());
   send(client_fd, ok, strlen(ok), 0);
@@ -560,20 +588,36 @@ const char * proxy::get_current_time() {
 */
 void proxy::log_id(int id, std::string msg) {
   mtx.lock();
+  std::ofstream log_f;
+  log_f.open(LOG_F, std::ofstream::app);
   if (id != -1) {
     log_f << id << ": " << msg << std::endl;
   }
   else {
     log_f << "no-id: " << msg << std::endl;
   }
+  log_f.close();
   mtx.unlock();
 }
+void proxy::log_response(thread_info * th_info,
+                         httpparser::Request * req,
+                         std::vector<char> & response_buffer) {
+  std::unique_ptr<httpparser::Response> resp =
+      parser_method::http_response_parse(response_buffer);
+  std::string response_line = parser_method::get_response_line(*resp);
+  log_id(th_info->unique_id,
+         "Receive \"" + response_line + "\" from" +
+             parser_method::request_get_header_value(*req, "Host"));
+}
 
+void proxy::log_respond_to_clinet(thread_info * th_info, httpparser::Response * resp) {
+  std::string msg = "Responding \"" + parser_method::get_response_line(*resp) + "\"";
+  log_id(th_info->unique_id, msg);
+}
 void proxy::log_new_request(int unique_id, std::string ip, httpparser::Request & req) {
   //log new request
-  std::string msg = std::to_string(unique_id) + ": \"" +
-                    parser_method::get_request_line(req) + "\" from " + ip + " @ " +
-                    get_current_time();
+  std::string msg =
+      parser_method::get_request_line(req) + "\" from " + ip + " @ " + get_current_time();
   log_id(unique_id, msg);
   debug_print(msg.c_str());
 }

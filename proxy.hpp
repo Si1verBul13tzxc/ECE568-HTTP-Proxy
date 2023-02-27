@@ -54,7 +54,7 @@ class proxy {
                                             httpparser::Request & conditional_request);
   static void freshen_headers(httpparser::Response * response,
                               httpparser::Response * new_response);
-  static int connect_to_server(httpparser::Request * http_request);
+  static int connect_to_server(thread_info * th_info, httpparser::Request * http_request);
   static int one_round_trip(std::vector<char> & request_buffer,
                             int server_fd,
                             std::vector<char> & response_buffer);
@@ -74,6 +74,10 @@ class proxy {
   static long calculate_age(httpparser::Response * response);
   static long apparent_age(httpparser::Response * response);
   static long corrected_age_value(httpparser::Response * response);
+  static void log_response(thread_info * th_info,
+                           httpparser::Request * req,
+                           std::vector<char> & response_buffer);
+  static void log_respond_to_clinet(thread_info * th_info, httpparser::Response * resp);
 };
 
 class thread_info {

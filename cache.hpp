@@ -30,7 +30,7 @@ class Cache {
   size_t capacity;
   Doubly_node * head;
   Doubly_node * tail;
-
+  std::mutex mtx;
   void add_to_head(Doubly_node * response);
   void move_to_head(Doubly_node * response);
   void removeNode(Doubly_node * response);

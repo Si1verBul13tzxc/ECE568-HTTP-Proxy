@@ -1,0 +1,84 @@
+0: GET http://info.cern.ch/hypertext/WWW/Terms.html HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 05:38:28 2023
+
+0: not in cache
+0: Requesting "GET http://info.cern.ch/hypertext/WWW/Terms.html HTTP/1.1" from info.cern.ch
+0: ERROR cannot parse response
+1: GET http://info.cern.ch/hypertext/WWW/Terms.html HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 05:38:28 2023
+
+1: not in cache
+1: Requesting "GET http://info.cern.ch/hypertext/WWW/Terms.html HTTP/1.1" from info.cern.ch
+1: ERROR cannot parse response
+2: GET http://info.cern.ch/hypertext/WWW/Terms.html HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 05:38:28 2023
+
+2: not in cache
+2: Requesting "GET http://info.cern.ch/hypertext/WWW/Terms.html HTTP/1.1" from info.cern.ch
+2: ERROR cannot parse response
+3: GET http://info.cern.ch/hypertext/WWW/Terms.html HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 05:38:29 2023
+
+3: not in cache
+3: Requesting "GET http://info.cern.ch/hypertext/WWW/Terms.html HTTP/1.1" from info.cern.ch
+3: ERROR cannot parse response
+4: GET http://info.cern.ch/hypertext/WWW/Terms.html HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 05:38:29 2023
+
+4: not in cache
+4: Requesting "GET http://info.cern.ch/hypertext/WWW/Terms.html HTTP/1.1" from info.cern.ch
+4: Receive "HTTP/1.1 200 OK" frominfo.cern.ch
+4: cached, expires at Mon Feb 27 05:38:29 2023
+
+4: Responding "HTTP/1.1 200 OK"
+5: GET http://info.cern.ch/favicon.ico HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 05:38:29 2023
+
+5: not in cache
+5: Requesting "GET http://info.cern.ch/favicon.ico HTTP/1.1" from info.cern.ch
+5: Receive "HTTP/1.1 200 OK" frominfo.cern.ch
+5: cached, expires at Mon Feb 27 05:38:30 2023
+
+5: Responding "HTTP/1.1 200 OK"
+6: GET http://info.cern.ch/hypertext/WWW/Terms.html HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 05:38:33 2023
+
+6: in cache, requires validation
+6: Requesting "GET http://info.cern.ch/hypertext/WWW/Terms.html HTTP/1.1" from info.cern.ch
+7: GET http://info.cern.ch/favicon.ico HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 05:38:33 2023
+
+7: in cache, requires validation
+7: Requesting "GET http://info.cern.ch/favicon.ico HTTP/1.1" from info.cern.ch
+8: GET http://info.cern.ch/hypertext/WWW/TheProject.html HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 05:38:35 2023
+
+8: not in cache
+8: Requesting "GET http://info.cern.ch/hypertext/WWW/TheProject.html HTTP/1.1" from info.cern.ch
+8: Receive "HTTP/1.1 200 OK" frominfo.cern.ch
+8: cached, expires at Mon Feb 27 05:38:35 2023
+
+8: Responding "HTTP/1.1 200 OK"
+9: GET http://info.cern.ch/favicon.ico HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 05:38:35 2023
+
+9: in cache, requires validation
+9: Requesting "GET http://info.cern.ch/favicon.ico HTTP/1.1" from info.cern.ch
+10: GET http://info.cern.ch/favicon.ico HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 05:38:37 2023
+
+10: in cache, requires validation
+10: Requesting "GET http://info.cern.ch/favicon.ico HTTP/1.1" from info.cern.ch
+11: GET http://info.cern.ch/favicon.ico HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 05:38:38 2023
+
+11: in cache, requires validation
+11: Requesting "GET http://info.cern.ch/favicon.ico HTTP/1.1" from info.cern.ch
+12: GET http://info.cern.ch/hypertext/WWW/Xanadu.html HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 05:38:40 2023
+
+12: not in cache
+12: Requesting "GET http://info.cern.ch/hypertext/WWW/Xanadu.html HTTP/1.1" from info.cern.ch
+12: Receive "HTTP/1.1 200 OK" frominfo.cern.ch
+12: cached, expires at Mon Feb 27 05:38:40 2023
+
+12: Responding "HTTP/1.1 200 OK"
+13: GET http://info.cern.ch/favicon.ico HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 05:38:40 2023
+
+13: in cache, requires validation
+13: Requesting "GET http://info.cern.ch/favicon.ico HTTP/1.1" from info.cern.ch
+14: GET http://info.cern.ch/hypertext/WWW/Terms.html HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 05:38:42 2023
+
+14: in cache, requires validation
+14: Requesting "GET http://info.cern.ch/hypertext/WWW/Terms.html HTTP/1.1" from info.cern.ch
+15: GET http://info.cern.ch/favicon.ico HTTP/1.1" from 174.99.38.185 @ Mon Feb 27 05:38:42 2023
+
+15: in cache, requires validation
+15: Requesting "GET http://info.cern.ch/favicon.ico HTTP/1.1" from info.cern.ch

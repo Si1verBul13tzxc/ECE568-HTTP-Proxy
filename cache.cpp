@@ -25,6 +25,7 @@ Doubly_node * Cache::remove_tail() {
 
 void Cache::add_response(std::string uri,
                          std::unique_ptr<httpparser::Response> response) {
+  mtx.lock();
   if (response_map.count(uri) == 0) {
     Doubly_node * response_node = new Doubly_node(
         uri,
@@ -44,6 +45,7 @@ void Cache::add_response(std::string uri,
     node->value = std::move(response);  //move ownership
     move_to_head(node);                 //update to be most recent used
   }
+  mtx.unlock();
 }
 
 httpparser::Response * Cache::get_response(std::string uri) {
@@ -52,8 +54,10 @@ httpparser::Response * Cache::get_response(std::string uri) {
     return NULL;
   }
   else {  //exists
+    mtx.lock();
     Doubly_node * response_node = it->second;
     move_to_head(response_node);
+    mtx.unlock();
     return response_node->value.get();
   }
 }
