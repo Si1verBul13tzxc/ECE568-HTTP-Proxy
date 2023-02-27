@@ -647,6 +647,7 @@ void proxy::log_respond_to_clinet(thread_info * th_info, httpparser::Response * 
   std::string msg = "Responding \"" + parser_method::get_response_line(*resp) + "\"";
   log_id(th_info->unique_id, msg);
 }
+
 void proxy::log_new_request(int unique_id, std::string ip, httpparser::Request & req) {
   //log new request
   std::string msg = "\"" + parser_method::get_request_line(req) + "\" from " + ip +
