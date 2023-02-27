@@ -25,6 +25,7 @@ namespace httpparser {
     std::vector<HeaderItem> headers;
     std::vector<char> content;
     bool keepAlive;
+    long response_time;
 
     unsigned int statusCode;
     std::string status;
