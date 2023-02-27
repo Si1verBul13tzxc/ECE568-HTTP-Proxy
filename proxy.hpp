@@ -50,6 +50,8 @@ class proxy {
                               time_t * request_time);
   static void log_new_request(int unique_id, std::string ip, httpparser::Request & req);
   static void send_from_cache(httpparser::Response * response, int client_fd);
+  
+  public:
   static bool is_fresh(httpparser::Response * response);
   static long calculate_freshness_lifetime(httpparser::Response * response);
   static long calculate_age(httpparser::Response * response);

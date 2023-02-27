@@ -4,7 +4,6 @@ time_t time_format::to_tm_format(std::string str){
     struct tm time_structure;
     size_t findGMT = str.find("GMT");
     str = str.substr(0, findGMT - 1);
-    std::cout << str << "\n";
     strptime(str.c_str(), "%A, %d %B %Y %H:%M:%S", &time_structure);
     time_t time_sec = mktime(&time_structure);
     // time_t now = time(0);

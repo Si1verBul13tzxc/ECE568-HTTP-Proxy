@@ -204,15 +204,15 @@ long proxy::calculate_freshness_lifetime(httpparser::Response * response) {
     }
     std::string::size_type sz;
     freshness = std::stol(max_age_str, &sz);
-  }else if((expires = parser_method::response_get_header_value(*response, "expires")) != "") {
+  }else if((expires = parser_method::response_get_header_value(*response, "Expires")) != "") {
     time_t expire_time = time_format::to_tm_format(expires);
     std::string date_str = parser_method::response_get_header_value(*response, "Date");
     time_t date = time_format::to_tm_format(date_str);
     freshness = expire_time - date;
   }else{
     //go to heuristics freshness
-    debug_print("calculate freshness lifetime encounter unexpected senario");
-    return -1;
+    std::string message("calculate freshness lifetime encounter unexpected senario\n");
+    throw my_exception(message.c_str());
   }
   return freshness;
 }
@@ -237,7 +237,7 @@ long proxy::calculate_age(httpparser::Response * response) {
   std::string response_time_str = parser_method::response_get_header_value(*response, "response_time");
   std::string::size_type sz;
   time_t response_time = std::stol(response_time_str, &sz);
-  int current_age = corrected_init_age + now - response_time;
+  long current_age = corrected_init_age + now - response_time;
   return current_age;
 }
 
@@ -250,9 +250,13 @@ long proxy::corrected_age_value(httpparser::Response * response){
   std::string response_time_str = parser_method::response_get_header_value(*response, "response_time");
   std::string request_time_str = parser_method::response_get_header_value(*response, "request_time");;
   std::string::size_type sz1, sz2, sz3;
+  if(response_time_str == "" || request_time_str == ""){
+    std::string message("There is invalid time when calculating corrected_Age\n");
+    throw my_exception(message.c_str());
+  }
   time_t request_time = std::stol(request_time_str, &sz1);
   time_t response_time = std::stol(response_time_str, &sz2);
-  time_t age_value = std::stol(age_value_str, &sz3);
+  time_t age_value = age_value_str == "" ? (long)0 : std::stol(age_value_str, &sz3);
   time_t response_delay = response_time - request_time;
   time_t corrected_age_value = age_value + response_delay;
   return corrected_age_value;
@@ -261,6 +265,10 @@ long proxy::corrected_age_value(httpparser::Response * response){
 long proxy::apparent_age(httpparser::Response * response){
   std::string date_value_str = parser_method::response_get_header_value(*response, "Date");
   std::string response_time_str = parser_method::response_get_header_value(*response, "response_time");
+  if(response_time_str == "" || date_value_str == ""){
+    std::string message("There is invalid time when calculating apparent_Age\n");
+    throw my_exception(message.c_str());
+  }
   std::string::size_type sz;
   time_t response_time = std::stol(response_time_str, &sz);
   time_t date_value = time_format::to_tm_format(date_value_str);
