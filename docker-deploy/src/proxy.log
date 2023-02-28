@@ -1,0 +1,770 @@
+start
+0: "CONNECT incoming.telemetry.mozilla.org:443 HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:26:23 2023
+
+0: Requesting "CONNECT incoming.telemetry.mozilla.org:443 HTTP/1.1" from incoming.telemetry.mozilla.org
+0: Responding "HTTP/1.1 200 OK"
+1: "POST http://ocsp.digicert.com/ HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:26:23 2023
+
+1: Requesting "POST http://ocsp.digicert.com/ HTTP/1.1" from ocsp.digicert.com
+1: Responding "HTTP/1.1 200 OK"
+2: "CONNECT www.google.com:443 HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:26:24 2023
+
+2: Requesting "CONNECT www.google.com:443 HTTP/1.1" from www.google.com
+2: Responding "HTTP/1.1 200 OK"
+3: "POST http://ocsp.pki.goog/gts1c3 HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:26:24 2023
+
+3: Requesting "POST http://ocsp.pki.goog/gts1c3 HTTP/1.1" from ocsp.pki.goog
+3: Responding "HTTP/1.1 200 OK"
+4: "CONNECT firefox.settings.services.mozilla.com:443 HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:26:24 2023
+
+4: Requesting "CONNECT firefox.settings.services.mozilla.com:443 HTTP/1.1" from firefox.settings.services.mozilla.com
+4: Responding "HTTP/1.1 200 OK"
+5: "POST http://r3.o.lencr.org/ HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:26:24 2023
+
+5: Requesting "POST http://r3.o.lencr.org/ HTTP/1.1" from r3.o.lencr.org
+5: Responding "HTTP/1.1 200 OK"
+6: "CONNECT incoming.telemetry.mozilla.org:443 HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:26:24 2023
+
+6: Requesting "CONNECT incoming.telemetry.mozilla.org:443 HTTP/1.1" from incoming.telemetry.mozilla.org
+6: Responding "HTTP/1.1 200 OK"
+7: "CONNECT www.gstatic.com:443 HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:26:24 2023
+
+8: "POST http://ocsp.digicert.com/ HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:26:24 2023
+
+7: Requesting "CONNECT www.gstatic.com:443 HTTP/1.1" from www.gstatic.com
+7: Responding "HTTP/1.1 200 OK"
+8: Requesting "POST http://ocsp.digicert.com/ HTTP/1.1" from ocsp.digicert.com
+8: Responding "HTTP/1.1 200 OK"
+9: "POST http://ocsp.pki.goog/gts1c3 HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:26:25 2023
+
+9: Requesting "POST http://ocsp.pki.goog/gts1c3 HTTP/1.1" from ocsp.pki.goog
+9: Responding "HTTP/1.1 200 OK"
+10: "CONNECT i.ytimg.com:443 HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:26:25 2023
+
+13: "CONNECT fonts.gstatic.com:443 HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:26:25 2023
+
+12: "CONNECT i.ytimg.com:443 HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:26:25 2023
+
+11: "CONNECT i.ytimg.com:443 HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:26:25 2023
+
+13: Requesting "CONNECT fonts.gstatic.com:443 HTTP/1.1" from fonts.gstatic.com
+13: Responding "HTTP/1.1 200 OK"
+11: Requesting "CONNECT i.ytimg.com:443 HTTP/1.1" from i.ytimg.com
+11: Responding "HTTP/1.1 200 OK"
+10: Requesting "CONNECT i.ytimg.com:443 HTTP/1.1" from i.ytimg.com
+10: Responding "HTTP/1.1 200 OK"
+12: Requesting "CONNECT i.ytimg.com:443 HTTP/1.1" from i.ytimg.com
+12: Responding "HTTP/1.1 200 OK"
+14: "CONNECT apis.google.com:443 HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:26:25 2023
+
+16: "CONNECT play.google.com:443 HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:26:25 2023
+
+17: "POST http://ocsp.pki.goog/gts1c3 HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:26:25 2023
+
+18: "POST http://ocsp.pki.goog/gts1c3 HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:26:25 2023
+
+17: Requesting "POST http://ocsp.pki.goog/gts1c3 HTTP/1.1" from ocsp.pki.goog
+18: Requesting "POST http://ocsp.pki.goog/gts1c3 HTTP/1.1" from ocsp.pki.goog
+14: Requesting "CONNECT apis.google.com:443 HTTP/1.1" from apis.google.com
+14: Responding "HTTP/1.1 200 OK"
+16: Requesting "CONNECT play.google.com:443 HTTP/1.1" from play.google.com
+16: Responding "HTTP/1.1 200 OK"
+17: Responding "HTTP/1.1 200 OK"
+18: Responding "HTTP/1.1 200 OK"
+19: "POST http://ocsp.pki.goog/gts1c3 HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:26:25 2023
+
+19: Requesting "POST http://ocsp.pki.goog/gts1c3 HTTP/1.1" from ocsp.pki.goog
+19: Responding "HTTP/1.1 200 OK"
+10: Tunnel closed
+22: "POST http://ocsp.pki.goog/gts1c3 HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:26:25 2023
+
+20: "CONNECT safebrowsing.googleapis.com:443 HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:26:25 2023
+
+21: "POST http://ocsp.pki.goog/gts1c3 HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:26:25 2023
+
+22: Requesting "POST http://ocsp.pki.goog/gts1c3 HTTP/1.1" from ocsp.pki.goog
+21: Requesting "POST http://ocsp.pki.goog/gts1c3 HTTP/1.1" from ocsp.pki.goog
+11: Tunnel closed
+22: Responding "HTTP/1.1 200 OK"
+21: Responding "HTTP/1.1 200 OK"
+20: Requesting "CONNECT safebrowsing.googleapis.com:443 HTTP/1.1" from safebrowsing.googleapis.com
+20: Responding "HTTP/1.1 200 OK"
+15: "CONNECT play.google.com:443 HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:26:25 2023
+
+15: Requesting "CONNECT play.google.com:443 HTTP/1.1" from play.google.com
+15: Responding "HTTP/1.1 200 OK"
+23: "POST http://ocsp.pki.goog/gts1c3 HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:26:25 2023
+
+23: Requesting "POST http://ocsp.pki.goog/gts1c3 HTTP/1.1" from ocsp.pki.goog
+23: Responding "HTTP/1.1 200 OK"
+24: "CONNECT www.youtube.com:443 HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:26:25 2023
+
+24: Requesting "CONNECT www.youtube.com:443 HTTP/1.1" from www.youtube.com
+24: Responding "HTTP/1.1 200 OK"
+20: Tunnel closed
+25: "CONNECT dictionary.cambridge.org:443 HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:26:25 2023
+
+25: Requesting "CONNECT dictionary.cambridge.org:443 HTTP/1.1" from dictionary.cambridge.org
+25: Responding "HTTP/1.1 200 OK"
+26: "POST http://ocsp.digicert.com/ HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:26:26 2023
+
+26: Requesting "POST http://ocsp.digicert.com/ HTTP/1.1" from ocsp.digicert.com
+26: Responding "HTTP/1.1 200 OK"
+27: "CONNECT geolocation.onetrust.com:443 HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:26:26 2023
+
+28: "CONNECT cdn.cookielaw.org:443 HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:26:26 2023
+
+33: "CONNECT www.googletagmanager.com:443 HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:26:26 2023
+
+29: "CONNECT cdn.polarbyte.com:443 HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:26:26 2023
+
+34: "CONNECT cdn.ampproject.org:443 HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:26:26 2023
+
+37: "CONNECT cdn.ampproject.org:443 HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:26:26 2023
+
+38: "CONNECT dictionary.cambridge.org:443 HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:26:26 2023
+
+36: "CONNECT cdn.ampproject.org:443 HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:26:26 2023
+
+35: "CONNECT dictionary.cambridge.org:443 HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:26:26 2023
+
+30: "CONNECT dictionary.cambridge.org:443 HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:26:26 2023
+
+32: "CONNECT dictionary.cambridge.org:443 HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:26:26 2023
+
+31: "CONNECT cdn.ampproject.org:443 HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:26:26 2023
+
+41: "CONNECT cdn.polarbyte.com:443 HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:26:26 2023
+
+40: "CONNECT cdn.ampproject.org:443 HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:26:26 2023
+
+39: "CONNECT securepubads.g.doubleclick.net:443 HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:26:26 2023
+
+43: "CONNECT cdn.ampproject.org:443 HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:26:26 2023
+
+44: "CONNECT dictionary.cambridge.org:443 HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:26:26 2023
+
+42: "CONNECT www.google-analytics.com:443 HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:26:26 2023
+
+28: Requesting "CONNECT cdn.cookielaw.org:443 HTTP/1.1" from cdn.cookielaw.org
+28: Responding "HTTP/1.1 200 OK"
+27: Requesting "CONNECT geolocation.onetrust.com:443 HTTP/1.1" from geolocation.onetrust.com
+27: Responding "HTTP/1.1 200 OK"
+33: Requesting "CONNECT www.googletagmanager.com:443 HTTP/1.1" from www.googletagmanager.com
+33: Responding "HTTP/1.1 200 OK"
+30: Requesting "CONNECT dictionary.cambridge.org:443 HTTP/1.1" from dictionary.cambridge.org
+30: Responding "HTTP/1.1 200 OK"
+35: Requesting "CONNECT dictionary.cambridge.org:443 HTTP/1.1" from dictionary.cambridge.org
+35: Responding "HTTP/1.1 200 OK"
+32: Requesting "CONNECT dictionary.cambridge.org:443 HTTP/1.1" from dictionary.cambridge.org
+32: Responding "HTTP/1.1 200 OK"
+38: Requesting "CONNECT dictionary.cambridge.org:443 HTTP/1.1" from dictionary.cambridge.org
+38: Responding "HTTP/1.1 200 OK"
+44: Requesting "CONNECT dictionary.cambridge.org:443 HTTP/1.1" from dictionary.cambridge.org
+44: Responding "HTTP/1.1 200 OK"
+31: Requesting "CONNECT cdn.ampproject.org:443 HTTP/1.1" from cdn.ampproject.org
+31: Responding "HTTP/1.1 200 OK"
+43: Requesting "CONNECT cdn.ampproject.org:443 HTTP/1.1" from cdn.ampproject.org
+43: Responding "HTTP/1.1 200 OK"
+40: Requesting "CONNECT cdn.ampproject.org:443 HTTP/1.1" from cdn.ampproject.org
+37: Requesting "CONNECT cdn.ampproject.org:443 HTTP/1.1" from cdn.ampproject.org
+37: Responding "HTTP/1.1 200 OK"
+40: Responding "HTTP/1.1 200 OK"
+36: Requesting "CONNECT cdn.ampproject.org:443 HTTP/1.1" from cdn.ampproject.org
+36: Responding "HTTP/1.1 200 OK"
+34: Requesting "CONNECT cdn.ampproject.org:443 HTTP/1.1" from cdn.ampproject.org
+34: Responding "HTTP/1.1 200 OK"
+39: Requesting "CONNECT securepubads.g.doubleclick.net:443 HTTP/1.1" from securepubads.g.doubleclick.net
+39: Responding "HTTP/1.1 200 OK"
+42: Requesting "CONNECT www.google-analytics.com:443 HTTP/1.1" from www.google-analytics.com
+42: Responding "HTTP/1.1 200 OK"
+29: Requesting "CONNECT cdn.polarbyte.com:443 HTTP/1.1" from cdn.polarbyte.com
+29: Responding "HTTP/1.1 200 OK"
+41: Requesting "CONNECT cdn.polarbyte.com:443 HTTP/1.1" from cdn.polarbyte.com
+41: Responding "HTTP/1.1 200 OK"
+45: "POST http://ocsp.digicert.com/ HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:26:26 2023
+
+47: "POST http://ocsp.pki.goog/gts1c3 HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:26:26 2023
+
+46: "POST http://ocsp.pki.goog/gts1c3 HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:26:26 2023
+
+48: "POST http://ocsp.pki.goog/gts1c3 HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:26:26 2023
+
+45: Requesting "POST http://ocsp.digicert.com/ HTTP/1.1" from ocsp.digicert.com
+49: "POST http://ocsp.pki.goog/gts1c3 HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:26:26 2023
+
+46: Requesting "POST http://ocsp.pki.goog/gts1c3 HTTP/1.1" from ocsp.pki.goog
+47: Requesting "POST http://ocsp.pki.goog/gts1c3 HTTP/1.1" from ocsp.pki.goog
+48: Requesting "POST http://ocsp.pki.goog/gts1c3 HTTP/1.1" from ocsp.pki.goog
+49: Requesting "POST http://ocsp.pki.goog/gts1c3 HTTP/1.1" from ocsp.pki.goog
+45: Responding "HTTP/1.1 200 OK"
+46: Responding "HTTP/1.1 200 OK"
+48: Responding "HTTP/1.1 200 OK"
+47: Responding "HTTP/1.1 200 OK"
+49: Responding "HTTP/1.1 200 OK"
+50: "POST http://ocsp.pki.goog/gts1c3 HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:26:26 2023
+
+50: Requesting "POST http://ocsp.pki.goog/gts1c3 HTTP/1.1" from ocsp.pki.goog
+50: Responding "HTTP/1.1 200 OK"
+43: Tunnel closed
+36: Tunnel closed
+40: Tunnel closed
+41: Tunnel closed
+51: "CONNECT cdn.cookielaw.org:443 HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:26:26 2023
+
+51: Requesting "CONNECT cdn.cookielaw.org:443 HTTP/1.1" from cdn.cookielaw.org
+51: Responding "HTTP/1.1 200 OK"
+37: Tunnel closed
+31: Tunnel closed
+52: "CONNECT securepubads.g.doubleclick.net:443 HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:26:26 2023
+
+53: "CONNECT boot.pbstck.com:443 HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:26:26 2023
+
+52: Requesting "CONNECT securepubads.g.doubleclick.net:443 HTTP/1.1" from securepubads.g.doubleclick.net
+52: Responding "HTTP/1.1 200 OK"
+54: "CONNECT script.4dex.io:443 HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:26:26 2023
+
+59: "CONNECT ib.adnxs.com:443 HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:26:26 2023
+
+55: "CONNECT htlb.casalemedia.com:443 HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:26:26 2023
+
+56: "CONNECT ap.lijit.com:443 HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:26:26 2023
+
+63: "CONNECT fastlane.rubiconproject.com:443 HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:26:26 2023
+
+66: "CONNECT mp.4dex.io:443 HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:26:26 2023
+
+60: "CONNECT c2shb.ssp.yahoo.com:443 HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:26:26 2023
+
+58: "CONNECT idm-d.openx.net:443 HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:26:26 2023
+
+57: "CONNECT bidder.criteo.com:443 HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:26:26 2023
+
+65: "CONNECT c2shb.ssp.yahoo.com:443 HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:26:26 2023
+
+67: "CONNECT hbopenbid.pubmatic.com:443 HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:26:26 2023
+
+61: "CONNECT c2shb.ssp.yahoo.com:443 HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:26:26 2023
+
+62: "CONNECT c2shb.ssp.yahoo.com:443 HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:26:26 2023
+
+64: "CONNECT fastlane.rubiconproject.com:443 HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:26:26 2023
+
+68: "CONNECT fastlane.rubiconproject.com:443 HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:26:26 2023
+
+69: "CONNECT tlx.3lift.com:443 HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:26:26 2023
+
+70: "CONNECT fastlane.rubiconproject.com:443 HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:26:26 2023
+
+53: Requesting "CONNECT boot.pbstck.com:443 HTTP/1.1" from boot.pbstck.com
+53: Responding "HTTP/1.1 200 OK"
+57: Requesting "CONNECT bidder.criteo.com:443 HTTP/1.1" from bidder.criteo.com
+57: Responding "HTTP/1.1 200 OK"
+66: Requesting "CONNECT mp.4dex.io:443 HTTP/1.1" from mp.4dex.io
+66: Responding "HTTP/1.1 200 OK"
+55: Requesting "CONNECT htlb.casalemedia.com:443 HTTP/1.1" from htlb.casalemedia.com
+55: Responding "HTTP/1.1 200 OK"
+54: Requesting "CONNECT script.4dex.io:443 HTTP/1.1" from script.4dex.io
+54: Responding "HTTP/1.1 200 OK"
+58: Requesting "CONNECT idm-d.openx.net:443 HTTP/1.1" from idm-d.openx.net
+58: Responding "HTTP/1.1 200 OK"
+68: Requesting "CONNECT fastlane.rubiconproject.com:443 HTTP/1.1" from fastlane.rubiconproject.com
+68: Responding "HTTP/1.1 200 OK"
+63: Requesting "CONNECT fastlane.rubiconproject.com:443 HTTP/1.1" from fastlane.rubiconproject.com
+63: Responding "HTTP/1.1 200 OK"
+70: Requesting "CONNECT fastlane.rubiconproject.com:443 HTTP/1.1" from fastlane.rubiconproject.com
+70: Responding "HTTP/1.1 200 OK"
+64: Requesting "CONNECT fastlane.rubiconproject.com:443 HTTP/1.1" from fastlane.rubiconproject.com
+64: Responding "HTTP/1.1 200 OK"
+69: Requesting "CONNECT tlx.3lift.com:443 HTTP/1.1" from tlx.3lift.com
+69: Responding "HTTP/1.1 200 OK"
+73: "CONNECT stats.g.doubleclick.net:443 HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:26:26 2023
+
+72: "CONNECT sp.dev.polarbyte.com:443 HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:26:26 2023
+
+59: Requesting "CONNECT ib.adnxs.com:443 HTTP/1.1" from ib.adnxs.com
+59: Responding "HTTP/1.1 200 OK"
+67: Requesting "CONNECT hbopenbid.pubmatic.com:443 HTTP/1.1" from hbopenbid.pubmatic.com
+67: Responding "HTTP/1.1 200 OK"
+56: Requesting "CONNECT ap.lijit.com:443 HTTP/1.1" from ap.lijit.com
+56: Responding "HTTP/1.1 200 OK"
+61: Requesting "CONNECT c2shb.ssp.yahoo.com:443 HTTP/1.1" from c2shb.ssp.yahoo.com
+61: Responding "HTTP/1.1 200 OK"
+65: Requesting "CONNECT c2shb.ssp.yahoo.com:443 HTTP/1.1" from c2shb.ssp.yahoo.com
+65: Responding "HTTP/1.1 200 OK"
+60: Requesting "CONNECT c2shb.ssp.yahoo.com:443 HTTP/1.1" from c2shb.ssp.yahoo.com
+60: Responding "HTTP/1.1 200 OK"
+62: Requesting "CONNECT c2shb.ssp.yahoo.com:443 HTTP/1.1" from c2shb.ssp.yahoo.com
+62: Responding "HTTP/1.1 200 OK"
+73: Requesting "CONNECT stats.g.doubleclick.net:443 HTTP/1.1" from stats.g.doubleclick.net
+73: Responding "HTTP/1.1 200 OK"
+72: Requesting "CONNECT sp.dev.polarbyte.com:443 HTTP/1.1" from sp.dev.polarbyte.com
+72: Responding "HTTP/1.1 200 OK"
+75: "POST http://ocsp.digicert.com/ HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:26:26 2023
+
+74: "POST http://ocsp.digicert.com/ HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:26:26 2023
+
+76: "POST http://ocsp.digicert.com/ HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:26:26 2023
+
+77: "POST http://ocsp.r2m02.amazontrust.com/ HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:26:26 2023
+
+78: "POST http://status.geotrust.com/ HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:26:26 2023
+
+74: Requesting "POST http://ocsp.digicert.com/ HTTP/1.1" from ocsp.digicert.com
+75: Requesting "POST http://ocsp.digicert.com/ HTTP/1.1" from ocsp.digicert.com
+79: "CONNECT geolocation.onetrust.com:443 HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:26:26 2023
+
+74: Responding "HTTP/1.1 200 OK"
+75: Responding "HTTP/1.1 200 OK"
+79: Requesting "CONNECT geolocation.onetrust.com:443 HTTP/1.1" from geolocation.onetrust.com
+79: Responding "HTTP/1.1 200 OK"
+76: Requesting "POST http://ocsp.digicert.com/ HTTP/1.1" from ocsp.digicert.com
+78: Requesting "POST http://status.geotrust.com/ HTTP/1.1" from status.geotrust.com
+76: Responding "HTTP/1.1 200 OK"
+78: Responding "HTTP/1.1 200 OK"
+77: Requesting "POST http://ocsp.r2m02.amazontrust.com/ HTTP/1.1" from ocsp.r2m02.amazontrust.com
+80: "POST http://ocsp.digicert.com/ HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:26:27 2023
+
+81: "POST http://ocsp.digicert.com/ HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:26:27 2023
+
+77: Responding "HTTP/1.1 200 OK"
+80: Requesting "POST http://ocsp.digicert.com/ HTTP/1.1" from ocsp.digicert.com
+81: Requesting "POST http://ocsp.digicert.com/ HTTP/1.1" from ocsp.digicert.com
+83: "POST http://ocsp.digicert.com/ HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:26:27 2023
+
+82: "POST http://ocsp.digicert.com/ HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:26:27 2023
+
+81: Responding "HTTP/1.1 200 OK"
+80: Responding "HTTP/1.1 200 OK"
+84: "POST http://ocsp.digicert.com/ HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:26:27 2023
+
+82: Requesting "POST http://ocsp.digicert.com/ HTTP/1.1" from ocsp.digicert.com
+83: Requesting "POST http://ocsp.digicert.com/ HTTP/1.1" from ocsp.digicert.com
+84: Requesting "POST http://ocsp.digicert.com/ HTTP/1.1" from ocsp.digicert.com
+83: Responding "HTTP/1.1 200 OK"
+84: Responding "HTTP/1.1 200 OK"
+82: Responding "HTTP/1.1 200 OK"
+85: "POST http://ocsp.godaddy.com/ HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:26:27 2023
+
+86: "POST http://ocsp.digicert.com/ HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:26:27 2023
+
+86: Requesting "POST http://ocsp.digicert.com/ HTTP/1.1" from ocsp.digicert.com
+86: Responding "HTTP/1.1 200 OK"
+90: "POST http://ocsp.digicert.com/ HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:26:27 2023
+
+89: "POST http://ocsp.digicert.com/ HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:26:27 2023
+
+88: "CONNECT cdn.pbstck.com:443 HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:26:27 2023
+
+87: "POST http://ocsp.digicert.com/ HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:26:27 2023
+
+87: Requesting "POST http://ocsp.digicert.com/ HTTP/1.1" from ocsp.digicert.com
+89: Requesting "POST http://ocsp.digicert.com/ HTTP/1.1" from ocsp.digicert.com
+90: Requesting "POST http://ocsp.digicert.com/ HTTP/1.1" from ocsp.digicert.com
+88: Requesting "CONNECT cdn.pbstck.com:443 HTTP/1.1" from cdn.pbstck.com
+88: Responding "HTTP/1.1 200 OK"
+91: "POST http://ocsp.digicert.com/ HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:26:27 2023
+
+87: Responding "HTTP/1.1 200 OK"
+89: Responding "HTTP/1.1 200 OK"
+90: Responding "HTTP/1.1 200 OK"
+92: "CONNECT script.4dex.io:443 HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:26:27 2023
+
+91: Requesting "POST http://ocsp.digicert.com/ HTTP/1.1" from ocsp.digicert.com
+92: Requesting "CONNECT script.4dex.io:443 HTTP/1.1" from script.4dex.io
+92: Responding "HTTP/1.1 200 OK"
+91: Responding "HTTP/1.1 200 OK"
+93: "POST http://ocsps.ssl.com/ HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:26:27 2023
+
+93: Requesting "POST http://ocsps.ssl.com/ HTTP/1.1" from ocsps.ssl.com
+93: ERROR cannot parse response
+61: Tunnel closed
+65: Tunnel closed
+60: Tunnel closed
+85: Requesting "POST http://ocsp.godaddy.com/ HTTP/1.1" from ocsp.godaddy.com
+64: Tunnel closed
+71: "CONNECT sp.dev.polarbyte.com:443 HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:26:27 2023
+
+68: Tunnel closed
+71: Requesting "CONNECT sp.dev.polarbyte.com:443 HTTP/1.1" from sp.dev.polarbyte.com
+71: Responding "HTTP/1.1 200 OK"
+85: Responding "HTTP/1.1 200 OK"
+70: Tunnel closed
+94: "CONNECT ads.pubmatic.com:443 HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:26:27 2023
+
+94: Requesting "CONNECT ads.pubmatic.com:443 HTTP/1.1" from ads.pubmatic.com
+94: Responding "HTTP/1.1 200 OK"
+95: "CONNECT connect.facebook.net:443 HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:26:27 2023
+
+96: "CONNECT static.hotjar.com:443 HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:26:27 2023
+
+97: "CONNECT a.teads.tv:443 HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:26:27 2023
+
+96: Requesting "CONNECT static.hotjar.com:443 HTTP/1.1" from static.hotjar.com
+96: Responding "HTTP/1.1 200 OK"
+97: Requesting "CONNECT a.teads.tv:443 HTTP/1.1" from a.teads.tv
+97: Responding "HTTP/1.1 200 OK"
+95: Requesting "CONNECT connect.facebook.net:443 HTTP/1.1" from connect.facebook.net
+95: Responding "HTTP/1.1 200 OK"
+98: "CONNECT image6.pubmatic.com:443 HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:26:28 2023
+
+99: "CONNECT adservice.google.com:443 HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:26:28 2023
+
+100: "POST http://ocsp.digicert.com/ HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:26:28 2023
+
+98: Requesting "CONNECT image6.pubmatic.com:443 HTTP/1.1" from image6.pubmatic.com
+98: Responding "HTTP/1.1 200 OK"
+99: Requesting "CONNECT adservice.google.com:443 HTTP/1.1" from adservice.google.com
+99: Responding "HTTP/1.1 200 OK"
+100: Requesting "POST http://ocsp.digicert.com/ HTTP/1.1" from ocsp.digicert.com
+100: Responding "HTTP/1.1 200 OK"
+101: "CONNECT at.teads.tv:443 HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:26:28 2023
+
+101: Requesting "CONNECT at.teads.tv:443 HTTP/1.1" from at.teads.tv
+101: Responding "HTTP/1.1 200 OK"
+102: "CONNECT a33f013dc24b62b683b2df0859f1f07b.safeframe.googlesyndication.com:443 HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:26:28 2023
+
+103: "CONNECT simage4.pubmatic.com:443 HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:26:28 2023
+
+102: Requesting "CONNECT a33f013dc24b62b683b2df0859f1f07b.safeframe.googlesyndication.com:443 HTTP/1.1" from a33f013dc24b62b683b2df0859f1f07b.safeframe.googlesyndication.com
+102: Responding "HTTP/1.1 200 OK"
+103: Requesting "CONNECT simage4.pubmatic.com:443 HTTP/1.1" from simage4.pubmatic.com
+103: Responding "HTTP/1.1 200 OK"
+104: "CONNECT www.googletagservices.com:443 HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:26:28 2023
+
+105: "CONNECT tpc.googlesyndication.com:443 HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:26:28 2023
+
+105: Requesting "CONNECT tpc.googlesyndication.com:443 HTTP/1.1" from tpc.googlesyndication.com
+105: Responding "HTTP/1.1 200 OK"
+104: Requesting "CONNECT www.googletagservices.com:443 HTTP/1.1" from www.googletagservices.com
+104: Responding "HTTP/1.1 200 OK"
+106: "CONNECT intake.pbstck.com:443 HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:26:28 2023
+
+106: Requesting "CONNECT intake.pbstck.com:443 HTTP/1.1" from intake.pbstck.com
+106: Responding "HTTP/1.1 200 OK"
+107: "POST http://ocsp.pki.goog/gts1c3 HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:26:28 2023
+
+107: Requesting "POST http://ocsp.pki.goog/gts1c3 HTTP/1.1" from ocsp.pki.goog
+107: Responding "HTTP/1.1 200 OK"
+108: "CONNECT u.4dex.io:443 HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:26:28 2023
+
+108: Requesting "CONNECT u.4dex.io:443 HTTP/1.1" from u.4dex.io
+108: Responding "HTTP/1.1 200 OK"
+109: "CONNECT secure-assets.rubiconproject.com:443 HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:26:28 2023
+
+109: Requesting "CONNECT secure-assets.rubiconproject.com:443 HTTP/1.1" from secure-assets.rubiconproject.com
+109: Responding "HTTP/1.1 200 OK"
+109: Tunnel closed
+108: Tunnel closed
+110: "POST http://ocsp.pki.goog/s/gts1d4/9Z-OBR8-s3w HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:26:28 2023
+
+110: Requesting "POST http://ocsp.pki.goog/s/gts1d4/9Z-OBR8-s3w HTTP/1.1" from ocsp.pki.goog
+110: Responding "HTTP/1.1 200 OK"
+111: "CONNECT googleads.g.doubleclick.net:443 HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:26:29 2023
+
+111: Requesting "CONNECT googleads.g.doubleclick.net:443 HTTP/1.1" from googleads.g.doubleclick.net
+111: Responding "HTTP/1.1 200 OK"
+112: "CONNECT static.doubleclick.net:443 HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:26:30 2023
+
+114: "CONNECT jnn-pa.googleapis.com:443 HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:26:30 2023
+
+112: Requesting "CONNECT static.doubleclick.net:443 HTTP/1.1" from static.doubleclick.net
+112: Responding "HTTP/1.1 200 OK"
+114: Requesting "CONNECT jnn-pa.googleapis.com:443 HTTP/1.1" from jnn-pa.googleapis.com
+114: Responding "HTTP/1.1 200 OK"
+116: "POST http://ocsp.pki.goog/gts1c3 HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:26:31 2023
+
+115: "POST http://ocsp.pki.goog/gts1c3 HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:26:31 2023
+
+115: Requesting "POST http://ocsp.pki.goog/gts1c3 HTTP/1.1" from ocsp.pki.goog
+116: Requesting "POST http://ocsp.pki.goog/gts1c3 HTTP/1.1" from ocsp.pki.goog
+116: Responding "HTTP/1.1 200 OK"
+115: Responding "HTTP/1.1 200 OK"
+113: ERROR no request received
+57: Tunnel closed
+59: Tunnel closed
+44: Tunnel closed
+38: Tunnel closed
+30: Tunnel closed
+35: Tunnel closed
+63: Tunnel closed
+56: Tunnel closed
+25: Tunnel closed
+32: Tunnel closed
+117: "CONNECT www.youtube.com:443 HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:28:16 2023
+
+117: Requesting "CONNECT www.youtube.com:443 HTTP/1.1" from www.youtube.com
+117: Responding "HTTP/1.1 200 OK"
+118: "CONNECT www.gstatic.com:443 HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:28:17 2023
+
+118: Requesting "CONNECT www.gstatic.com:443 HTTP/1.1" from www.gstatic.com
+118: Responding "HTTP/1.1 200 OK"
+62: Tunnel closed
+54: Tunnel closed
+92: Tunnel closed
+101: Tunnel closed
+97: Tunnel closed
+94: Tunnel closed
+6: Tunnel closed
+4: Tunnel closed
+58: Tunnel closed
+79: Tunnel closed
+67: Tunnel closed
+53: Tunnel closed
+52: Tunnel closed
+34: Tunnel closed
+55: Tunnel closed
+66: Tunnel closed
+69: Tunnel closed
+33: Tunnel closed
+0: Tunnel closed
+29: Tunnel closed
+27: Tunnel closed
+73: Tunnel closed
+72: Tunnel closed
+71: Tunnel closed
+51: Tunnel closed
+95: Tunnel closed
+88: Tunnel closed
+39: Tunnel closed
+96: Tunnel closed
+98: Tunnel closed
+28: Tunnel closed
+103: Tunnel closed
+106: Tunnel closed
+105: Tunnel closed
+104: Tunnel closed
+102: Tunnel closed
+42: Tunnel closed
+16: Tunnel closed
+7: Tunnel closed
+24: Tunnel closed
+120: "CONNECT encrypted-tbn0.gstatic.com:443 HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:30:54 2023
+
+119: "CONNECT encrypted-tbn0.gstatic.com:443 HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:30:54 2023
+
+121: "CONNECT encrypted-tbn0.gstatic.com:443 HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:30:54 2023
+
+122: "CONNECT encrypted-tbn0.gstatic.com:443 HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:30:54 2023
+
+119: Requesting "CONNECT encrypted-tbn0.gstatic.com:443 HTTP/1.1" from encrypted-tbn0.gstatic.com
+119: Responding "HTTP/1.1 200 OK"
+120: Requesting "CONNECT encrypted-tbn0.gstatic.com:443 HTTP/1.1" from encrypted-tbn0.gstatic.com
+120: Responding "HTTP/1.1 200 OK"
+122: Requesting "CONNECT encrypted-tbn0.gstatic.com:443 HTTP/1.1" from encrypted-tbn0.gstatic.com
+122: Responding "HTTP/1.1 200 OK"
+121: Requesting "CONNECT encrypted-tbn0.gstatic.com:443 HTTP/1.1" from encrypted-tbn0.gstatic.com
+121: Responding "HTTP/1.1 200 OK"
+120: Tunnel closed
+121: Tunnel closed
+122: Tunnel closed
+123: "CONNECT contile.services.mozilla.com:443 HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:30:54 2023
+
+123: Requesting "CONNECT contile.services.mozilla.com:443 HTTP/1.1" from contile.services.mozilla.com
+123: Responding "HTTP/1.1 200 OK"
+124: "POST http://r3.o.lencr.org/ HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:30:55 2023
+
+124: Requesting "POST http://r3.o.lencr.org/ HTTP/1.1" from r3.o.lencr.org
+124: Responding "HTTP/1.1 200 OK"
+125: "CONNECT contile-images.services.mozilla.com:443 HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:30:55 2023
+
+126: "CONNECT contile-images.services.mozilla.com:443 HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:30:55 2023
+
+125: Requesting "CONNECT contile-images.services.mozilla.com:443 HTTP/1.1" from contile-images.services.mozilla.com
+125: Responding "HTTP/1.1 200 OK"
+126: Requesting "CONNECT contile-images.services.mozilla.com:443 HTTP/1.1" from contile-images.services.mozilla.com
+126: Responding "HTTP/1.1 200 OK"
+127: "POST http://r3.o.lencr.org/ HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:30:55 2023
+
+127: Requesting "POST http://r3.o.lencr.org/ HTTP/1.1" from r3.o.lencr.org
+127: Responding "HTTP/1.1 200 OK"
+128: "POST http://r3.o.lencr.org/ HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:30:55 2023
+
+128: Requesting "POST http://r3.o.lencr.org/ HTTP/1.1" from r3.o.lencr.org
+128: Responding "HTTP/1.1 200 OK"
+125: Tunnel closed
+129: "CONNECT neat-iodine-05e.notion.site:443 HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:31:03 2023
+
+129: Requesting "CONNECT neat-iodine-05e.notion.site:443 HTTP/1.1" from neat-iodine-05e.notion.site
+129: Responding "HTTP/1.1 200 OK"
+130: "CONNECT o324374.ingest.sentry.io:443 HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:31:04 2023
+
+131: "CONNECT exp.notion.so:443 HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:31:04 2023
+
+130: Requesting "CONNECT o324374.ingest.sentry.io:443 HTTP/1.1" from o324374.ingest.sentry.io
+130: Responding "HTTP/1.1 200 OK"
+134: "CONNECT http-inputs-notion.splunkcloud.com:443 HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:31:04 2023
+
+131: Requesting "CONNECT exp.notion.so:443 HTTP/1.1" from exp.notion.so
+131: Responding "HTTP/1.1 200 OK"
+133: "CONNECT http-inputs-notion.splunkcloud.com:443 HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:31:04 2023
+
+136: "CONNECT aif.notion.so:443 HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:31:04 2023
+
+133: Requesting "CONNECT http-inputs-notion.splunkcloud.com:443 HTTP/1.1" from http-inputs-notion.splunkcloud.com
+133: Responding "HTTP/1.1 200 OK"
+134: Requesting "CONNECT http-inputs-notion.splunkcloud.com:443 HTTP/1.1" from http-inputs-notion.splunkcloud.com
+134: Responding "HTTP/1.1 200 OK"
+136: Requesting "CONNECT aif.notion.so:443 HTTP/1.1" from aif.notion.so
+136: Responding "HTTP/1.1 200 OK"
+138: "POST http://r3.o.lencr.org/ HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:31:04 2023
+
+138: Requesting "POST http://r3.o.lencr.org/ HTTP/1.1" from r3.o.lencr.org
+138: Responding "HTTP/1.1 200 OK"
+139: "POST http://ocsp.digicert.com/ HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:31:04 2023
+
+140: "POST http://ocsp.digicert.com/ HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:31:04 2023
+
+140: Requesting "POST http://ocsp.digicert.com/ HTTP/1.1" from ocsp.digicert.com
+139: Requesting "POST http://ocsp.digicert.com/ HTTP/1.1" from ocsp.digicert.com
+139: Responding "HTTP/1.1 200 OK"
+140: Responding "HTTP/1.1 200 OK"
+141: "CONNECT www.googletagmanager.com:443 HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:31:04 2023
+
+141: Requesting "CONNECT www.googletagmanager.com:443 HTTP/1.1" from www.googletagmanager.com
+141: Responding "HTTP/1.1 200 OK"
+137: "CONNECT http-inputs-notion.splunkcloud.com:443 HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:31:04 2023
+
+135: "CONNECT http-inputs-notion.splunkcloud.com:443 HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:31:04 2023
+
+135: Requesting "CONNECT http-inputs-notion.splunkcloud.com:443 HTTP/1.1" from http-inputs-notion.splunkcloud.com
+135: Responding "HTTP/1.1 200 OK"
+137: Requesting "CONNECT http-inputs-notion.splunkcloud.com:443 HTTP/1.1" from http-inputs-notion.splunkcloud.com
+137: Responding "HTTP/1.1 200 OK"
+142: "CONNECT widget.intercom.io:443 HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:31:04 2023
+
+142: Requesting "CONNECT widget.intercom.io:443 HTTP/1.1" from widget.intercom.io
+142: Responding "HTTP/1.1 200 OK"
+143: "CONNECT www.notion.so:443 HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:31:04 2023
+
+144: "CONNECT connect.facebook.net:443 HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:31:04 2023
+
+143: Requesting "CONNECT www.notion.so:443 HTTP/1.1" from www.notion.so
+143: Responding "HTTP/1.1 200 OK"
+144: Requesting "CONNECT connect.facebook.net:443 HTTP/1.1" from connect.facebook.net
+144: Responding "HTTP/1.1 200 OK"
+145: "CONNECT d2hrivdxn8ekm8.cloudfront.net:443 HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:31:05 2023
+
+146: "CONNECT x.clearbitjs.com:443 HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:31:05 2023
+
+147: "CONNECT cdn.metadata.io:443 HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:31:05 2023
+
+146: Requesting "CONNECT x.clearbitjs.com:443 HTTP/1.1" from x.clearbitjs.com
+146: Responding "HTTP/1.1 200 OK"
+145: Requesting "CONNECT d2hrivdxn8ekm8.cloudfront.net:443 HTTP/1.1" from d2hrivdxn8ekm8.cloudfront.net
+145: Responding "HTTP/1.1 200 OK"
+147: Requesting "CONNECT cdn.metadata.io:443 HTTP/1.1" from cdn.metadata.io
+147: Responding "HTTP/1.1 200 OK"
+149: "CONNECT js.intercomcdn.com:443 HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:31:05 2023
+
+148: "CONNECT js.intercomcdn.com:443 HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:31:05 2023
+
+148: Requesting "CONNECT js.intercomcdn.com:443 HTTP/1.1" from js.intercomcdn.com
+148: Responding "HTTP/1.1 200 OK"
+149: Requesting "CONNECT js.intercomcdn.com:443 HTTP/1.1" from js.intercomcdn.com
+149: Responding "HTTP/1.1 200 OK"
+150: "POST http://ocsp.r2m01.amazontrust.com/ HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:31:05 2023
+
+150: Requesting "POST http://ocsp.r2m01.amazontrust.com/ HTTP/1.1" from ocsp.r2m01.amazontrust.com
+150: Responding "HTTP/1.1 200 OK"
+152: "CONNECT dvqigh9b7wa32.cloudfront.net:443 HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:31:05 2023
+
+151: "CONNECT d330aiyvva2oww.cloudfront.net:443 HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:31:05 2023
+
+153: "CONNECT d1lu3pmaz2ilpx.cloudfront.net:443 HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:31:05 2023
+
+152: Requesting "CONNECT dvqigh9b7wa32.cloudfront.net:443 HTTP/1.1" from dvqigh9b7wa32.cloudfront.net
+152: Responding "HTTP/1.1 200 OK"
+151: Requesting "CONNECT d330aiyvva2oww.cloudfront.net:443 HTTP/1.1" from d330aiyvva2oww.cloudfront.net
+151: Responding "HTTP/1.1 200 OK"
+153: Requesting "CONNECT d1lu3pmaz2ilpx.cloudfront.net:443 HTTP/1.1" from d1lu3pmaz2ilpx.cloudfront.net
+153: Responding "HTTP/1.1 200 OK"
+148: Tunnel closed
+154: "CONNECT api-iam.intercom.io:443 HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:31:05 2023
+
+154: Requesting "CONNECT api-iam.intercom.io:443 HTTP/1.1" from api-iam.intercom.io
+154: Responding "HTTP/1.1 200 OK"
+157: "CONNECT segment.prod.bidr.io:443 HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:31:05 2023
+
+156: "CONNECT acdn.adnxs.com:443 HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:31:05 2023
+
+155: "CONNECT analytics.tiktok.com:443 HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:31:05 2023
+
+159: "CONNECT snap.licdn.com:443 HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:31:05 2023
+
+158: "CONNECT munchkin.marketo.net:443 HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:31:05 2023
+
+156: Requesting "CONNECT acdn.adnxs.com:443 HTTP/1.1" from acdn.adnxs.com
+156: Responding "HTTP/1.1 200 OK"
+159: Requesting "CONNECT snap.licdn.com:443 HTTP/1.1" from snap.licdn.com
+159: Responding "HTTP/1.1 200 OK"
+157: Requesting "CONNECT segment.prod.bidr.io:443 HTTP/1.1" from segment.prod.bidr.io
+157: Responding "HTTP/1.1 200 OK"
+158: Requesting "CONNECT munchkin.marketo.net:443 HTTP/1.1" from munchkin.marketo.net
+158: Responding "HTTP/1.1 200 OK"
+155: Requesting "CONNECT analytics.tiktok.com:443 HTTP/1.1" from analytics.tiktok.com
+155: Responding "HTTP/1.1 200 OK"
+161: "POST http://ocsp.r2m02.amazontrust.com/ HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:31:05 2023
+
+160: "CONNECT app.clearbit.com:443 HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:31:05 2023
+
+161: Requesting "POST http://ocsp.r2m02.amazontrust.com/ HTTP/1.1" from ocsp.r2m02.amazontrust.com
+160: Requesting "CONNECT app.clearbit.com:443 HTTP/1.1" from app.clearbit.com
+160: Responding "HTTP/1.1 200 OK"
+161: Responding "HTTP/1.1 200 OK"
+162: "CONNECT px.ads.linkedin.com:443 HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:31:06 2023
+
+162: Requesting "CONNECT px.ads.linkedin.com:443 HTTP/1.1" from px.ads.linkedin.com
+162: Responding "HTTP/1.1 200 OK"
+163: "CONNECT 414-xmy-838.mktoresp.com:443 HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:31:06 2023
+
+164: "CONNECT ib.adnxs.com:443 HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:31:06 2023
+
+165: "POST http://ocsp.r2m02.amazontrust.com/ HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:31:06 2023
+
+165: Requesting "POST http://ocsp.r2m02.amazontrust.com/ HTTP/1.1" from ocsp.r2m02.amazontrust.com
+164: Requesting "CONNECT ib.adnxs.com:443 HTTP/1.1" from ib.adnxs.com
+164: Responding "HTTP/1.1 200 OK"
+165: Responding "HTTP/1.1 200 OK"
+163: Requesting "CONNECT 414-xmy-838.mktoresp.com:443 HTTP/1.1" from 414-xmy-838.mktoresp.com
+163: Responding "HTTP/1.1 200 OK"
+167: "POST http://ocsp.digicert.com/ HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:31:06 2023
+
+167: Requesting "POST http://ocsp.digicert.com/ HTTP/1.1" from ocsp.digicert.com
+167: Responding "HTTP/1.1 200 OK"
+132: ERROR no request received
+157: Tunnel closed
+166: ERROR no request received
+146: Tunnel closed
+160: Tunnel closed
+164: Tunnel closed
+168: "GET http://httpbin.org/forms/post HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:31:21 2023
+
+168: not in cache
+168: Requesting "GET http://httpbin.org/forms/post HTTP/1.1" from httpbin.org
+168: ERROR cannot parse response
+169: "GET http://httpbin.org/forms/post HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:31:22 2023
+
+169: not in cache
+169: Requesting "GET http://httpbin.org/forms/post HTTP/1.1" from httpbin.org
+169: ERROR cannot parse response
+170: "GET http://httpbin.org/forms/post HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:31:22 2023
+
+170: not in cache
+170: Requesting "GET http://httpbin.org/forms/post HTTP/1.1" from httpbin.org
+170: Receive "HTTP/1.1 200 OK" fromhttpbin.org
+170: not cacheable because the headers or the client dose not allow cache
+170: Responding "HTTP/1.1 200 OK"
+171: "GET http://httpbin.org/favicon.ico HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:31:22 2023
+
+171: not in cache
+171: Requesting "GET http://httpbin.org/favicon.ico HTTP/1.1" from httpbin.org
+171: Receive "HTTP/1.1 404 NOT FOUND" fromhttpbin.org
+171: not cacheable because the headers or the client dose not allow cache
+171: Responding "HTTP/1.1 404 NOT FOUND"
+172: "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from 174.99.38.185 @ Tue Feb 28 02:31:25 2023
+
+172: not in cache
+172: Requesting "GET http://www.httpwatch.com/httpgallery/chunked/chunkedimage.aspx HTTP/1.1" from www.httpwatch.com
+172: NOTE chunked transfer coding
+159: Tunnel closed
