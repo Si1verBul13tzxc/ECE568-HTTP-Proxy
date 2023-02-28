@@ -1,6 +1,6 @@
 #include "proxy.hpp"
 
-#define LOG_F "var/log/erss/proxy.log"
+#define LOG_F "/var/log/erss/proxy.log"
 std::mutex mtx;
 
 Cache * proxy::cache = NULL;
